@@ -3,115 +3,116 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dowsure · 销售工作台 Demo</title>
+  <title>Dowsure · 销售智能 CRM Demo</title>
   <style>
-    :root{--bg:#eef3f9;--ink:#172033;--text:#4b5565;--muted:#778399;--line:#d6dfed;--card:#fff;--blue:#1d4ed8;--green:#15803d;--orange:#b45309;--red:#be123c;--purple:#6d28d9;--dark:#0f172a}
+    :root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--text:#4d5b6b;--muted:#7b8798;--line:#d9e1ee;--blue:#155eef;--green:#16845b;--orange:#b45309;--red:#be123c;--purple:#6d28d9;--dark:#0b1220}
     *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.55}
-    .topbar{background:var(--dark);color:#fff;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}.topbar a{color:#bfdbfe;text-decoration:none;font-weight:700}.brand{font-weight:900}
-    .wrap{max-width:1320px;margin:0 auto;padding:22px}.hero{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:18px}h1{font-size:34px;margin:0 0 8px}h2{font-size:24px;margin:26px 0 12px}h3{font-size:17px;margin:0 0 8px}p{color:var(--text);margin:0 0 10px}.small{font-size:13px;color:var(--muted)}
-    .tabs{display:flex;gap:8px;margin:14px 0}.tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
-    .pc{display:grid;grid-template-columns:300px minmax(380px,1fr) 390px;gap:14px}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}.num{font-size:26px;font-weight:900;color:var(--blue)}.lbl{font-size:12px;color:var(--muted)}
-    .customer{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:9px;background:#f8fafc;cursor:pointer}.customer.active,.customer:hover{border-color:var(--blue);background:#eff6ff}.name{font-weight:900}.meta{font-size:12px;color:var(--muted);margin-top:3px}.score{float:right;font-weight:900;color:var(--green)}
-    .pill{display:inline-flex;padding:4px 8px;border-radius:7px;font-size:12px;font-weight:800;margin:0 4px 7px 0;background:#dbeafe;color:#1e40af}.pill.green{background:#dcfce7;color:#166534}.pill.orange{background:#ffedd5;color:#9a3412}.pill.red{background:#ffe4e6;color:#9f1239}.pill.purple{background:#ede9fe;color:#5b21b6}
-    .analysis{border-left:5px solid var(--blue);background:#eff6ff;border-radius:0 12px 12px 0;padding:12px;margin-bottom:10px}.analysis strong{display:block;color:#1e3a8a}.ai{border-left-color:var(--green);background:#ecfdf5}.warn{border-left-color:var(--orange);background:#fff7ed}
-    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13px}th{background:#eef4ff;color:#1e3a8a}tr:last-child td{border-bottom:0}
+    .top{height:60px;background:#0b1220;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 22px}.brand{font-weight:900}.top a{color:#bfdbfe;text-decoration:none;font-weight:700}
+    .wrap{max-width:1440px;margin:0 auto;padding:20px}.hero{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.hero h1{font-size:30px;margin:0 0 6px}.hero p{margin:0;color:var(--text)}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}.num{font-size:26px;font-weight:900;color:var(--blue)}.lbl{font-size:12px;color:var(--muted)}
+    .pc{display:grid;grid-template-columns:280px minmax(480px,1fr) 410px;gap:14px}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}h2{font-size:21px;margin:0 0 12px}h3{font-size:16px;margin:0 0 8px}p{color:var(--text)}
+    .view-tabs{display:flex;gap:6px;margin-bottom:12px}.view-tabs button{border:1px solid var(--line);background:#f8fafc;border-radius:9px;padding:8px 10px;font-weight:800;cursor:pointer}.view-tabs button.on{background:#e0ecff;color:#155eef;border-color:#93c5fd}
+    .record{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:9px;background:#f8fafc;cursor:pointer}.record:hover,.record.active{border-color:#93c5fd;background:#eff6ff}.record .name{font-weight:900}.record .meta{font-size:12px;color:var(--muted);margin-top:3px}.amount{float:right;color:var(--green);font-weight:900}
+    .pill{display:inline-flex;padding:4px 8px;border-radius:7px;font-size:12px;font-weight:800;margin:0 4px 7px 0;background:#e0ecff;color:#1e40af}.pill.green{background:#dcfce7;color:#166534}.pill.orange{background:#ffedd5;color:#9a3412}.pill.red{background:#ffe4e6;color:#9f1239}.pill.purple{background:#ede9fe;color:#5b21b6}
+    .stage{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:12px 0}.stage div{font-size:11px;text-align:center;padding:8px 4px;border-radius:8px;border:1px solid var(--line);color:var(--muted)}.stage .done{background:#dcfce7;color:#166534;border-color:#86efac}.stage .now{background:#e0ecff;color:#155eef;border-color:#93c5fd}
+    .box{border-left:5px solid var(--blue);background:#eff6ff;border-radius:0 12px 12px 0;padding:12px;margin-bottom:10px}.box.green{border-left-color:var(--green);background:#ecfdf5}.box.orange{border-left-color:var(--orange);background:#fff7ed}.box strong{display:block;color:#1e3a8a}.box.green strong{color:#14532d}.box.orange strong{color:#9a3412}
+    table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:12px;overflow:hidden}th,td{padding:10px;border-bottom:1px solid var(--line);font-size:13px;text-align:left;vertical-align:top}th{background:#eef4ff;color:#1e3a8a}tr:last-child td{border-bottom:0}
     textarea{width:100%;min-height:150px;border:1px solid var(--line);border-radius:12px;padding:12px;font-family:inherit;font-size:14px;line-height:1.55}.btn{border:0;background:var(--blue);color:#fff;border-radius:10px;padding:10px 12px;font-weight:800;cursor:pointer;margin:4px 4px 4px 0}.btn.green{background:var(--green)}.btn.orange{background:var(--orange)}.btn.gray{background:#64748b}
-    .mobile-wrap{display:none}.phone{width:390px;max-width:100%;margin:0 auto;background:#0f172a;border-radius:34px;padding:14px;border:8px solid #111827;box-shadow:0 20px 60px rgba(15,23,42,.25)}.screen{background:#f8fafc;border-radius:24px;overflow:hidden;min-height:720px}.m-head{background:#1d4ed8;color:#fff;padding:18px}.m-body{padding:14px}.m-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}.m-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.m-btn{background:#1d4ed8;color:#fff;text-align:center;border-radius:12px;padding:11px;font-weight:800}.m-btn.gray{background:#64748b}.m-script{font-size:13px;color:#334155;background:#f1f5f9;padding:12px;border-radius:12px}
-    .hidden{display:none}@media(max-width:1100px){.pc{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){.wrap{padding:12px}.kpis{grid-template-columns:1fr}.pc{display:none}.mobile-wrap{display:block}.tabs{position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:3}}
+    .mobile{display:none}.phone{width:390px;max-width:100%;margin:0 auto;background:#111827;border-radius:34px;padding:10px;border:8px solid #0f172a;box-shadow:0 22px 60px rgba(15,23,42,.22)}.screen{background:#f8fafc;border-radius:24px;overflow:hidden;min-height:720px}.m-head{background:#155eef;color:#fff;padding:17px}.m-body{padding:13px}.m-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:11px}.m-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.m-btn{background:#155eef;color:#fff;border-radius:12px;padding:11px;text-align:center;font-weight:900}.m-btn.gray{background:#64748b}.m-script{background:#f1f5f9;border-radius:12px;padding:12px;color:#334155;font-size:13px}
+    .home-button{position:fixed;right:18px;bottom:18px;z-index:9999;background:#155eef;color:#fff!important;text-decoration:none;border-radius:999px;padding:11px 16px;font-weight:800;box-shadow:0 10px 28px rgba(21,94,239,.28);font-size:14px}
+    @media(max-width:1180px){.pc{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}@media(max-width:720px){.wrap{padding:12px}.hero{display:block}.pc{display:none}.mobile{display:block}.kpis{display:none}}
   </style>
 </head>
 <body>
-  <div class="topbar"><div class="brand">Dowsure 销售工作台 Demo</div><div><a href="13_Sales_Quickstart_Card.html">销售速查版</a> · <a href="index.html">首页</a></div></div>
+  <div class="top"><div class="brand">Dowsure 销售智能 CRM</div><div><a href="13_Sales_Quickstart_Card.html">销售速查版</a> · <a href="index.html">主页</a></div></div>
   <div class="wrap">
     <section class="hero">
-      <h1>销售内部 CRM 工作台</h1>
-      <p>这个 Demo 是给销售用的, 不是给客户看的产品。核心是让销售每天知道: 今天该跟谁、客户为什么值得跟、该推哪个智能体、该说什么、下一步填什么。</p>
-      <div class="tabs"><button class="tab active" onclick="showMode('pc')">PC 端 · 销售管理/办公</button><button class="tab" onclick="showMode('mobile')">Mobile 端 · 微信/电话跟进</button></div>
+      <div>
+        <h1>销售智能 CRM Demo</h1>
+        <p>基于白皮书和销售流程设计的内部 CRM: 线索、客户、商机、活动、任务、预测、话术和 AI 分析。不是给客户看的产品。</p>
+      </div>
+      <div class="tabs"><button class="tab active" onclick="mode('pc',this)">PC 端</button><button class="tab" onclick="mode('mobile',this)">Mobile 端</button></div>
     </section>
 
-    <section id="pcMode">
+    <section id="pc">
       <div class="kpis">
-        <div class="kpi"><div class="num">12</div><div class="lbl">今日必须推进客户</div></div>
-        <div class="kpi"><div class="num">4</div><div class="lbl">建议做诊断/Demo</div></div>
-        <div class="kpi"><div class="num">3</div><div class="lbl">订阅机会</div></div>
-        <div class="kpi"><div class="num">100%</div><div class="lbl">Next Step 完整率</div></div>
+        <div class="kpi"><div class="num">36</div><div class="lbl">今日待办任务</div></div>
+        <div class="kpi"><div class="num">12</div><div class="lbl">高优先级商机</div></div>
+        <div class="kpi"><div class="num">4</div><div class="lbl">建议做诊断</div></div>
+        <div class="kpi"><div class="num">3</div><div class="lbl">订阅成交机会</div></div>
+        <div class="kpi"><div class="num">92%</div><div class="lbl">本周预测准确率</div></div>
       </div>
+
       <div class="pc">
         <aside class="panel">
-          <h3>今日客户优先级</h3>
-          <p class="small">AI 按成交概率、紧急程度、下一步日期、客户层级排序。</p>
-          <div id="customerList"></div>
+          <h2>销售对象</h2>
+          <div class="view-tabs">
+            <button class="on" onclick="setList('opportunity',this)">商机</button>
+            <button onclick="setList('task',this)">任务</button>
+            <button onclick="setList('account',this)">客户</button>
+          </div>
+          <div id="recordList"></div>
         </aside>
+
         <main class="panel">
-          <h2 id="custName">Sunrise Home Goods</h2>
-          <p id="custDesc">L2 工贸大卖, 采购和平台回款周期错配。</p>
+          <h2 id="title">Sunrise Home Goods</h2>
+          <p id="desc">L2 工贸大卖, 采购和平台回款周期错配。</p>
           <div id="tags"></div>
+          <div class="stage" id="stage"></div>
           <h3>AI 专业分析</h3>
           <div id="analysis"></div>
-          <h3>应该推荐哪个级别</h3>
-          <table>
-            <tbody id="recommendRows"></tbody>
-          </table>
-          <h3 style="margin-top:16px">下一步动作</h3>
+          <h3>销售判断</h3>
+          <table><tbody id="judgement"></tbody></table>
+          <h3 style="margin-top:14px">下一步动作</h3>
           <div id="actions"></div>
         </main>
+
         <aside class="panel">
-          <h3>销售可发话术</h3>
+          <h2>买家视角话术</h2>
           <textarea id="script"></textarea>
           <button class="btn" onclick="copyScript()">复制话术</button>
-          <button class="btn green" onclick="markNext()">标记已推进</button>
-          <button class="btn orange" onclick="genReferral()">生成转介绍话术</button>
-          <h3 style="margin-top:16px">CRM 必填字段</h3>
+          <button class="btn green" onclick="markDone()">完成任务</button>
+          <button class="btn orange" onclick="makeReferral()">转介绍话术</button>
+          <h2 style="margin-top:16px">CRM 字段</h2>
           <table><tbody id="fields"></tbody></table>
         </aside>
       </div>
     </section>
 
-    <section id="mobileMode" class="mobile-wrap">
+    <section id="mobile" class="mobile">
       <div class="phone">
         <div class="screen">
-          <div class="m-head">
-            <div class="small" style="color:#bfdbfe">今天最该跟进</div>
-            <h3 id="mName" style="margin:4px 0 0">Sunrise Home Goods</h3>
-          </div>
+          <div class="m-head"><div style="font-size:12px;color:#bfdbfe">移动跟进助手</div><h3 id="mTitle" style="margin:4px 0 0">Sunrise Home Goods</h3></div>
           <div class="m-body">
-            <div class="m-card">
-              <span id="mTier" class="pill">L2</span><span id="mProduct" class="pill green">规模版</span>
-              <p id="mDesc">采购和平台回款周期错配, 建议做 Working Capital Map。</p>
-            </div>
-            <div class="m-card">
-              <h3>AI 提醒</h3>
-              <p id="mAi">客户不是单纯要额度, 而是采购、库存和回款周期错配。先推采购+资金+风控。</p>
-            </div>
-            <div class="m-card">
-              <h3>可直接发微信</h3>
-              <div class="m-script" id="mScript"></div>
-            </div>
-            <div class="m-actions">
-              <div class="m-btn" onclick="copyScript()">复制话术</div>
-              <div class="m-btn gray" onclick="markNext()">已跟进</div>
-            </div>
+            <div class="m-card"><span id="mTier" class="pill">L2</span><span id="mLevel" class="pill green">规模版</span><p id="mDesc">采购和回款周期错配。</p></div>
+            <div class="m-card"><h3>AI 提醒</h3><p id="mAi">先做 Working Capital Map, 不要直接报价。</p></div>
+            <div class="m-card"><h3>微信/电话话术</h3><div class="m-script" id="mScript"></div></div>
+            <div class="m-actions"><div class="m-btn" onclick="copyScript()">复制</div><div class="m-btn gray" onclick="markDone()">已跟进</div></div>
           </div>
         </div>
       </div>
     </section>
   </div>
 
+  <a class="home-button" href="index.html">返回主页</a>
+
   <script>
-    const customers=[
-      {id:'sunrise',name:'Sunrise Home Goods',tier:'L2 工贸大卖',desc:'采购、供应商付款、库存和 Amazon 回款周期错配。',tags:['L2','规模版','采购+资金+风控'],analysis:['AI 判断: 客户不是缺一笔钱, 而是采购付款早、平台回款晚, 中间资金周期被拉长。','真实需求: 需要先看 Working Capital Map, 再决定 TermPay 和 MoreFund 怎么组合。','购买建议: 采购智能体 + 资金智能体 + 风控智能体, 适合规模版。'],recommend:[['推荐级别','规模版'],['推荐智能体','采购智能体 / 资金智能体 / 风控智能体'],['推荐金融产品','TermPay + MoreFund'],['判断原因','供应链重, 资金压力来自采购和回款周期错配']],actions:['发送 Working Capital Map 初稿','约 CFO 30 分钟确认采购和回款周期','准备 TermPay + MoreFund 组合测算'],script:'Jack，我看你们的问题不只是单笔额度，而是采购付款、库存周转和 Amazon 回款周期之间有错配。建议我们先把这些画成一张 Working Capital Map，再判断 TermPay 和 MoreFund 怎么组合。这样不会盲目增加负债，而是按现金流周期匹配工具。具体额度和费用以系统评估和银行审批为准。',fields:{客户分层:'L2 工贸大卖',主痛点:'采购/库存/回款周期错配',推荐级别:'规模版',推荐智能体:'采购/资金/风控',下一步:'约 CFO 做 Working Capital Map',下一步日期:'明天 10:00'}},
-      {id:'nova',name:'Nova Beauty',tier:'L3 成长品牌',desc:'广告投入增长快, 库存和回款跟不上。',tags:['L3','成长版','洞察+支出+资金'],analysis:['AI 判断: 客户增长速度快, 但广告、库存和回款节奏没有同步。','真实需求: 需要先验证智能体是否能给出有用建议, 不宜一上来卖大方案。','购买建议: 14 天试用, 先开洞察、支出、资金三个智能体。'],recommend:[['推荐级别','成长版'],['推荐智能体','洞察智能体 / 支出智能体 / 资金智能体'],['推荐金融产品','FastPay 或 MoreFund 后置评估'],['判断原因','增长和现金流错配, 适合先试用']],actions:['发送 14 天试用链接','引导连接 Amazon 和广告数据','第 7 天安排试用复盘'],script:'你们现在最关键的不是多一个贷款工具，而是增长和现金流要同步。建议先开 14 天试用，让洞察、支出、资金三个智能体给你一份增长和资金诊断。我们先看建议是否有用，再决定是否使用 FastPay 或 MoreFund。',fields:{客户分层:'L3 成长品牌',主痛点:'广告/库存/回款错配',推荐级别:'成长版',推荐智能体:'洞察/支出/资金',下一步:'开通 14 天试用',下一步日期:'今天 17:00'}},
-      {id:'mini',name:'Mini Seller CN',tier:'L4 中小卖家',desc:'老板直接决策, 回款慢影响备货。',tags:['L4','入门版','资金简化版'],analysis:['AI 判断: 客户怕麻烦, 需求集中在能不能提前回款。','真实需求: 不适合讲复杂智能体, 先用 3 分钟测算建立信任。','购买建议: 入门版资金智能体 + FastPay 测算。'],recommend:[['推荐级别','入门版'],['推荐智能体','资金智能体简化版 / 风控提醒'],['推荐金融产品','FastPay'],['判断原因','单一痛点, 需要低门槛快速转化']],actions:['发送 3 分钟测算链接','确认店铺状态和近期回款','完成后请求推荐 2 个卖家朋友'],script:'您先不用准备复杂材料。花 3 分钟填一下店铺和回款情况，系统会先告诉您能不能加速回款、大概适不适合 FastPay 或入门版智能体。具体额度、费用和到账时间以系统评估结果为准。',fields:{客户分层:'L4 中小卖家',主痛点:'回款慢/备货难',推荐级别:'入门版',推荐智能体:'资金简化版',下一步:'发送测算链接',下一步日期:'今天'}},
-      {id:'apex',name:'Apex Global',tier:'L1 顶级品牌',desc:'多站点、多币种, 已有银行授信, 关注资金效率。',tags:['L1','企业版','资金+司库+风控'],analysis:['AI 判断: 客户不是缺资金, 而是银行资金使用效率、换汇、风控和集团看板问题。','真实需求: 需要高层诊断和企业级方案, 不应先谈费率。','购买建议: 企业版, 主推资金、司库、风控智能体和定制看板。'],recommend:[['推荐级别','企业版'],['推荐智能体','资金智能体 / 司库智能体 / 风控智能体'],['推荐金融产品','MoreFund + Treasury / FX'],['判断原因','有 CFO、银行授信、多币种和合规要求']],actions:['预约 CFO 级资金效率诊断','准备安全合规与银行协同材料','输出 AI Capital Desk 方案'],script:'对你们这个规模，我们不建议从单点费率开始聊。更重要的是现金转换周期、银行资金使用效率、换汇和风险预警。Dowsure 可以先做一个资金效率诊断，看是否有优化空间，再决定企业版智能体和资金工具如何组合。',fields:{客户分层:'L1 顶级品牌',主痛点:'资金效率/司库/风控',推荐级别:'企业版',推荐智能体:'资金/司库/风控',下一步:'预约 CFO 级诊断',下一步日期:'本周五'}}
+    const stages=['线索','合格机会','需求诊断','方案演示','方案报价','成交/订阅'];
+    const data=[
+      {id:'sunrise',name:'Sunrise Home Goods',type:'商机',tier:'L2 工贸大卖',level:'规模版',stage:'需求诊断',amount:'$72K',desc:'采购、供应商付款、库存和 Amazon 回款周期错配。',tags:['L2','规模版','采购+资金+风控'],analysis:['AI 判断: 不是缺一笔钱, 而是采购付款早、平台回款晚, 中间资金周期被拉长。','真实需求: 先看 Working Capital Map, 再决定 TermPay 和 MoreFund 怎么组合。','建议: 推荐规模版, 开采购智能体、资金智能体、风控智能体。'],judgement:[['推荐级别','规模版'],['推荐智能体','采购智能体 / 资金智能体 / 风控智能体'],['推荐资金工具','TermPay + MoreFund'],['成交下一步','约 CFO 确认采购和回款周期']],actions:['发送 Working Capital Map 初稿','约 CFO 30 分钟确认采购和回款周期','准备 TermPay + MoreFund 组合测算'],script:'Jack，我看你们的问题不只是单笔额度，而是采购付款、库存周转和 Amazon 回款周期之间有错配。建议我们先把这些画成一张 Working Capital Map，再判断 TermPay 和 MoreFund 怎么组合。这样不会盲目增加负债，而是按现金流周期匹配工具。具体额度和费用以系统评估和银行审批为准。',fields:{客户分层:'L2 工贸大卖',销售阶段:'需求诊断',主痛点:'采购/库存/回款周期错配',推荐级别:'规模版',推荐智能体:'采购/资金/风控',下一步:'约 CFO 做 Working Capital Map'}},
+      {id:'nova',name:'Nova Beauty',type:'任务',tier:'L3 成长品牌',level:'成长版',stage:'方案演示',amount:'$40K',desc:'广告投入增长快, 库存和回款跟不上。',tags:['L3','成长版','洞察+支出+资金'],analysis:['AI 判断: 增长速度快, 但广告、库存和回款节奏没有同步。','真实需求: 先验证智能体是否能给出有用建议, 不宜一上来卖大方案。','建议: 14 天试用, 先开洞察、支出、资金三个智能体。'],judgement:[['推荐级别','成长版'],['推荐智能体','洞察智能体 / 支出智能体 / 资金智能体'],['推荐资金工具','FastPay 或 MoreFund 后置评估'],['成交下一步','开通 14 天试用']],actions:['发送 14 天试用链接','引导连接 Amazon 和广告数据','第 7 天安排试用复盘'],script:'你们现在最关键的不是多一个贷款工具，而是增长和现金流要同步。建议先开 14 天试用，让洞察、支出、资金三个智能体给你一份增长和资金诊断。我们先看建议是否有用，再决定是否使用 FastPay 或 MoreFund。',fields:{客户分层:'L3 成长品牌',销售阶段:'方案演示',主痛点:'广告/库存/回款错配',推荐级别:'成长版',推荐智能体:'洞察/支出/资金',下一步:'开通 14 天试用'}},
+      {id:'mini',name:'Mini Seller CN',type:'线索',tier:'L4 中小卖家',level:'入门版',stage:'合格机会',amount:'$9K',desc:'老板直接决策, 回款慢影响备货。',tags:['L4','入门版','资金简化版'],analysis:['AI 判断: 客户怕麻烦, 需求集中在能不能提前回款。','真实需求: 不适合讲复杂智能体, 先用 3 分钟测算建立信任。','建议: 入门版资金智能体 + FastPay 测算。'],judgement:[['推荐级别','入门版'],['推荐智能体','资金智能体简化版 / 风控提醒'],['推荐资金工具','FastPay'],['成交下一步','发送 3 分钟测算链接']],actions:['发送 3 分钟测算链接','确认店铺状态和近期回款','完成后请求推荐 2 个卖家朋友'],script:'您先不用准备复杂材料。花 3 分钟填一下店铺和回款情况，系统会先告诉您能不能加速回款、大概适不适合 FastPay 或入门版智能体。具体额度、费用和到账时间以系统评估结果为准。',fields:{客户分层:'L4 中小卖家',销售阶段:'合格机会',主痛点:'回款慢/备货难',推荐级别:'入门版',推荐智能体:'资金简化版',下一步:'发送测算链接'}},
+      {id:'apex',name:'Apex Global',type:'客户',tier:'L1 顶级品牌',level:'企业版',stage:'合格机会',amount:'$180K',desc:'多站点、多币种, 已有银行授信, 关注资金效率。',tags:['L1','企业版','资金+司库+风控'],analysis:['AI 判断: 客户不是缺资金, 而是银行资金使用效率、换汇、风控和集团看板问题。','真实需求: 需要高层诊断和企业级方案, 不应先谈费率。','建议: 企业版, 主推资金、司库、风控智能体和定制看板。'],judgement:[['推荐级别','企业版'],['推荐智能体','资金智能体 / 司库智能体 / 风控智能体'],['推荐资金工具','MoreFund + Treasury / FX'],['成交下一步','预约 CFO 级资金效率诊断']],actions:['预约 CFO 级资金效率诊断','准备安全合规与银行协同材料','输出 AI Capital Desk 方案'],script:'对你们这个规模，我们不建议从单点费率开始聊。更重要的是现金转换周期、银行资金使用效率、换汇和风险预警。Dowsure 可以先做一个资金效率诊断，看是否有优化空间，再决定企业版智能体和资金工具如何组合。',fields:{客户分层:'L1 顶级品牌',销售阶段:'合格机会',主痛点:'资金效率/司库/风控',推荐级别:'企业版',推荐智能体:'资金/司库/风控',下一步:'预约 CFO 级诊断'}}
     ];
-    let current=customers[0];
-    function renderList(){document.getElementById('customerList').innerHTML=customers.map(c=>`<div class="customer ${c.id===current.id?'active':''}" onclick="selectCust('${c.id}')"><span class="score">${c.tier.split(' ')[0]}</span><div class="name">${c.name}</div><div class="meta">${c.desc}</div></div>`).join('')}
-    function selectCust(id){current=customers.find(c=>c.id===id);document.getElementById('custName').textContent=current.name;document.getElementById('custDesc').textContent=current.desc;document.getElementById('tags').innerHTML=current.tags.map((t,i)=>`<span class="pill ${i===1?'green':i===2?'orange':''}">${t}</span>`).join('');document.getElementById('analysis').innerHTML=current.analysis.map((a,i)=>`<div class="analysis ${i===1?'warn':i===2?'ai':''}"><strong>${i===0?'客户判断':i===1?'真实需求':'购买建议'}</strong>${a}</div>`).join('');document.getElementById('recommendRows').innerHTML=current.recommend.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('');document.getElementById('actions').innerHTML=current.actions.map(a=>`<div class="analysis ai"><strong>下一步</strong>${a}</div>`).join('');document.getElementById('script').value=current.script;document.getElementById('fields').innerHTML=Object.entries(current.fields).map(([k,v])=>`<tr><th>${k}</th><td>${v}</td></tr>`).join('');document.getElementById('mName').textContent=current.name;document.getElementById('mTier').textContent=current.tier.split(' ')[0];document.getElementById('mProduct').textContent=current.recommend[0][1];document.getElementById('mDesc').textContent=current.desc;document.getElementById('mAi').textContent=current.analysis[0].replace('AI 判断: ','');document.getElementById('mScript').textContent=current.script;renderList()}
-    function showMode(mode){document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');document.getElementById('pcMode').classList.toggle('hidden',mode!=='pc');document.getElementById('mobileMode').style.display=mode==='mobile'?'block':''}
+    let current=data[0];let listType='opportunity';
+    function renderList(){let filtered=data.filter(d=>listType==='opportunity'?d.type==='商机':listType==='task'?d.type==='任务'||d.type==='线索':true);document.getElementById('recordList').innerHTML=filtered.map(d=>`<div class="record ${d.id===current.id?'active':''}" onclick="select('${d.id}')"><span class="amount">${d.amount}</span><div class="name">${d.name}</div><div class="meta">${d.tier} · ${d.stage} · ${d.desc}</div></div>`).join('')}
+    function select(id){current=data.find(d=>d.id===id);document.getElementById('title').textContent=current.name;document.getElementById('desc').textContent=current.desc;document.getElementById('tags').innerHTML=current.tags.map((t,i)=>`<span class="pill ${i===1?'green':i===2?'orange':''}">${t}</span>`).join('');document.getElementById('stage').innerHTML=stages.map(s=>`<div class="${stages.indexOf(s)<stages.indexOf(current.stage)?'done':s===current.stage?'now':''}">${s}</div>`).join('');document.getElementById('analysis').innerHTML=current.analysis.map((a,i)=>`<div class="box ${i===1?'orange':i===2?'green':''}"><strong>${i===0?'客户判断':i===1?'真实需求':'购买建议'}</strong>${a}</div>`).join('');document.getElementById('judgement').innerHTML=current.judgement.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('');document.getElementById('actions').innerHTML=current.actions.map(a=>`<div class="box green"><strong>下一步</strong>${a}</div>`).join('');document.getElementById('script').value=current.script;document.getElementById('fields').innerHTML=Object.entries(current.fields).map(([k,v])=>`<tr><th>${k}</th><td>${v}</td></tr>`).join('');document.getElementById('mTitle').textContent=current.name;document.getElementById('mTier').textContent=current.tier.split(' ')[0];document.getElementById('mLevel').textContent=current.level;document.getElementById('mDesc').textContent=current.desc;document.getElementById('mAi').textContent=current.analysis[0].replace('AI 判断: ','');document.getElementById('mScript').textContent=current.script;renderList()}
+    function setList(type,btn){listType=type;document.querySelectorAll('.view-tabs button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderList()}
+    function mode(m,btn){document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('pc').style.display=m==='pc'?'block':'none';document.getElementById('mobile').style.display=m==='mobile'?'block':'none'}
     function copyScript(){navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('script').value);alert('话术已复制');}
-    function markNext(){alert('已记录跟进结果，并保留下一步日期。');}
-    function genReferral(){document.getElementById('script').value='这次如果诊断或试用对您有帮助，您身边是否有 2 位也在做 Amazon / TikTok Shop / Shopify 的卖家朋友？您推荐他们完成试用后，我们可以给您订阅减免、优先评估或推荐奖励。';}
-    selectCust('sunrise');
+    function markDone(){alert('已记录活动: 跟进完成，并生成下一步任务。');}
+    function makeReferral(){document.getElementById('script').value='这次如果诊断或试用对您有帮助，您身边是否有 2 位也在做 Amazon / TikTok Shop / Shopify 的卖家朋友？您推荐他们完成试用后，我们可以给您订阅减免、优先评估或推荐奖励。';}
+    select('sunrise');
   </script>
 </body>
 </html>
