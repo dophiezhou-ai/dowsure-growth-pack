@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dowsure | 07 · CRM → Agent OS 迁移战略</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+  background: #0d1326; color: #e8ecf4; line-height: 1.7; min-height: 100vh;
+}
+.container { max-width: 1280px; margin: 0 auto; padding: 60px 40px; }
+
+.hero {
+  background: linear-gradient(135deg, #1a2244 0%, #0d1326 100%);
+  border-radius: 22px; padding: 60px 50px; margin-bottom: 50px;
+  border: 1px solid #2a3050; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; left: -50px; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(38,194,129,.12), transparent 60%);
+}
+.hero-tag {
+  display: inline-block; padding: 6px 16px; background: rgba(38,194,129,.15);
+  border: 1px solid #26c281; color: #26c281; border-radius: 20px;
+  font-size: 13px; font-weight: 600; margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: 44px; font-weight: 800; line-height: 1.2; margin-bottom: 18px;
+  background: linear-gradient(135deg,#26c281,#4f7fff,#a55eea);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p { font-size: 17px; color: #a0a8c0; max-width: 800px; }
+.hero-meta { display: flex; gap: 30px; margin-top: 28px; font-size: 14px; flex-wrap: wrap; }
+.hero-meta strong { color: #e8ecf4; margin-right: 6px; }
+.hero-meta div { color: #8590ad; }
+
+h2 {
+  font-size: 28px; font-weight: 700; margin: 50px 0 24px;
+  display: flex; align-items: center; gap: 14px;
+}
+h2::before {
+  content: ''; width: 4px; height: 28px;
+  background: linear-gradient(180deg,#26c281,#4f7fff);
+  border-radius: 2px;
+}
+h3 { font-size: 19px; font-weight: 700; margin-bottom: 14px; color: #c9d3ec; }
+
+.anchor-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 30px; }
+.anchor-card {
+  background: #131a2e; border: 1px solid #2a3050;
+  border-radius: 12px; padding: 18px;
+}
+.anchor-card .code {
+  display: inline-block; padding: 3px 10px; border-radius: 6px;
+  background: linear-gradient(135deg,#26c281,#4f7fff);
+  font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 8px;
+}
+.anchor-card .name { font-size: 14px; font-weight: 600; color: #e8ecf4; }
+.anchor-card .desc { font-size: 12px; color: #7d88a8; margin-top: 6px; }
+
+/* Compare table */
+.compare {
+  display: grid; grid-template-columns: 200px 1fr 1fr; gap: 14px;
+  background: #131a2e; padding: 22px; border-radius: 14px;
+  border: 1px solid #2a3050; margin-bottom: 20px;
+}
+.compare .head { font-size: 13px; font-weight: 700; color: #6c92ff; padding: 12px 0; text-transform: uppercase; letter-spacing: .5px; }
+.compare .legacy {
+  background: rgba(255,77,77,.08); border-left: 3px solid #ff4d4d;
+  border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #c9d3ec;
+}
+.compare .agentos {
+  background: rgba(38,194,129,.08); border-left: 3px solid #26c281;
+  border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #c9d3ec;
+}
+
+/* 5-layer architecture */
+.arch-layer {
+  background: #131a2e; border: 1px solid #2a3050;
+  border-radius: 14px; padding: 22px; margin-bottom: 12px;
+  display: grid; grid-template-columns: 60px 200px 1fr; gap: 20px; align-items: center;
+}
+.arch-num {
+  width: 50px; height: 50px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 800; color: #fff;
+}
+.arch-num.l1 { background: linear-gradient(135deg,#4f7fff,#48b4ff); }
+.arch-num.l2 { background: linear-gradient(135deg,#6c5ce7,#a55eea); }
+.arch-num.l3 { background: linear-gradient(135deg,#26c281,#1abc9c); }
+.arch-num.l4 { background: linear-gradient(135deg,#f59e0b,#ef4444); }
+.arch-num.l5 { background: linear-gradient(135deg,#a855f7,#ec4899); }
+.arch-name { font-size: 17px; font-weight: 700; color: #e8ecf4; }
+.arch-name .en { display: block; font-size: 12px; color: #7d88a8; font-weight: 500; margin-top: 2px; }
+.arch-detail { font-size: 13px; color: #c9d3ec; }
+
+/* Migration phases */
+.phase-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.phase-card {
+  background: #131a2e; border: 1px solid #2a3050;
+  border-radius: 16px; padding: 26px;
+  position: relative; overflow: hidden;
+}
+.phase-card::before {
+  content: ''; position: absolute; top:0; left:0; right:0; height:4px;
+}
+.phase-card.p1::before { background: linear-gradient(90deg,#4f7fff,#48b4ff); }
+.phase-card.p2::before { background: linear-gradient(90deg,#26c281,#1abc9c); }
+.phase-card.p3::before { background: linear-gradient(90deg,#a855f7,#ec4899); }
+.phase-num { font-size: 12px; font-weight: 700; color: #6c92ff; letter-spacing: 1px; margin-bottom: 6px; }
+.phase-title { font-size: 19px; font-weight: 800; color: #e8ecf4; margin-bottom: 6px; }
+.phase-period {
+  display: inline-block; padding: 3px 10px; border-radius: 6px;
+  background: rgba(79,127,255,.12); color: #6c92ff;
+  font-size: 12px; font-weight: 700; margin-bottom: 14px;
+}
+.phase-list { list-style: none; }
+.phase-list li {
+  font-size: 13px; padding: 5px 0; padding-left: 20px;
+  color: #c9d3ec; position: relative;
+}
+.phase-list li::before {
+  content: '▸'; position: absolute; left: 0; color: #26c281;
+}
+.phase-out { margin-top: 14px; padding: 10px; background: #0f1428; border-radius: 8px; font-size: 12px; color: #8590ad; }
+.phase-out strong { color: #26c281; }
+
+/* SKU table */
+.sku-table {
+  width: 100%; background: #131a2e; border: 1px solid #2a3050;
+  border-radius: 14px; overflow: hidden; border-collapse: collapse;
+}
+.sku-table thead { background: linear-gradient(135deg,#1a2244,#0d1326); }
+.sku-table th, .sku-table td { padding: 14px 16px; text-align: left; font-size: 13px; border-bottom: 1px solid #2a3050; }
+.sku-table th { color: #6c92ff; font-weight: 700; font-size: 12px; text-transform: uppercase; }
+.sku-table td { color: #c9d3ec; }
+.sku-table tbody tr:hover { background: rgba(38,194,129,.05); }
+.sku-code {
+  background: rgba(38,194,129,.15); color: #26c281;
+  padding: 3px 8px; border-radius: 5px; font-family: monospace;
+  font-size: 12px; font-weight: 700;
+}
+
+/* Agent role */
+.agent-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.agent-card {
+  background: #131a2e; border: 1px solid #2a3050;
+  border-radius: 12px; padding: 18px;
+}
+.agent-card .name { font-size: 15px; font-weight: 700; color: #6c92ff; margin-bottom: 6px; }
+.agent-card .role { font-size: 13px; color: #c9d3ec; line-height: 1.6; }
+
+/* Acceptance */
+.acc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.acc-card {
+  background: #131a2e; border-left: 3px solid #26c281;
+  border: 1px solid #2a3050; border-left: 3px solid #26c281;
+  border-radius: 10px; padding: 16px 18px;
+}
+.acc-card .crit { font-size: 14px; font-weight: 700; color: #e8ecf4; margin-bottom: 4px; }
+.acc-card .target { font-size: 13px; color: #a0a8c0; }
+.acc-card strong { color: #26c281; }
+
+/* Risk */
+.risk-card {
+  background: rgba(255,193,7,.06); border: 1px solid rgba(255,193,7,.3);
+  border-radius: 12px; padding: 18px; margin-bottom: 12px;
+}
+.risk-card .title { font-size: 14px; font-weight: 700; color: #ffc107; margin-bottom: 4px; }
+.risk-card .desc { font-size: 13px; color: #c9d3ec; }
+
+footer { text-align: center; padding: 40px 0 20px; color: #5d6680; font-size: 13px; border-top: 1px solid #2a3050; margin-top: 60px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <span class="hero-tag">CRM MIGRATION STRATEGY · 07 / 08</span>
+  <h1>从 Salesforce 到 Agent OS · CRM 迁移战略</h1>
+  <p>传统 CRM 是"被动记录系统"；Agent OS 时代的 CRM 是"主动决策与执行系统"。本文档定义 Dowsure 在 Series C 阶段，把 Salesforce + HubSpot + Outreach 现有 CRM 栈，向以 6 Agent 为核心的 <strong>Agent-CRM</strong> 迁移的战略路径、五层架构、三阶段实施与验收标准。</p>
+  <div class="hero-meta">
+    <div><strong>Owner:</strong> CGO + CTO + RevOps</div>
+    <div><strong>战略锚点:</strong> A1 · A4 · A6</div>
+    <div><strong>窗口:</strong> 12 周 + 6 个月延展</div>
+  </div>
+</div>
+
+<h2>战略锚点对齐</h2>
+<div class="anchor-grid">
+  <div class="anchor-card">
+    <span class="code">A1</span>
+    <div class="name">Vertical Agent OS</div>
+    <div class="desc">CRM 是 Agent OS 在销售域的具象</div>
+  </div>
+  <div class="anchor-card">
+    <span class="code">A4</span>
+    <div class="name">Product Trio</div>
+    <div class="desc">CRM 必须原生承载 Trio 推荐与履约</div>
+  </div>
+  <div class="anchor-card">
+    <span class="code">A6</span>
+    <div class="name">Three-Layer Models</div>
+    <div class="desc">CRM 决策层调用 Frontier + 自托管 + 7B 域专</div>
+  </div>
+  <div class="anchor-card">
+    <span class="code">A8</span>
+    <div class="name">Series C Milestones</div>
+    <div class="desc">Phase 1 必须在 W12 Second Close 前 Live</div>
+  </div>
+</div>
+
+<h2>为什么要迁移：传统 CRM vs Agent CRM</h2>
+<div class="compare">
+  <div class="head">维度</div>
+  <div class="head" style="color:#ff8f8f">传统 CRM（Salesforce / HubSpot）</div>
+  <div class="head" style="color:#26c281">Agent CRM（Dowsure 自有）</div>
+
+  <div style="font-size:13px;color:#8590ad;padding:12px 0">数据角色</div>
+  <div class="legacy">"被动记录" — AE 手工填写 Stage / Notes / Activities</div>
+  <div class="agentos">"主动感知" — Insight Agent 实时合成画像与商机</div>
+
+  <div style="font-size:13px;color:#8590ad;padding:12px 0">交互入口</div>
+  <div class="legacy">表单 + 视图 + 仪表盘，AE 学习成本高</div>
+  <div class="agentos">对话 + 推荐流，AE 自然语言下达指令</div>
+
+  <div style="font-size:13px;color:#8590ad;padding:12px 0">决策方式</div>
+  <div class="legacy">基于规则 / 评分卡，更新依赖管理员</div>
+  <div class="agentos">基于多 Agent 推理，决策实时回灌、可解释</div>
+
+  <div style="font-size:13px;color:#8590ad;padding:12px 0">行动闭环</div>
+  <div class="legacy">CRM ↔ Outreach ↔ Gong 多系统跳转</div>
+  <div class="agentos">Deal Agent 直接编排报价、合规、放款全链</div>
+
+  <div style="font-size:13px;color:#8590ad;padding:12px 0">合规与风控</div>
+  <div class="legacy">事后人工抽查，风险滞后</div>
+  <div class="agentos">Sentinel Agent 全程在线，事前拦截</div>
+
+  <div style="font-size:13px;color:#8590ad;padding:12px 0">扩展边界</div>
+  <div class="legacy">付 SaaS 订阅费，价值止于销售域</div>
+  <div class="agentos">复用 Agent OS，跨销售/财务/风控/客成</div>
+</div>
+
+<h2>Agent-CRM 五层架构</h2>
+<div class="arch-layer">
+  <div class="arch-num l1">5</div>
+  <div class="arch-name">Orchestration & Guardrails<span class="en">编排与守卫层</span></div>
+  <div class="arch-detail">CGO Console · Sentinel Agent · 权限/合规/审计 · LangGraph 编排引擎 · 全链路 Trace</div>
+</div>
+<div class="arch-layer">
+  <div class="arch-num l2">4</div>
+  <div class="arch-name">Memory & Learning<span class="en">记忆与学习层</span></div>
+  <div class="arch-detail">客户长期记忆库（VectorDB）· Episode/Session 记忆 · 反馈学习 RLHF · 销售知识图谱</div>
+</div>
+<div class="arch-layer">
+  <div class="arch-num l3">3</div>
+  <div class="arch-name">Action<span class="en">行动层</span></div>
+  <div class="arch-detail">Deal/Spend/Capital/Treasury Agent · 报价生成、合同起草、Trio 履约、银行资金调度</div>
+</div>
+<div class="arch-layer">
+  <div class="arch-num l4">2</div>
+  <div class="arch-name">Reasoning<span class="en">推理层</span></div>
+  <div class="arch-detail">三层模型路由 · Frontier (Claude Opus / GPT-5) + Self-Host (Llama-70B) + Domain 7B-13B 微调</div>
+</div>
+<div class="arch-layer">
+  <div class="arch-num l5">1</div>
+  <div class="arch-name">Perception<span class="en">感知层</span></div>
+  <div class="arch-detail">Amazon Seller Central API · 银行账户流水 · 邮件/通话录音 · ERP/财务系统 · 公开数据（Owler / 海关）</div>
+</div>
+
+<h2>6 Agent 在 CRM 中的角色</h2>
+<div class="agent-grid">
+  <div class="agent-card">
+    <div class="name">⚡ Insight Agent</div>
+    <div class="role">客户经营画像、商机预测、Lead Scoring（替代 HubSpot Score）</div>
+  </div>
+  <div class="agent-card">
+    <div class="name">🤝 Deal Agent</div>
+    <div class="role">报价生成、Trio 组合推荐、合同起草、阶段推进（替代 SF Opportunity 自动化）</div>
+  </div>
+  <div class="agent-card">
+    <div class="name">💸 Spend Agent</div>
+    <div class="role">应付/采购/对账自动化（接入 TermPay 履约）</div>
+  </div>
+  <div class="agent-card">
+    <div class="name">🏦 Capital Agent</div>
+    <div class="role">银行资金调度（HSBC/SCB/Ant 路由），决定哪家银行放款</div>
+  </div>
+  <div class="agent-card">
+    <div class="name">💰 Treasury Agent</div>
+    <div class="role">资金归集、对账、币种 hedging、T+0 清算</div>
+  </div>
+  <div class="agent-card">
+    <div class="name">🛡️ Sentinel Agent</div>
+    <div class="role">KYC/AML/反欺诈/合规守卫，跨阶段事前拦截</div>
+  </div>
+</div>
+
+<h2>三阶段迁移路径（共 12 周 + 6 个月）</h2>
+<div class="phase-grid">
+  <div class="phase-card p1">
+    <div class="phase-num">PHASE 1 · 共存</div>
+    <div class="phase-title">Salesforce + Agent Layer</div>
+    <span class="phase-period">W1 – W6 · 共 6 周</span>
+    <ul class="phase-list">
+      <li>SF 保留为系统记录主库</li>
+      <li>部署 Insight + Deal Agent 为 Sidekick 插件</li>
+      <li>Slack/Email 中的 AE 指令 → Agent 回灌 SF 字段</li>
+      <li>Lead Score 切换为 Insight Agent 模型</li>
+      <li>Gong 通话纪要由 Agent 自动总结进 Activities</li>
+    </ul>
+    <div class="phase-out">
+      <strong>产出：</strong> AE 在 SF 内首次看到 Agent 推荐栏；商机推进效率 +25%
+    </div>
+  </div>
+
+  <div class="phase-card p2">
+    <div class="phase-num">PHASE 2 · 倒置</div>
+    <div class="phase-title">Agent-First, SF 退为只读账本</div>
+    <span class="phase-period">W7 – W12 · 共 6 周</span>
+    <ul class="phase-list">
+      <li>对话式 CRM (Agent Chat) 上线，成为 AE 主入口</li>
+      <li>Spend / Capital / Treasury Agent 接入 Trio 履约</li>
+      <li>Sentinel Agent 与 KYC/AML 系统全链路打通</li>
+      <li>SF 仅做合规账本 + BI 数据源</li>
+      <li>RevOps Console 全面接管 Pipeline 视图</li>
+    </ul>
+    <div class="phase-out">
+      <strong>产出：</strong> Agent CRM v1.0 GA · 80% AE 日活迁移 · Second Close 路演核心 Demo
+    </div>
+  </div>
+
+  <div class="phase-card p3">
+    <div class="phase-num">PHASE 3 · 替代</div>
+    <div class="phase-title">Salesforce 退役 + Agent OS 全域</div>
+    <span class="phase-period">M4 – M9 · Series C 后 6 个月</span>
+    <ul class="phase-list">
+      <li>SF 订阅降级为只读历史归档（节省 $480K/年）</li>
+      <li>Memory & Learning 层接入历史 5 年商机数据</li>
+      <li>Agent CRM 横向扩展至 CSM / 客成 / Risk Ops</li>
+      <li>对外 SDK：客户嵌入 Agent CRM 为自身使用</li>
+      <li>开放 Agent Marketplace 供生态扩展</li>
+    </ul>
+    <div class="phase-out">
+      <strong>产出：</strong> Agent CRM 成为 Dowsure Agent OS 的"销售操作系统范本"，对外可商业化
+    </div>
+  </div>
+</div>
+
+<h2>SKU 级交付清单（12 周内）</h2>
+<table class="sku-table">
+  <thead>
+    <tr>
+      <th>SKU</th><th>名称</th><th>所属阶段</th><th>负责</th><th>对齐里程碑</th><th>验收</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="sku-code">CRM-01</span></td><td>SF Sidekick 插件（Agent Side Panel）</td><td>P1</td><td>RevOps + Eng</td><td>W2</td><td>15 名 AE 全员激活</td></tr>
+    <tr><td><span class="sku-code">CRM-02</span></td><td>Insight Agent · Lead Score 替代</td><td>P1</td><td>Data + RevOps</td><td>W3</td><td>转化预测准确率 ≥ 75%</td></tr>
+    <tr><td><span class="sku-code">CRM-03</span></td><td>Gong 通话 → Activities 自动回灌</td><td>P1</td><td>Eng</td><td>W4</td><td>每日回灌 ≥ 100 条 / 准确率 ≥ 90%</td></tr>
+    <tr><td><span class="sku-code">CRM-04</span></td><td>Deal Agent · Trio 报价生成</td><td>P1</td><td>Eng + Sales Ops</td><td>W5</td><td>报价生成 < 30s · 通过率 ≥ 80%</td></tr>
+    <tr><td><span class="sku-code">CRM-05</span></td><td>Slack-内 AE 指令 → CRM 操作</td><td>P1</td><td>Eng</td><td>W6</td><td>≥ 50% AE 日均使用</td></tr>
+    <tr><td><span class="sku-code">CRM-06</span></td><td>Agent Chat 对话式 CRM v1.0</td><td>P2</td><td>Eng + Design</td><td>W7 · Deal Room v1.0</td><td>AE 日均会话 ≥ 20 轮</td></tr>
+    <tr><td><span class="sku-code">CRM-07</span></td><td>Spend / Capital / Treasury 联动</td><td>P2</td><td>Eng + Finance</td><td>W8 Amazon</td><td>3 Agent 联动闭环放款 ≥ 50 单</td></tr>
+    <tr><td><span class="sku-code">CRM-08</span></td><td>Sentinel 全链路合规守卫</td><td>P2</td><td>Compliance + Eng</td><td>W9</td><td>合规事故 0 起 / 拦截 ≥ 30 单</td></tr>
+    <tr><td><span class="sku-code">CRM-09</span></td><td>RevOps Console（Pipeline 接管）</td><td>P2</td><td>RevOps</td><td>W10</td><td>RevOps 100% 完成切换</td></tr>
+    <tr><td><span class="sku-code">CRM-10</span></td><td>Agent CRM Investor Demo（W12）</td><td>P2</td><td>CGO + Eng</td><td>W12 Second Close</td><td>≥ 8 LP 现场体验</td></tr>
+  </tbody>
+</table>
+
+<h2>关键风险与缓解</h2>
+<div class="risk-card">
+  <div class="title">风险 1 · AE 抗拒变化</div>
+  <div class="desc">AE 习惯 Salesforce → 缓解：Phase 1 不强制切换，仅提供"Agent Sidekick"；用激励 + Top Performer 案例驱动迁移。</div>
+</div>
+<div class="risk-card">
+  <div class="title">风险 2 · 数据迁移与合规</div>
+  <div class="desc">SF 5 年历史数据 + GDPR/PDPA 要求 → 缓解：SF 在 P1/P2 仍为系统记录主库；Memory 层只读访问；通过 HSBC 数据合规审计。</div>
+</div>
+<div class="risk-card">
+  <div class="title">风险 3 · 模型幻觉影响成单</div>
+  <div class="desc">Agent 报价或合同生成幻觉 → 缓解：Sentinel 守卫 + 报价金额 ≥ $50K 必走人工双签；建立反馈环回训练。</div>
+</div>
+<div class="risk-card">
+  <div class="title">风险 4 · 三层模型成本失控</div>
+  <div class="desc">Frontier API 调用费暴涨 → 缓解：缓存 + 路由策略（70% 走自托管 / 25% 域专 / 5% Frontier）；月度 cost-per-deal ≤ $35。</div>
+</div>
+
+<h2>验收标准（12 周）</h2>
+<div class="acc-grid">
+  <div class="acc-card">
+    <div class="crit">AE 日活迁移率（W12 时点）</div>
+    <div class="target"><strong>≥ 80%</strong> AE 主入口为 Agent CRM</div>
+  </div>
+  <div class="acc-card">
+    <div class="crit">商机推进效率</div>
+    <div class="target">Lead → SQL 周期缩短 <strong>≥ 30%</strong></div>
+  </div>
+  <div class="acc-card">
+    <div class="crit">报价/合同生成时效</div>
+    <div class="target">从 4 小时 → <strong>≤ 30 秒</strong>，通过率 ≥ 80%</div>
+  </div>
+  <div class="acc-card">
+    <div class="crit">Sentinel 合规拦截</div>
+    <div class="target">0 起合规事故 / 主动拦截 <strong>≥ 30 单</strong></div>
+  </div>
+  <div class="acc-card">
+    <div class="crit">三层模型成本</div>
+    <div class="target">月度 cost-per-deal <strong>≤ $35</strong></div>
+  </div>
+  <div class="acc-card">
+    <div class="crit">SaaS 订阅节省（M9）</div>
+    <div class="target">SF 订阅降级，年化节省 <strong>$480K</strong></div>
+  </div>
+  <div class="acc-card">
+    <div class="crit">投资人 Demo（W12）</div>
+    <div class="target">≥ 8 LP 现场体验，反馈 NPS ≥ 60</div>
+  </div>
+  <div class="acc-card">
+    <div class="crit">对外可商业化（M9）</div>
+    <div class="target">≥ 3 家 L1 客户购买 Agent CRM SDK 嵌入</div>
+  </div>
+</div>
+
+<footer>
+  Dowsure · CGO Office · CRM → Agent OS Strategy v1.0 · 文档 07 / 08 · 2026-05-21
+</footer>
+
+</div>
+</body>
+</html>

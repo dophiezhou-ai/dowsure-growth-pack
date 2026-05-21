@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/all_materials.html"
+  status = 200
+

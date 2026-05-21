@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Dowsure CGO 销售汇报 · Series C 12-Week Sprint Plan</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0a0e1a;
+    color: #e4e8f0;
+    line-height: 1.6;
+  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 40px 24px; }
+  .hero {
+    background: linear-gradient(135deg, #1a2f5a 0%, #0a1838 100%);
+    border-radius: 16px;
+    padding: 48px;
+    margin-bottom: 32px;
+    border: 1px solid #2a3f6a;
+  }
+  .hero h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; color: #fff; }
+  .hero .subtitle { font-size: 18px; color: #8aa3c8; margin-bottom: 24px; }
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .meta-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(138,163,200,0.2);
+    padding: 16px; border-radius: 8px;
+  }
+  .meta-card .label { font-size: 12px; color: #8aa3c8; text-transform: uppercase; letter-spacing: 1px; }
+  .meta-card .value { font-size: 22px; font-weight: 700; color: #fff; margin-top: 4px; }
+  .meta-card .delta { font-size: 12px; color: #4ade80; margin-top: 4px; }
+
+  .section { margin-bottom: 40px; }
+  .section-title {
+    font-size: 24px; font-weight: 700; color: #fff;
+    margin-bottom: 16px; padding-bottom: 12px;
+    border-bottom: 2px solid #2a3f6a;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-title .num {
+    background: linear-gradient(135deg, #4f7fff, #6c5ce7);
+    color: #fff; width: 36px; height: 36px;
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+
+  .card {
+    background: #131a2e;
+    border: 1px solid #2a3f6a;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .card h3 { color: #fff; font-size: 18px; margin-bottom: 12px; }
+  .card p { color: #b8c5d9; font-size: 14px; }
+
+  table {
+    width: 100%; border-collapse: collapse; margin-top: 12px;
+    font-size: 13px;
+  }
+  th {
+    background: #1a2541; color: #8aa3c8;
+    padding: 12px; text-align: left;
+    border-bottom: 2px solid #2a3f6a;
+    font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;
+  }
+  td {
+    padding: 12px; border-bottom: 1px solid #1f2a47;
+    color: #d4dbe8;
+  }
+  tr:hover td { background: #161e36; }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .badge-l1 { background: #6c5ce7; color: #fff; }
+  .badge-l2 { background: #4f7fff; color: #fff; }
+  .badge-l3 { background: #00b894; color: #fff; }
+  .badge-l4 { background: #fdcb6e; color: #2c3e50; }
+  .badge-fc { background: #e17055; color: #fff; }
+  .badge-sc { background: #d63031; color: #fff; }
+  .badge-amz { background: #ff9f43; color: #fff; }
+  .badge-ok { background: #00b894; color: #fff; }
+  .badge-warn { background: #fdcb6e; color: #2c3e50; }
+  .badge-risk { background: #d63031; color: #fff; }
+
+  .anchor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .anchor-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px; background: #161e36; border-radius: 6px;
+    border-left: 4px solid #4f7fff;
+  }
+  .anchor-row.high { border-color: #d63031; }
+  .anchor-row .anchor-name { font-weight: 600; color: #fff; font-size: 14px; }
+  .anchor-row .anchor-desc { color: #8aa3c8; font-size: 12px; margin-top: 4px; }
+  .stars { color: #fdcb6e; font-size: 14px; }
+
+  .funnel {
+    display: flex; flex-direction: column; gap: 8px;
+    background: #131a2e; padding: 24px; border-radius: 12px;
+    border: 1px solid #2a3f6a;
+  }
+  .funnel-stage {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px; border-radius: 6px;
+    background: linear-gradient(90deg, #1a2541, #2a3f6a);
+  }
+  .funnel-stage:nth-child(1) { width: 100%; background: linear-gradient(90deg, #4f7fff, #1a2541); }
+  .funnel-stage:nth-child(2) { width: 85%; background: linear-gradient(90deg, #6c5ce7, #1a2541); }
+  .funnel-stage:nth-child(3) { width: 65%; background: linear-gradient(90deg, #00b894, #1a2541); }
+  .funnel-stage:nth-child(4) { width: 45%; background: linear-gradient(90deg, #fdcb6e, #1a2541); color: #2c3e50; }
+  .funnel-stage:nth-child(5) { width: 25%; background: linear-gradient(90deg, #e17055, #1a2541); }
+  .funnel-label { font-weight: 600; }
+  .funnel-value { font-size: 18px; font-weight: 700; }
+
+  .timeline {
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    gap: 4px; margin-top: 16px;
+  }
+  .week-cell {
+    background: #1a2541; border-radius: 4px;
+    padding: 8px 4px; text-align: center;
+    font-size: 10px; color: #8aa3c8;
+    min-height: 60px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .week-cell.milestone { background: #4f7fff; color: #fff; font-weight: 600; }
+  .week-cell.fc { background: #e17055; color: #fff; }
+  .week-cell.sc { background: #d63031; color: #fff; }
+  .week-cell.amz { background: #ff9f43; color: #fff; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 12px; }
+  .kpi-card {
+    background: linear-gradient(135deg, #1a2541, #131a2e);
+    border: 1px solid #2a3f6a;
+    border-radius: 8px; padding: 20px;
+    text-align: center;
+  }
+  .kpi-card .kpi-value {
+    font-size: 32px; font-weight: 800;
+    background: linear-gradient(135deg, #4f7fff, #6c5ce7);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .kpi-card .kpi-label { color: #8aa3c8; font-size: 12px; margin-top: 4px; }
+  .kpi-card .kpi-target { color: #4ade80; font-size: 11px; margin-top: 6px; }
+
+  .risk-item {
+    display: flex; gap: 16px; padding: 12px;
+    background: #161e36; border-radius: 6px; margin-bottom: 8px;
+    border-left: 4px solid #d63031;
+  }
+  .risk-item .risk-level { width: 60px; flex-shrink: 0; }
+
+  .footer {
+    margin-top: 60px; padding-top: 24px;
+    border-top: 1px solid #2a3f6a;
+    color: #8aa3c8; font-size: 12px; text-align: center;
+  }
+  .quote {
+    background: rgba(79,127,255,0.1);
+    border-left: 4px solid #4f7fff;
+    padding: 16px 20px; border-radius: 6px;
+    color: #b8c5d9; font-style: italic; margin: 16px 0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+    <div>
+      <h1>Dowsure 销售增长汇报 · Series C 12-Week Sprint</h1>
+      <div class="subtitle">CGO Office · 2026 Q2 · 销售线 · v1.0</div>
+    </div>
+    <div style="text-align:right;color:#8aa3c8;font-size:13px;">
+      汇报人：Chief Growth Officer<br>
+      汇报对象：CEO + Board<br>
+      日期：2026-05-21
+    </div>
+  </div>
+  <div class="meta-grid" style="margin-top:32px;">
+    <div class="meta-card">
+      <div class="label">当前 ARR</div>
+      <div class="value">$20M</div>
+      <div class="delta">基线 · 2026 Q2</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">12 周末目标 ARR</div>
+      <div class="value">$28M</div>
+      <div class="delta">+40% QoQ</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">活跃客户</div>
+      <div class="value">2K → 3.2K</div>
+      <div class="delta">+1,200 net new</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">2029E 目标</div>
+      <div class="value">$120M ARR</div>
+      <div class="delta">20K customers</div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 战略定位 -->
+<div class="section">
+  <div class="section-title"><span class="num">1</span>战略锚点对齐</div>
+  <div class="card">
+    <p style="margin-bottom:16px;color:#b8c5d9;">销售增长团队作为 Series C 故事的"增长引擎",直接决定 $20M→$120M ARR 这条曲线能否成立。以下是销售线对 9 个战略锚点的影响权重与失效后果：</p>
+    <div class="anchor-grid">
+      <div class="anchor-row high">
+        <div>
+          <div class="anchor-name">A7 · 2029E 目标 <span class="stars">★★★★★</span></div>
+          <div class="anchor-desc">2K→20K 客户失败 = 公司增长故事崩塌</div>
+        </div>
+      </div>
+      <div class="anchor-row high">
+        <div>
+          <div class="anchor-name">A5 · 客户分层定价 <span class="stars">★★★★★</span></div>
+          <div class="anchor-desc">L1-L4 分层失效 = CAC 失控、UE 不成立</div>
+        </div>
+      </div>
+      <div class="anchor-row high">
+        <div>
+          <div class="anchor-name">A4 · 产品 Trio <span class="stars">★★★★★</span></div>
+          <div class="anchor-desc">跨 sell 失败 = 单产品天花板</div>
+        </div>
+      </div>
+      <div class="anchor-row">
+        <div>
+          <div class="anchor-name">A2 · 三重护城河 <span class="stars">★★★★</span></div>
+          <div class="anchor-desc">销售无法传达差异化 = 赢单率下降</div>
+        </div>
+      </div>
+      <div class="anchor-row">
+        <div>
+          <div class="anchor-name">A1 · AI Agent OS 定位 <span class="stars">★★★</span></div>
+          <div class="anchor-desc">销售话术偏离 = 品牌定位混乱</div>
+        </div>
+      </div>
+      <div class="anchor-row">
+        <div>
+          <div class="anchor-name">A8 · Series C 条款 <span class="stars">★★★</span></div>
+          <div class="anchor-desc">关联 Second Close 9 里程碑中 3 项</div>
+        </div>
+      </div>
+    </div>
+    <div class="quote">
+      销售线对 First Close ($30M) 提供"客户增长可持续"叙事；对 Second Close ($20M) 提供"9 里程碑中 3 项"硬指标 —— 月新增客户 / 跨 sell 转化率 / Pipeline 健康度。
+    </div>
+  </div>
+</div>
+
+<!-- 2. 关键 KPI -->
+<div class="section">
+  <div class="section-title"><span class="num">2</span>12 周核心 KPI</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-value">+1,200</div>
+      <div class="kpi-label">Net New 客户</div>
+      <div class="kpi-target">L4: 800 / L3: 280 / L2: 100 / L1: 20</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">$8M</div>
+      <div class="kpi-label">New ARR</div>
+      <div class="kpi-target">12 周新增 ACV 累计</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">15%+</div>
+      <div class="kpi-label">FastPay→TermPay</div>
+      <div class="kpi-target">跨 sell 转化率</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">NPS 50+</div>
+      <div class="kpi-label">客户满意度</div>
+      <div class="kpi-target">Onboarding 后 30 天</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. L1-L4 分层销售战法 -->
+<div class="section">
+  <div class="section-title"><span class="num">3</span>L1-L4 分层销售战法</div>
+  <table>
+    <thead>
+      <tr>
+        <th>层级</th>
+        <th>客户特征</th>
+        <th>ACV</th>
+        <th>费率</th>
+        <th>获客模式</th>
+        <th>12 周净增目标</th>
+        <th>预计 New ARR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-l1">L1</span></td>
+        <td>头部品牌 GMV>$50M</td>
+        <td>$180K</td>
+        <td>0.68%</td>
+        <td>SLG · 高管直拜 · ROI Calculator</td>
+        <td>20</td>
+        <td>$3.6M</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-l2">L2</span></td>
+        <td>贸易型卖家 GMV $10-50M</td>
+        <td>$72K</td>
+        <td>0.80%</td>
+        <td>SLG+PLG · AE 跟进 · 免费试用</td>
+        <td>100</td>
+        <td>$2.4M</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-l3">L3</span></td>
+        <td>成长品牌 GMV $2-10M</td>
+        <td>$24K</td>
+        <td>1.00%</td>
+        <td>PLG+SLG · Webinar · 内容营销</td>
+        <td>280</td>
+        <td>$1.7M</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-l4">L4</span></td>
+        <td>SME 卖家 GMV<$2M</td>
+        <td>$6K</td>
+        <td>1.77%</td>
+        <td>Self-serve · Amazon 内嵌 · 社区</td>
+        <td>800</td>
+        <td>$1.2M (年化)</td>
+      </tr>
+      <tr style="background:#1a2541;font-weight:700;">
+        <td colspan="5">合计</td>
+        <td>1,200</td>
+        <td>~$8M (12 周 New ARR)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 4. Sales Pipeline 漏斗 -->
+<div class="section">
+  <div class="section-title"><span class="num">4</span>Sales Pipeline 漏斗（12 周目标）</div>
+  <div class="funnel">
+    <div class="funnel-stage">
+      <span class="funnel-label">Inbound + Outbound Leads</span>
+      <span class="funnel-value">12,000</span>
+    </div>
+    <div class="funnel-stage">
+      <span class="funnel-label">MQL（Insight Agent 评分通过）</span>
+      <span class="funnel-value">4,800</span>
+    </div>
+    <div class="funnel-stage">
+      <span class="funnel-label">SQL（AE 资质确认）</span>
+      <span class="funnel-value">2,400</span>
+    </div>
+    <div class="funnel-stage">
+      <span class="funnel-label">Opportunities（Deal Room 启动）</span>
+      <span class="funnel-value">1,800</span>
+    </div>
+    <div class="funnel-stage">
+      <span class="funnel-label">Closed Won</span>
+      <span class="funnel-value">1,200</span>
+    </div>
+  </div>
+  <p style="color:#8aa3c8;font-size:13px;margin-top:12px;">
+    全漏斗转化率：10%（Lead → Closed Won）。L4 通过 Self-serve 走捷径漏斗，转化率 15%；L1 走高接触漏斗，转化率 4-5%。
+  </p>
+</div>
+
+<!-- 5. 12 周时间线 -->
+<div class="section">
+  <div class="section-title"><span class="num">5</span>12 周里程碑时间线</div>
+  <div class="timeline">
+    <div class="week-cell fc"><strong>W1</strong><div>First Close $30M</div></div>
+    <div class="week-cell"><strong>W2</strong><div>L1-L4 分层策略</div></div>
+    <div class="week-cell milestone"><strong>W3</strong><div>ICP 评分 v0.1</div></div>
+    <div class="week-cell"><strong>W4</strong><div>Pipeline Dashboard</div></div>
+    <div class="week-cell milestone"><strong>W5</strong><div>跨 sell 触发器</div></div>
+    <div class="week-cell"><strong>W6</strong><div>竞品 Playbook</div></div>
+    <div class="week-cell milestone"><strong>W7</strong><div>Deal Room v1.0</div></div>
+    <div class="week-cell amz"><strong>W8</strong><div>Amazon 官宣</div></div>
+    <div class="week-cell"><strong>W9</strong><div>NPS 系统</div></div>
+    <div class="week-cell milestone"><strong>W10</strong><div>编制审批</div></div>
+    <div class="week-cell"><strong>W11</strong><div>培训认证</div></div>
+    <div class="week-cell sc"><strong>W12</strong><div>Second Close 预审</div></div>
+  </div>
+</div>
+
+<!-- 6. SKU 交付清单 (20 个) -->
+<div class="section">
+  <div class="section-title"><span class="num">6</span>SKU 级交付清单（20 个）</div>
+  <table>
+    <thead>
+      <tr><th>SKU</th><th>交付物</th><th>验收标准</th><th>周次</th><th>关联</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>GS-01</strong></td><td>L1 头部品牌获客 Playbook</td><td>50 个 L1 目标客户清单 + ROI Calculator</td><td>W1-W2</td><td><span class="badge badge-fc">FC</span></td></tr>
+      <tr><td><strong>GS-02</strong></td><td>L2 贸易卖家获客策略</td><td>月新增 L2 ≥100</td><td>W1-W2</td><td>—</td></tr>
+      <tr><td><strong>GS-03</strong></td><td>L3 成长品牌获客策略</td><td>月新增 L3 ≥200</td><td>W1-W2</td><td>—</td></tr>
+      <tr><td><strong>GS-04</strong></td><td>L4 SME 自助获客策略</td><td>月新增 L4 ≥500</td><td>W1-W2</td><td>—</td></tr>
+      <tr><td><strong>GS-05</strong></td><td>ICP 评分工具（Insight Agent）</td><td>评分准确率 >70%，CRM 集成</td><td>W2-W4</td><td><span class="badge badge-l1">A2</span></td></tr>
+      <tr><td><strong>GS-06</strong></td><td>Deal Room 自动生成器（Deal Agent）</td><td>生成时间 <5min，含竞品对比/ROI</td><td>W3-W5</td><td><span class="badge badge-l1">A2</span></td></tr>
+      <tr><td><strong>GS-07</strong></td><td>提案 & 报价生成器</td><td>定制提案 <2min</td><td>W4-W6</td><td>—</td></tr>
+      <tr><td><strong>GS-08</strong></td><td>销售预测 AI</td><td>Pipeline 预测准确率 >80%</td><td>W6-W8</td><td>—</td></tr>
+      <tr><td><strong>GS-09</strong></td><td>FastPay→TermPay 跨 sell 触发</td><td>转化率 ≥15%</td><td>W3-W6</td><td><span class="badge badge-sc">SC</span></td></tr>
+      <tr><td><strong>GS-10</strong></td><td>TermPay→MoreFund 跨 sell 触发</td><td>转化率 ≥20%</td><td>W3-W6</td><td><span class="badge badge-sc">SC</span></td></tr>
+      <tr><td><strong>GS-11</strong></td><td>全 Trio 矩阵交叉销售策略</td><td>客户平均使用 ≥1.5 产品</td><td>W4-W6</td><td>—</td></tr>
+      <tr><td><strong>GS-12</strong></td><td>Sales Pipeline Dashboard</td><td>全链路可追踪 + 周更</td><td>W4-W6</td><td>—</td></tr>
+      <tr><td><strong>GS-13</strong></td><td>竞品防御 Playbook</td><td>覆盖 TOP 5 竞品</td><td>W5-W8</td><td>—</td></tr>
+      <tr><td><strong>GS-14</strong></td><td>L1-L4 客户 Onboarding 流程</td><td>L1 <7d / L4 <1d</td><td>W6-W8</td><td>—</td></tr>
+      <tr><td><strong>GS-15</strong></td><td>NPS 追踪 + 客户健康评分</td><td>NPS ≥50</td><td>W8-W10</td><td>—</td></tr>
+      <tr><td><strong>GS-16</strong></td><td>销售团队编制 & Ramp-up 计划</td><td>12M 招聘计划 CEO 审批</td><td>W8-W10</td><td>—</td></tr>
+      <tr><td><strong>GS-17</strong></td><td>销售培训 & 认证体系</td><td>100% AE 通过认证</td><td>W10-W12</td><td>—</td></tr>
+      <tr><td><strong>GS-18</strong></td><td>收入推导模型（L1-L4×Trio）</td><td>与 A7 $400M 对齐</td><td>W10-W12</td><td><span class="badge badge-sc">SC</span></td></tr>
+      <tr><td><strong>GS-19</strong></td><td>Amazon 卖家批量获客方案</td><td>月新增 Amazon 卖家 ≥300</td><td>W8-W12</td><td><span class="badge badge-amz">AMZ</span></td></tr>
+      <tr><td><strong>GS-20</strong></td><td>Amazon 内嵌金融体验设计</td><td>与 Seller Central 无缝集成</td><td>W8-W12</td><td><span class="badge badge-amz">AMZ</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 7. 跨团队依赖 -->
+<div class="section">
+  <div class="section-title"><span class="num">7</span>跨团队依赖（关键阻塞项）</div>
+  <table>
+    <thead>
+      <tr><th>上游团队</th><th>依赖内容</th><th>关联 SKU</th><th>截止周</th><th>阻塞等级</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>技术</td><td>Insight Agent / Deal Agent MVP</td><td>ENG-009/010 → GS-05~07</td><td>W4 (Mock)</td><td><span class="badge badge-warn">中</span></td></tr>
+      <tr><td>市场</td><td>MQL 漏斗 + 竞品对比内容</td><td>DM-01~07 / CT-04 → GS-12/13</td><td>W4-W5</td><td><span class="badge badge-risk">高</span></td></tr>
+      <tr><td>产品</td><td>Trio PRD + 跨 sell 触发器</td><td>PD-DOC-03 / MOD-10 → GS-09~11</td><td>W6</td><td><span class="badge badge-warn">中</span></td></tr>
+      <tr><td>财务</td><td>L1-L4 UE 模型 + 价格弹性</td><td>FP-04~08 → GS-18</td><td>W8</td><td><span class="badge badge-warn">中</span></td></tr>
+      <tr><td>人事</td><td>AE/SDR/AM 招聘到位</td><td>HR-01/04 → GS-16</td><td>W10</td><td><span class="badge badge-risk">高</span></td></tr>
+      <tr><td>外部</td><td>Amazon 官宣时机 + 集成接口</td><td>Amazon → GS-19/20</td><td>W8 (TBD)</td><td><span class="badge badge-risk">高</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 8. 风险与对策 -->
+<div class="section">
+  <div class="section-title"><span class="num">8</span>TOP 5 风险 & 对策</div>
+  <div class="risk-item">
+    <div class="risk-level"><span class="badge badge-risk">致命</span></div>
+    <div>
+      <strong style="color:#fff;">R1 · Amazon 官宣延期</strong>
+      <p style="color:#b8c5d9;font-size:13px;margin-top:4px;">L4 批量获客通道（GS-19/20）依赖 Amazon 时机。<strong style="color:#4ade80;">对策：</strong>非 Amazon 渠道（独立站卖家 / Shopify 生态）作为 Plan B，确保 L4 月新增 500 不依赖单一来源。</p>
+    </div>
+  </div>
+  <div class="risk-item">
+    <div class="risk-level"><span class="badge badge-risk">高</span></div>
+    <div>
+      <strong style="color:#fff;">R2 · Agent 工具 W4 不可用</strong>
+      <p style="color:#b8c5d9;font-size:13px;margin-top:4px;">Insight Agent / Deal Agent 是销售提效核心。<strong style="color:#4ade80;">对策：</strong>W4 前用 Mock 版（规则引擎 + 人工评分）先行，W8 切换到真 Agent。</p>
+    </div>
+  </div>
+  <div class="risk-item">
+    <div class="risk-level"><span class="badge badge-risk">高</span></div>
+    <div>
+      <strong style="color:#fff;">R3 · L1 周期长，12 周难闭单</strong>
+      <p style="color:#b8c5d9;font-size:13px;margin-top:4px;">L1 头部品牌平均销售周期 90-120 天。<strong style="color:#4ade80;">对策：</strong>12 周内"签 LOI + 启动 PoC"为主，正式合同延后；20 个 L1 目标只取 5 个全力闭。</p>
+    </div>
+  </div>
+  <div class="risk-item">
+    <div class="risk-level"><span class="badge badge-warn">中</span></div>
+    <div>
+      <strong style="color:#fff;">R4 · 跨 sell 转化率不达标</strong>
+      <p style="color:#b8c5d9;font-size:13px;margin-top:4px;">Trio 跨 sell 是 ARR 倍增关键。<strong style="color:#4ade80;">对策：</strong>建立"客户成功 + AE"双触点，前 3 个月每月触发 1 次跨 sell 推荐。</p>
+    </div>
+  </div>
+  <div class="risk-item">
+    <div class="risk-level"><span class="badge badge-warn">中</span></div>
+    <div>
+      <strong style="color:#fff;">R5 · AE 招聘速度跟不上</strong>
+      <p style="color:#b8c5d9;font-size:13px;margin-top:4px;">12 周需净增 6 名 AE / 4 名 SDR。<strong style="color:#4ade80;">对策：</strong>提前与 RPO 合作锁定 pipeline，并启用 Amazon 生态内推奖励。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 9. CEO 决策事项 -->
+<div class="section">
+  <div class="section-title"><span class="num">9</span>需 CEO 决策的 4 个事项</div>
+  <table>
+    <thead>
+      <tr><th>#</th><th>决策项</th><th>选项</th><th>截止日期</th><th>建议</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>D1</td>
+        <td>L1 vs L4 资源配比</td>
+        <td>A: 60% 资源给 L1（高 ACV 慢周期）<br>B: 60% 资源给 L4（低 ACV 快规模）</td>
+        <td>W1</td>
+        <td><strong style="color:#4ade80;">推荐 B</strong>：12 周窗口期需要规模信号支撑 Second Close</td>
+      </tr>
+      <tr>
+        <td>D2</td>
+        <td>AE Quota 设置</td>
+        <td>A: 每 AE $1.5M / 年<br>B: 每 AE $2M / 年（更激进）</td>
+        <td>W2</td>
+        <td><strong style="color:#4ade80;">推荐 A</strong>：保留 buffer 应对销售周期波动</td>
+      </tr>
+      <tr>
+        <td>D3</td>
+        <td>Amazon 独家协议利用度</td>
+        <td>A: 仅作为获客通道<br>B: 联合产品 + 联合 GTM</td>
+        <td>W4</td>
+        <td><strong style="color:#4ade80;">推荐 B</strong>：放大三重护城河叙事</td>
+      </tr>
+      <tr>
+        <td>D4</td>
+        <td>跨 sell 触发权限</td>
+        <td>A: AE 主动推送<br>B: Capital Agent 自动触发</td>
+        <td>W6</td>
+        <td><strong style="color:#4ade80;">推荐 B</strong>：体现 AI Agent OS 定位</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 10. 资源诉求 -->
+<div class="section">
+  <div class="section-title"><span class="num">10</span>资源诉求 · Series C 预算分配</div>
+  <table>
+    <thead>
+      <tr><th>项目</th><th>预算（12 周）</th><th>用途</th><th>ROI 指标</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>销售人员扩招</td><td>$420K</td><td>+6 AE / +4 SDR / +2 AM</td><td>每人贡献 New ARR ≥ 3x 薪酬</td></tr>
+      <tr><td>Sales Tech Stack</td><td>$80K</td><td>Salesforce + Outreach + Gong + ZoomInfo</td><td>AE 产能提升 30%</td></tr>
+      <tr><td>L1 高管接触</td><td>$150K</td><td>圆桌 / 高管晚宴 / Executive Briefing</td><td>L1 LOI ≥10 个</td></tr>
+      <tr><td>跨 sell 营销</td><td>$120K</td><td>客户成功活动 / 邮件序列 / 案例</td><td>跨 sell 转化率 ≥15%</td></tr>
+      <tr><td>Amazon 联合活动</td><td>$200K</td><td>联合 Webinar / 卖家大会 / 内嵌广告</td><td>月新增 Amazon 卖家 ≥300</td></tr>
+      <tr style="background:#1a2541;font-weight:700;"><td>合计</td><td>$970K</td><td>—</td><td>预计 New ARR $8M</td></tr>
+    </tbody>
+  </table>
+  <div class="quote">
+    Sales CAC 推算：$970K / 1,200 客户 ≈ $810 平均 CAC（含人员摊销）。L1-L4 各层 CAC 见 FP-05~08。整体 CAC/LTV 比 1:5+，符合 SaaS 健康水平。
+  </div>
+</div>
+
+<div class="footer">
+  Dowsure CGO Office · Series C 销售汇报 v1.0 · 2026-05-21<br>
+  下一步：Friday Leadership Sync 跨团队对齐 · v2.0 落地版本将在 W2 发布
+</div>
+
+</div>
+</body>
+</html>

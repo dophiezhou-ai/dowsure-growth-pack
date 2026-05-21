@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dowsure | 08 · Agent CRM 交互 Demo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+  background: #06091a; color: #e8ecf4; min-height: 100vh; line-height: 1.6;
+}
+.container { max-width: 1400px; margin: 0 auto; padding: 40px 30px; }
+
+.hero {
+  background: linear-gradient(135deg, #0e1330 0%, #06091a 100%);
+  border-radius: 18px; padding: 40px 50px; margin-bottom: 30px;
+  border: 1px solid #2a3050; position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 50%; height: 100%;
+  background: radial-gradient(ellipse at top right, rgba(108,92,231,.15) 0%, transparent 60%);
+}
+.hero-tag {
+  display: inline-block; padding: 6px 14px;
+  background: rgba(108,92,231,.18); border: 1px solid #6c5ce7;
+  color: #a55eea; border-radius: 20px;
+  font-size: 12px; font-weight: 600; margin-bottom: 14px;
+}
+.hero h1 {
+  font-size: 36px; font-weight: 800; line-height: 1.2; margin-bottom: 12px;
+  background: linear-gradient(135deg,#4f7fff,#6c5ce7,#26c281);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p { font-size: 15px; color: #a0a8c0; max-width: 800px; }
+.hero-meta { display: flex; gap: 24px; margin-top: 18px; font-size: 13px; color: #8590ad; flex-wrap: wrap; }
+.hero-meta strong { color: #e8ecf4; }
+
+/* 3-panel layout */
+.app {
+  display: grid;
+  grid-template-columns: 280px 1fr 320px;
+  gap: 16px;
+  background: #0e1330; border: 1px solid #2a3050;
+  border-radius: 18px; overflow: hidden;
+  height: 760px;
+  margin-bottom: 30px;
+}
+
+/* Left: deal list */
+.sidebar {
+  background: #0a0f24; border-right: 1px solid #2a3050;
+  display: flex; flex-direction: column;
+}
+.sidebar-head {
+  padding: 18px 20px; border-bottom: 1px solid #2a3050;
+}
+.sidebar-head .title { font-size: 13px; color: #6c92ff; text-transform: uppercase; letter-spacing: .5px; font-weight: 700; }
+.sidebar-head .count { font-size: 22px; font-weight: 800; color: #e8ecf4; margin-top: 4px; }
+.deal-item {
+  padding: 14px 20px; border-bottom: 1px solid #2a3050;
+  cursor: pointer; transition: background .2s;
+}
+.deal-item:hover { background: rgba(79,127,255,.08); }
+.deal-item.active { background: rgba(79,127,255,.12); border-left: 3px solid #4f7fff; }
+.deal-item .name { font-size: 14px; font-weight: 700; color: #e8ecf4; margin-bottom: 4px; }
+.deal-item .meta { font-size: 11px; color: #8590ad; display: flex; justify-content: space-between; }
+.deal-item .stage {
+  display: inline-block; padding: 2px 6px; border-radius: 4px;
+  font-size: 10px; font-weight: 700;
+}
+.stage-l1 { background: rgba(255,193,7,.15); color: #ffc107; }
+.stage-l2 { background: rgba(79,127,255,.15); color: #6c92ff; }
+.stage-l3 { background: rgba(38,194,129,.15); color: #26c281; }
+.stage-l4 { background: rgba(167,139,250,.15); color: #a55eea; }
+
+/* Center: chat */
+.chat-panel {
+  display: flex; flex-direction: column; background: #0e1330;
+}
+.chat-head {
+  padding: 16px 24px; border-bottom: 1px solid #2a3050;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.chat-head .deal-name { font-size: 16px; font-weight: 700; color: #e8ecf4; }
+.chat-head .deal-sub { font-size: 12px; color: #8590ad; margin-top: 2px; }
+.agents-active {
+  display: flex; gap: 4px;
+}
+.agents-active .pill {
+  padding: 3px 8px; border-radius: 10px; font-size: 10px; font-weight: 700;
+  background: rgba(79,127,255,.15); color: #6c92ff;
+}
+
+.chat-body {
+  flex: 1; overflow-y: auto; padding: 22px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.chat-body::-webkit-scrollbar { width: 6px; }
+.chat-body::-webkit-scrollbar-thumb { background: #2a3050; border-radius: 3px; }
+
+.bubble {
+  max-width: 78%; padding: 12px 16px; border-radius: 12px;
+  font-size: 13px; line-height: 1.6;
+}
+.bubble .who {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .5px; margin-bottom: 6px;
+}
+.bubble.ae { align-self: flex-end; background: #1a2244; border: 1px solid #2a3050; color: #e8ecf4; }
+.bubble.ae .who { color: #6c92ff; }
+.bubble.agent {
+  align-self: flex-start;
+  background: linear-gradient(135deg, rgba(38,194,129,.12), rgba(79,127,255,.08));
+  border: 1px solid rgba(38,194,129,.3); color: #e8ecf4;
+}
+.bubble.agent .who { color: #26c281; }
+.bubble.system {
+  align-self: center; background: rgba(255,193,7,.08);
+  border: 1px solid rgba(255,193,7,.25); color: #ffc107;
+  font-size: 12px; max-width: 90%; text-align: center;
+  border-radius: 8px; padding: 8px 16px;
+}
+.bubble .data-block {
+  margin-top: 10px; padding: 10px 12px;
+  background: rgba(0,0,0,.3); border-radius: 8px;
+  font-family: 'SF Mono', Monaco, monospace; font-size: 11px;
+  color: #6c92ff; line-height: 1.7;
+}
+.bubble .recommend {
+  margin-top: 10px; padding: 10px 12px;
+  background: rgba(38,194,129,.12); border-left: 3px solid #26c281;
+  border-radius: 6px; font-size: 12px;
+}
+.bubble .recommend strong { color: #26c281; }
+
+.chat-input {
+  padding: 16px 24px; border-top: 1px solid #2a3050;
+  background: #0a0f24;
+}
+.chat-input .field {
+  background: #1a2244; border: 1px solid #2a3050;
+  border-radius: 10px; padding: 12px 16px;
+  color: #e8ecf4; font-size: 13px;
+}
+.chat-input .hint { font-size: 11px; color: #5d6680; margin-top: 6px; }
+
+/* Right panel */
+.right { background: #0a0f24; border-left: 1px solid #2a3050; padding: 20px; overflow-y: auto; }
+.right h3 { font-size: 12px; font-weight: 700; color: #6c92ff; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+.right h3:not(:first-child) { margin-top: 24px; }
+
+.cust-stat {
+  background: #131a2e; border: 1px solid #2a3050;
+  border-radius: 10px; padding: 12px; margin-bottom: 8px;
+}
+.cust-stat .lbl { font-size: 11px; color: #8590ad; }
+.cust-stat .val { font-size: 16px; font-weight: 700; color: #e8ecf4; margin-top: 2px; }
+.cust-stat .delta { font-size: 11px; color: #26c281; }
+
+.next-action {
+  background: linear-gradient(135deg, rgba(79,127,255,.08), rgba(108,92,231,.08));
+  border: 1px solid rgba(79,127,255,.3);
+  border-radius: 10px; padding: 12px; margin-bottom: 8px;
+  font-size: 12px; color: #c9d3ec;
+}
+.next-action .own { font-size: 10px; color: #6c92ff; font-weight: 700; text-transform: uppercase; }
+
+.timeline-mini { display: flex; flex-direction: column; gap: 8px; }
+.timeline-mini .step {
+  display: flex; gap: 10px; font-size: 12px; color: #c9d3ec;
+}
+.timeline-mini .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  margin-top: 6px; flex-shrink: 0;
+}
+.timeline-mini .step.done .dot { background: #26c281; }
+.timeline-mini .step.curr .dot { background: #ffc107; box-shadow: 0 0 0 4px rgba(255,193,7,.2); }
+.timeline-mini .step.todo .dot { background: #2a3050; }
+.timeline-mini .step .stage-name { font-weight: 600; color: #e8ecf4; }
+.timeline-mini .step .when { font-size: 10px; color: #8590ad; }
+
+/* SKU summary */
+.sku-summary {
+  background: #0e1330; border: 1px solid #2a3050;
+  border-radius: 14px; padding: 24px; margin-bottom: 24px;
+}
+.sku-summary h2 {
+  font-size: 22px; font-weight: 700; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.sku-summary h2::before {
+  content: ''; width: 4px; height: 24px;
+  background: linear-gradient(180deg,#4f7fff,#6c5ce7);
+  border-radius: 2px;
+}
+.sku-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+.sku-cell {
+  background: #131a2e; border: 1px solid #2a3050;
+  border-radius: 10px; padding: 14px;
+}
+.sku-cell .code {
+  font-family: monospace; font-size: 11px;
+  background: rgba(108,92,231,.15); color: #a55eea;
+  padding: 2px 6px; border-radius: 4px; font-weight: 700;
+}
+.sku-cell .name { font-size: 13px; color: #e8ecf4; font-weight: 600; margin-top: 6px; }
+.sku-cell .acc { font-size: 11px; color: #26c281; margin-top: 4px; }
+
+/* Acceptance band */
+.acc-band {
+  background: linear-gradient(135deg, rgba(38,194,129,.06), rgba(79,127,255,.06));
+  border: 1px solid #2a3050; border-radius: 14px;
+  padding: 24px; display: grid; grid-template-columns: repeat(4,1fr); gap: 14px;
+}
+.acc-cell .num { font-size: 26px; font-weight: 800; color: #26c281; }
+.acc-cell .lbl { font-size: 12px; color: #a0a8c0; margin-top: 4px; }
+
+footer { text-align: center; padding: 30px 0 10px; color: #5d6680; font-size: 12px; margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <span class="hero-tag">AGENT CRM · INTERACTIVE DEMO · 08 / 08</span>
+  <h1>Agent CRM v1.0 · 实战交互 Demo</h1>
+  <p>下方是 Agent CRM 的核心交互界面：左侧商机列表 · 中部 AE 与 6 Agent 的对话流 · 右侧实时画像与 Pipeline 推进。本 Demo 展示一笔 L1 ($180K ACV) 商机如何由 Insight → Deal → Sentinel → Capital 协同推进至 Closed-Won。</p>
+  <div class="hero-meta">
+    <div><strong>战略锚点:</strong> A1 · A4 · A6</div>
+    <div><strong>对齐里程碑:</strong> W7 Deal Room v1.0 · W12 Second Close</div>
+    <div><strong>SKU:</strong> CRM-06 Agent Chat v1.0 · CRM-10 Investor Demo</div>
+  </div>
+</div>
+
+<div class="app">
+  <!-- Left: deal list -->
+  <div class="sidebar">
+    <div class="sidebar-head">
+      <div class="title">My Pipeline</div>
+      <div class="count">28 Open Deals</div>
+    </div>
+    <div class="deal-item active">
+      <div class="name">Acme Electronics Co.</div>
+      <div class="meta">
+        <span class="stage stage-l1">L1 · $180K</span>
+        <span>Negotiation</span>
+      </div>
+    </div>
+    <div class="deal-item">
+      <div class="name">Sunrise Home Goods</div>
+      <div class="meta">
+        <span class="stage stage-l2">L2 · $72K</span>
+        <span>Proposal</span>
+      </div>
+    </div>
+    <div class="deal-item">
+      <div class="name">Bloom Beauty Asia</div>
+      <div class="meta">
+        <span class="stage stage-l3">L3 · $24K</span>
+        <span>PLG Self-serve</span>
+      </div>
+    </div>
+    <div class="deal-item">
+      <div class="name">Tooly Workshop</div>
+      <div class="meta">
+        <span class="stage stage-l4">L4 · $6K</span>
+        <span>Activated</span>
+      </div>
+    </div>
+    <div class="deal-item">
+      <div class="name">Northstar Apparel</div>
+      <div class="meta">
+        <span class="stage stage-l1">L1 · $210K</span>
+        <span>Discovery</span>
+      </div>
+    </div>
+    <div class="deal-item">
+      <div class="name">PixelToys Ltd.</div>
+      <div class="meta">
+        <span class="stage stage-l2">L2 · $68K</span>
+        <span>Qualification</span>
+      </div>
+    </div>
+    <div class="deal-item">
+      <div class="name">Aurora Tech Brand</div>
+      <div class="meta">
+        <span class="stage stage-l1">L1 · $195K</span>
+        <span>Closed Won ✓</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Center: chat -->
+  <div class="chat-panel">
+    <div class="chat-head">
+      <div>
+        <div class="deal-name">Acme Electronics Co. · CFO Lily Chen</div>
+        <div class="deal-sub">L1 · $180K ACV · GMV $82M · Stage: Negotiation · Owner: AE Mark</div>
+      </div>
+      <div class="agents-active">
+        <span class="pill">Insight ●</span>
+        <span class="pill">Deal ●</span>
+        <span class="pill">Sentinel ●</span>
+        <span class="pill">Capital ●</span>
+      </div>
+    </div>
+
+    <div class="chat-body">
+      <div class="bubble system">— Today · Mon 09:04 —</div>
+
+      <div class="bubble ae">
+        <div class="who">AE · Mark</div>
+        @Insight 给我 Acme 最近 30 天的经营变化，重点是库存与 GMV
+      </div>
+
+      <div class="bubble agent">
+        <div class="who">Insight Agent</div>
+        Acme 近 30 天关键变化：
+        <div class="data-block">
+GMV          $7.2M     +18% MoM
+库存周转       38d       -4d ↓
+退货率         2.1%      持平
+广告 ROAS     4.6x      +0.4 ↑
+现金缺口预测    $12M / Q3
+        </div>
+        预测 Prime Day 前需 $10M 备货资金，建议 Trio 组合（FastPay + MoreFund）。
+      </div>
+
+      <div class="bubble ae">
+        <div class="who">AE · Mark</div>
+        生成报价方案，Take Rate 控制在 0.68%
+      </div>
+
+      <div class="bubble agent">
+        <div class="who">Deal Agent</div>
+        已生成 Trio 报价 v1：
+        <div class="recommend">
+          <strong>FastPay</strong> · $5M · LIBOR + 220bp · T+0 放款<br>
+          <strong>MoreFund</strong> · $5M · 90 天循环 · HSBC 直贷<br>
+          Blended Take Rate <strong>0.67%</strong> · 24h 到账<br>
+          预计 Acme 全周期融资成本节省 <strong>$280K</strong>
+        </div>
+        合同模板已起草（Term Sheet v1.0），等待 Sentinel 合规审核。
+      </div>
+
+      <div class="bubble agent">
+        <div class="who">Sentinel Agent</div>
+        合规校验通过 ✓
+        <div class="data-block">
+KYC          OK    BVI 经济实质核验通过
+AML          OK    UBO 穿透至自然人
+牌照覆盖      US MSB · HK MSO · HK MLO
+监管标记      无
+风险评级      A (低)
+        </div>
+        建议下一步：发送 Term Sheet 给 CFO Lily，并预约 W2 周二 Capital Agent 联调银行额度。
+      </div>
+
+      <div class="bubble ae">
+        <div class="who">AE · Mark</div>
+        发送 Term Sheet，并约 Lily 周二上午 10 点
+      </div>
+
+      <div class="bubble agent">
+        <div class="who">Deal Agent</div>
+        ✓ Term Sheet 已通过 Lily 邮箱发送（含电子签链接）<br>
+        ✓ 日程已发起：周二 10:00 SGT，HSBC Wholesale 资金联调（Capital Agent + 银行 RM 自动入会）<br>
+        ✓ Pipeline 已推进至 <strong>Closing 阶段</strong>，Forecast 概率 78% → <strong>92%</strong>
+      </div>
+
+      <div class="bubble system">— Tue 10:32 — Capital Agent 自动汇报 —</div>
+
+      <div class="bubble agent">
+        <div class="who">Capital Agent</div>
+        与 HSBC Wholesale 联调完成。$5M MoreFund 额度通过 ✓ · 资金路由：HSBC 70% + SCB 30%。<br>
+        客户电子签 Term Sheet 已签署 — Deal Closed-Won. 🎉<br>
+        Treasury Agent 将于 T+1 完成首笔 $1.5M 放款。
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <div class="field">输入指令 / @Agent 名 调用具体 Agent ...</div>
+      <div class="hint">提示：@Insight @Deal @Spend @Capital @Treasury @Sentinel · ⌘K 唤起命令面板</div>
+    </div>
+  </div>
+
+  <!-- Right: customer + pipeline -->
+  <div class="right">
+    <h3>Customer Snapshot</h3>
+    <div class="cust-stat">
+      <div class="lbl">T12M GMV</div>
+      <div class="val">$82.4M</div>
+      <div class="delta">+12% YoY</div>
+    </div>
+    <div class="cust-stat">
+      <div class="lbl">现金缺口预测 (Q3)</div>
+      <div class="val">$12.0M</div>
+      <div class="delta" style="color:#ffc107">↑ 缺口扩大</div>
+    </div>
+    <div class="cust-stat">
+      <div class="lbl">Insight 经营评级</div>
+      <div class="val">Tier-A</div>
+      <div class="delta">稳定</div>
+    </div>
+    <div class="cust-stat">
+      <div class="lbl">Risk Score (Sentinel)</div>
+      <div class="val">A · 低风险</div>
+      <div class="delta">合规绿灯</div>
+    </div>
+
+    <h3>Pipeline 进度</h3>
+    <div class="timeline-mini">
+      <div class="step done">
+        <div class="dot"></div>
+        <div>
+          <div class="stage-name">Discovery</div>
+          <div class="when">Apr 28 · Insight 自动建档</div>
+        </div>
+      </div>
+      <div class="step done">
+        <div class="dot"></div>
+        <div>
+          <div class="stage-name">Qualification</div>
+          <div class="when">May 05 · Tier-A 评级</div>
+        </div>
+      </div>
+      <div class="step done">
+        <div class="dot"></div>
+        <div>
+          <div class="stage-name">Proposal</div>
+          <div class="when">May 14 · Trio v1 报价</div>
+        </div>
+      </div>
+      <div class="step curr">
+        <div class="dot"></div>
+        <div>
+          <div class="stage-name">Negotiation</div>
+          <div class="when">May 20 · Sentinel 通过</div>
+        </div>
+      </div>
+      <div class="step done">
+        <div class="dot"></div>
+        <div>
+          <div class="stage-name">Closed-Won</div>
+          <div class="when">May 21 · $5M 放款</div>
+        </div>
+      </div>
+      <div class="step todo">
+        <div class="dot"></div>
+        <div>
+          <div class="stage-name">Onboarding</div>
+          <div class="when">By Treasury Agent</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Next Best Actions</h3>
+    <div class="next-action">
+      <div class="own">DEAL · within 24h</div>
+      触发交叉销售：Acme 母公司 (HK 实体) 同样需 TermPay 60 天账期。预测增量 ARR $48K。
+    </div>
+    <div class="next-action">
+      <div class="own">AM · within 7d</div>
+      Onboarding Webinar — 客户 CFO 全员培训，Sentinel 自动准备合规手册。
+    </div>
+    <div class="next-action">
+      <div class="own">CGO · 路演用</div>
+      已自动生成 Acme Case Study 草稿（Series C SC Day 可用 Demo）。
+    </div>
+  </div>
+</div>
+
+<!-- SKU summary -->
+<div class="sku-summary">
+  <h2>本 Demo 覆盖的 Agent CRM SKU</h2>
+  <div class="sku-grid">
+    <div class="sku-cell">
+      <span class="code">CRM-02</span>
+      <div class="name">Insight Lead Score</div>
+      <div class="acc">✓ 经营画像准确率 ≥ 75%</div>
+    </div>
+    <div class="sku-cell">
+      <span class="code">CRM-04</span>
+      <div class="name">Deal Trio 报价</div>
+      <div class="acc">✓ 报价生成 < 30s · 通过 ≥ 80%</div>
+    </div>
+    <div class="sku-cell">
+      <span class="code">CRM-06</span>
+      <div class="name">Agent Chat v1.0</div>
+      <div class="acc">✓ AE 日均会话 ≥ 20 轮</div>
+    </div>
+    <div class="sku-cell">
+      <span class="code">CRM-07</span>
+      <div class="name">Spend/Capital/Treasury</div>
+      <div class="acc">✓ 联动放款 ≥ 50 单 / W8</div>
+    </div>
+    <div class="sku-cell">
+      <span class="code">CRM-08</span>
+      <div class="name">Sentinel 合规守卫</div>
+      <div class="acc">✓ 合规事故 0 / 拦截 ≥ 30 单</div>
+    </div>
+    <div class="sku-cell">
+      <span class="code">CRM-09</span>
+      <div class="name">RevOps Console</div>
+      <div class="acc">✓ Pipeline 视图 100% 切换</div>
+    </div>
+    <div class="sku-cell">
+      <span class="code">CRM-10</span>
+      <div class="name">Investor Demo</div>
+      <div class="acc">✓ ≥ 8 LP 现场体验</div>
+    </div>
+    <div class="sku-cell">
+      <span class="code">DEMO-06</span>
+      <div class="name">6-Agent 沙盒</div>
+      <div class="acc">✓ AE 100% 实操培训</div>
+    </div>
+  </div>
+</div>
+
+<!-- Acceptance band -->
+<div class="acc-band">
+  <div class="acc-cell">
+    <div class="num">≥ 80%</div>
+    <div class="lbl">AE 日活迁移率（W12）</div>
+  </div>
+  <div class="acc-cell">
+    <div class="num">≤ 30s</div>
+    <div class="lbl">报价 / 合同生成时效</div>
+  </div>
+  <div class="acc-cell">
+    <div class="num">-30%</div>
+    <div class="lbl">Lead → SQL 周期缩短</div>
+  </div>
+  <div class="acc-cell">
+    <div class="num">$480K</div>
+    <div class="lbl">SF 订阅年化节省（M9）</div>
+  </div>
+</div>
+
+<footer>
+  Dowsure · CGO Office · Agent CRM Demo v1.0 · 文档 08 / 08 · 2026-05-21
+</footer>
+
+</div>
+</body>
+</html>
