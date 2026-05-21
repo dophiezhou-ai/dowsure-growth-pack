@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dowsure · Sales Script Battlebook</title>
+  <style>
+    :root{--bg:#f4f7fb;--ink:#142033;--text:#4d5b6b;--muted:#768398;--line:#d9e1ee;--card:#fff;--blue:#155eef;--green:#16845b;--orange:#b45309;--purple:#6d28d9;--red:#be123c;--dark:#0b1220}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.65}a{color:inherit}
+    .wrap{max-width:1180px;margin:0 auto;padding:30px 22px}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px}.top a{color:#155eef;text-decoration:none;font-weight:800}
+    .hero{background:linear-gradient(135deg,#0b1220,#155eef);color:#fff;border-radius:20px;padding:36px;margin-bottom:20px}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#bfdbfe;font-weight:900;margin-bottom:10px}.hero h1{font-size:clamp(36px,5vw,60px);line-height:1.05;margin:0 0 12px}.hero p{color:#dbeafe;max-width:920px;font-size:18px;margin:0}
+    h2{font-size:28px;margin:32px 0 14px}h3{font-size:19px;margin:0 0 8px}p{color:var(--text);margin:0 0 10px}.grid{display:grid;gap:14px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}.card h3{display:flex;justify-content:space-between;gap:8px}.tag{display:inline-flex;padding:4px 9px;border-radius:7px;background:#e0ecff;color:#1e40af;font-size:12px;font-weight:900}.tag.green{background:#dcfce7;color:#166534}.tag.orange{background:#ffedd5;color:#9a3412}.tag.purple{background:#ede9fe;color:#5b21b6}.tag.red{background:#ffe4e6;color:#9f1239}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}th,td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;font-size:14px}th{background:#eef4ff;color:#1e3a8a;font-size:12px;letter-spacing:.04em}tr:last-child td{border-bottom:0}
+    .script{background:#f8fafc;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:0 12px 12px 0;padding:14px;color:#1f2937}.script.green{border-left-color:var(--green);background:#ecfdf5}.script.orange{border-left-color:var(--orange);background:#fff7ed}.script.purple{border-left-color:var(--purple);background:#f5f3ff}.script.red{border-left-color:var(--red);background:#fff1f2}.small{font-size:13px;color:var(--muted)}
+    .flow{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}.step b{display:block;color:var(--blue);font-size:13px}.home-button{position:fixed;right:18px;bottom:18px;z-index:9999;background:#155eef;color:#fff!important;text-decoration:none;border-radius:999px;padding:11px 16px;font-weight:800;box-shadow:0 10px 28px rgba(21,94,239,.28);font-size:14px}
+    @media(max-width:900px){.two,.three,.four,.flow{grid-template-columns:1fr}.hero{padding:26px}.top{display:block}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top"><a href="index.html">返回首页</a><a href="14_Sales_Daily_Workbench_Demo.html">打开 CRM Demo</a></div>
+    <section class="hero">
+      <div class="eyebrow">Sales Script Battlebook · L1-L4 · Pipeline · Referral</div>
+      <h1>销售话术与作战手册</h1>
+      <p>这份不是市场材料，而是一线销售和销售管理者每天可用的 Sales Playbook：先分层，再诊断，再推进 Pipeline，最后完成 Agent OS 订阅、FastPay / TermPay / MoreFund attach 和 Referral。</p>
+    </section>
+
+    <h2>1. 统一销售口径</h2>
+    <div class="grid three">
+      <div class="card"><h3>我们卖什么 <span class="tag">Positioning</span></h3><p>Dowsure 是跨境电商卖家的 AI Growth & Capital OS。Agent OS 负责诊断经营和资金问题，Embedded Finance 负责把建议变成行动。</p></div>
+      <div class="card"><h3>不要怎么卖 <span class="tag red">Redline</span></h3><p>不要先卖贷款、不要先谈费率、不要承诺额度和放款。先问客户的 Amazon 回款、备货、广告、供应商账期、FX 和风险。</p></div>
+      <div class="card"><h3>销售成功定义 <span class="tag green">North Star</span></h3><p>SQL 质量、Pipeline 推进率、Paid Subscription、Finance Product Attach、Renewal、Expansion、Referral。</p></div>
+    </div>
+
+    <h2>2. L1-L4 客户分层与销售动作</h2>
+    <table>
+      <thead><tr><th>层级</th><th>客户画像</th><th>主推包装</th><th>首次下一步</th><th>成交目标</th></tr></thead>
+      <tbody>
+        <tr><td><strong>L1</strong><br>Enterprise Account</td><td>顶级品牌，多站点、多币种，有 CFO / Treasury / Supply Chain 团队。</td><td>AI Capital Desk<br>Capital Agent + Treasury Agent + Sentinel Agent</td><td>Capital Efficiency Meeting</td><td>Enterprise Pilot + flagship case + high-quality Referral</td></tr>
+        <tr><td><strong>L2</strong><br>Supply-chain Heavy Seller</td><td>工贸大卖，采购、供应商付款、库存、Amazon 回款周期错配。</td><td>Working Capital Map<br>Deal Agent + Capital Agent + Sentinel Agent</td><td>30 分钟现金流诊断</td><td>Scale Subscription + TermPay / MoreFund attach</td></tr>
+        <tr><td><strong>L3</strong><br>Growth Brand</td><td>成长品牌，广告、库存、回款节奏不一致，Founder / Ops 决策快。</td><td>Growth Trial<br>Insight Agent + Spend Agent + Capital Agent</td><td>14 天 Trial / Data Authorization</td><td>Pro Subscription + FastPay / MoreFund attach</td></tr>
+        <tr><td><strong>L4</strong><br>Mass SMB</td><td>中小 Amazon 卖家，老板直接决策，怕麻烦，只想知道能不能提前回款。</td><td>3-Min FastPay Starter<br>Capital Agent Lite + FastPay</td><td>3 分钟测算表单</td><td>Starter / Pro + FastPay + Referral</td></tr>
+      </tbody>
+    </table>
+
+    <h2>3. Pipeline 推进路径</h2>
+    <div class="flow">
+      <div class="step"><b>MQL</b><p>确认来源和平台。</p></div>
+      <div class="step"><b>SQL</b><p>确认 GMV、痛点、决策人。</p></div>
+      <div class="step"><b>Discovery</b><p>问清回款、备货、广告、账期。</p></div>
+      <div class="step"><b>Demo / Trial</b><p>让客户看到 Agent 输出。</p></div>
+      <div class="step"><b>Paid / Attach</b><p>订阅 + FastPay / TermPay / MoreFund。</p></div>
+      <div class="step"><b>Referral</b><p>每个满意客户必须请求转介绍。</p></div>
+    </div>
+
+    <h2>4. L1-L4 可复制话术</h2>
+    <div class="grid two">
+      <div class="card">
+        <h3>L1 · 顶级品牌</h3>
+        <div class="script purple">我们不建议先从单笔融资或费率开始聊。你们这个规模真正要看的是 cash conversion cycle、银行资金使用效率、FX 暴露和风险预警。Dowsure 可以先做一场 Capital Efficiency Meeting，把 Amazon 回款、供应商账期、银行额度和多币种资金放进一张 Capital Map，再判断是否值得做 limited-scope Pilot。</div>
+      </div>
+      <div class="card">
+        <h3>L2 · 工贸大卖</h3>
+        <div class="script">你们不是没有订单，而是订单增长后采购、库存、供应商付款和 Amazon 回款周期被拉长。我们先不急着推荐产品，先画一张 Working Capital Map，看哪一段最卡。如果卡在采购端，看 TermPay；卡在长期周转，看 MoreFund；卡在回款端，看 FastPay。</div>
+      </div>
+      <div class="card">
+        <h3>L3 · 成长品牌</h3>
+        <div class="script green">你们现在最关键的是增长和现金流同步。Insight Agent 看增长机会，Spend Agent 看广告和库存支出，Capital Agent 判断 FastPay / MoreFund 是否适合。建议先开 14 天 Growth Trial，用真实数据看诊断是否能帮你做决策。</div>
+      </div>
+      <div class="card">
+        <h3>L4 · 中小卖家</h3>
+        <div class="script orange">您先不用理解复杂金融产品。花 3 分钟填一下 Amazon 店铺、回款和备货情况，系统先判断能不能加速回款、适不适合 FastPay。如果不适合，就当免费诊断；如果适合，我们再讲可用金额、费用和下一步材料。</div>
+      </div>
+    </div>
+
+    <h2>5. Discovery 必问问题</h2>
+    <table>
+      <thead><tr><th>问题</th><th>销售要判断什么</th><th>对应产品 / Agent</th></tr></thead>
+      <tbody>
+        <tr><td>你们主要平台是 Amazon、TikTok Shop、Shopify、Walmart 还是其他？</td><td>平台数据质量和回款路径。</td><td>Agent OS / CRM 字段</td></tr>
+        <tr><td>过去 12 个月 GMV 大概是多少？旺季峰值多少？</td><td>L1-L4 分层、订阅级别、Finance Attach 潜力。</td><td>Lead Scoring / Pipeline Forecast</td></tr>
+        <tr><td>最大资金压力来自广告、库存、物流、供应商还是回款？</td><td>真实痛点，不让销售乱推产品。</td><td>Insight / Spend / Deal / Capital Agent</td></tr>
+        <tr><td>Amazon 回款周期、供应商账期、库存周转分别是多少天？</td><td>是否需要 Working Capital Map。</td><td>TermPay / FastPay / MoreFund</td></tr>
+        <tr><td>有没有银行授信？使用率如何？审批是否够快？</td><td>是缺资金，还是资金效率低。</td><td>AI Capital Desk / MoreFund</td></tr>
+        <tr><td>如果先做一个 Trial 或 Pilot，你最想先解决哪个问题？</td><td>把客户推进到下一步。</td><td>Trial / Pilot / Paid Subscription</td></tr>
+      </tbody>
+    </table>
+
+    <h2>6. 常见异议处理</h2>
+    <div class="grid two">
+      <div class="card"><h3>我不需要贷款</h3><div class="script">理解。我们也不是先卖贷款。Dowsure 先帮你做经营和资金诊断，判断回款、备货、广告、账期哪里错配。只有诊断证明 FastPay、TermPay 或 MoreFund 有价值，才进入产品申请。</div></div>
+      <div class="card"><h3>费率多少</h3><div class="script">费率一定要结合平台数据、回款周期、风险和使用场景评估。我们先测方案，再让你比较成本和收益，不会让你在没看清 ROI 的情况下使用。</div></div>
+      <div class="card"><h3>AI Agent 靠不靠谱</h3><div class="script">Agent 不替客户做不可逆金融决策。它负责诊断、提醒和推荐；关键动作仍然需要客户确认，并以风控评估、银行审批和合同为准。</div></div>
+      <div class="card"><h3>我已经有银行</h3><div class="script">这反而更适合。银行解决资金来源，Dowsure 解决资金如何贴近 Amazon 经营数据使用，提高额度使用效率、减少错配和人工判断成本。</div></div>
+    </div>
+
+    <h2>7. Referral 固定动作</h2>
+    <table>
+      <thead><tr><th>触发时点</th><th>销售动作</th><th>话术</th></tr></thead>
+      <tbody>
+        <tr><td>Trial 有结果后</td><td>请求推荐同阶段卖家。</td><td>如果这次诊断对你有帮助，你身边是否有 2 位也在做 Amazon / Shopify 的朋友？我可以给他们同样做一次 Free 诊断。</td></tr>
+        <tr><td>首次使用 FastPay / TermPay / MoreFund 后</td><td>请求供应商、同行、服务商 Referral。</td><td>这套方式如果帮你解决了回款或账期问题，你供应链里应该也有类似卖家。你愿不愿意帮我们做 2 个高质量介绍？</td></tr>
+        <tr><td>L1 / L2 Pilot 成功后</td><td>请求 Case、行业背书或生态引荐。</td><td>如果 Pilot 结果达到预期，我们希望沉淀一个匿名 case，同时请你帮我们引荐 2-3 家业务周期类似的卖家。</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8. CRM 必填字段</h2>
+    <div class="grid four">
+      <div class="card"><h3>客户识别</h3><p>Customer Tier、Platform、GMV Range、Decision Maker、Lead Source。</p></div>
+      <div class="card"><h3>需求判断</h3><p>Pain Point、Agent Fit、Product Fit、Subscription Fit。</p></div>
+      <div class="card"><h3>Pipeline</h3><p>Stage、Next Step、Next Step Date、Probability、Forecast Amount。</p></div>
+      <div class="card"><h3>增长闭环</h3><p>Attach Potential、Expansion Potential、Referral Potential、Churn Risk。</p></div>
+    </div>
+
+    <h2>9. 每日销售纪律</h2>
+    <div class="grid three">
+      <div class="card"><h3>早上</h3><p>看 CRM 今日任务、AI 优先客户、48 小时未推进机会和本周 Pipeline gap。</p></div>
+      <div class="card"><h3>白天</h3><p>每次沟通必须产出一个 Next Step：会议、表单、Trial、Demo、方案、付款、Referral。</p></div>
+      <div class="card"><h3>晚上</h3><p>补全 CRM 字段，复盘 SQL、Demo、Trial、Paid、Attach、Referral 六个数字。</p></div>
+    </div>
+  </div>
+  <a class="home-button" href="index.html">返回主页</a>
+</body>
+</html>
