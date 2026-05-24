@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dowsure SA 运营手册 v0</title>
+  <style>
+    :root{--bg:#f6f7fb;--ink:#121826;--text:#4b5565;--muted:#7a8494;--line:#dce2ee;--card:#fff;--red:#ec105f;--red2:#fff0f6;--blue:#155eef;--green:#16845b;--orange:#b45309;--purple:#6d28d9;--shadow:0 16px 44px rgba(18,24,38,.08)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.62}a{color:inherit;text-decoration:none}p{margin:0 0 10px;color:var(--text)}h1,h2,h3{margin:0;color:var(--ink)}h1{font-size:clamp(36px,6vw,64px);line-height:1.06}h2{font-size:clamp(25px,4vw,38px);line-height:1.16;margin-bottom:12px}h3{font-size:19px;margin-bottom:8px}.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.top-inner{max-width:1240px;margin:0 auto;padding:13px 22px;display:flex;justify-content:space-between;gap:18px;align-items:center}.brand{display:flex;align-items:center;gap:10px;font-weight:900}.logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(90deg,#ec105f,#ff7275);color:#fff;display:grid;place-items:center}.nav{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;font-weight:800;color:#667085}.nav a{padding:6px 9px;border-radius:7px}.nav a:hover{background:var(--red2);color:var(--red)}.wrap{max-width:1240px;margin:0 auto;padding:0 22px}.hero{padding:42px 0 26px}.hero-card{background:linear-gradient(135deg,#171321 0%,#35142a 45%,#ec105f 100%);color:#fff;border-radius:20px;padding:38px;box-shadow:var(--shadow)}.hero-card h1{color:#fff;margin-bottom:14px}.hero-card p{color:#ffe7f0;font-size:18px;max-width:980px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:10px}.hero-card .eyebrow{color:#ffd7e6}section{padding:30px 0}.section-head{max-width:960px;margin-bottom:18px}.grid{display:grid;gap:14px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.four{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 10px 28px rgba(18,24,38,.04)}.tag{display:inline-flex;align-items:center;border-radius:7px;padding:4px 9px;background:var(--red2);color:var(--red);font-size:12px;font-weight:900;margin-bottom:10px}.tag.blue{background:#e9f0ff;color:#155eef}.tag.green{background:#e8f7ef;color:#16845b}.tag.orange{background:#fff4e6;color:#b45309}.tag.purple{background:#f2ebff;color:#6d28d9}.metric{font-size:30px;font-weight:900;color:var(--red);line-height:1}.matrix{overflow-x:auto}table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;font-size:13px}th{background:#fff0f6;color:#9b174c;font-size:12px;letter-spacing:.03em}tr:last-child td{border-bottom:0}.check{font-size:18px;color:var(--red);font-weight:900}.callout{border-left:5px solid var(--red);background:#fff0f6;border-radius:0 12px 12px 0;padding:15px;color:#4b2636}.home-button{position:fixed;right:18px;bottom:18px;z-index:9999;background:#155eef;color:#fff!important;border-radius:999px;padding:11px 16px;font-weight:800;box-shadow:0 10px 28px rgba(21,94,239,.28);font-size:14px}@media(max-width:980px){.two,.three,.four{grid-template-columns:1fr}.hero-card{padding:26px}.top-inner{align-items:flex-start;flex-direction:column}.home-button{right:12px;bottom:12px}}
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html"><span class="logo">D</span><span>SA Operating Manual v0</span></a>
+      <nav class="nav">
+        <a href="#cadence">节奏</a>
+        <a href="#weekly">12周</a>
+        <a href="#scoreboard">周报</a>
+        <a href="#crm">CRM</a>
+        <a href="#trial">Trial</a>
+        <a href="#sku">SKU</a>
+        <a href="#risk">风险</a>
+        <a href="#meeting">周会</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="eyebrow">Dowsure · SA Operating Manual · v0 Standard</div>
+          <h1>SA 运营手册 v0</h1>
+          <p>用于第一场周会和之后 12 周执行管理。该版本不依赖真实人名和历史基线，先用标准岗位、标准节奏、标准字段和标准证据跑起来；后续再填入实际负责人和真实目标数。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cadence">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">01 · Operating Cadence</div>
+          <h2>团队运营节奏：按天推进，按周复盘，按月校准</h2>
+          <p>SA 的管理重点不是“大家很忙”，而是每天是否产生有效客户推进、每周是否有漏斗变化、每月是否证明 Agent OS 的订阅价值。</p>
+        </div>
+        <div class="grid four">
+          <div class="card"><span class="tag">每日</span><h3>销售动作</h3><p>新增 SQL、推进 Pipeline、客户回访、CRM 更新、合规自检。</p></div>
+          <div class="card"><span class="tag green">每周</span><h3>经理复盘</h3><p>看漏斗、Trial 价值、签约、续费风险、阻塞事项和需要协同的问题。</p></div>
+          <div class="card"><span class="tag orange">每两周</span><h3>版本校准</h3><p>复盘话术、评分卡、Agent 推荐规则、Trial 标准和 CRM 字段。</p></div>
+          <div class="card"><span class="tag blue">每月</span><h3>商业验证</h3><p>沉淀订阅收入、金融场景转化、客户案例、续费信号和转介绍证据。</p></div>
+        </div>
+        <div class="matrix" style="margin-top:14px">
+          <table>
+            <thead><tr><th>频率</th><th>参与人</th><th>输入</th><th>输出</th><th>不达标处理</th></tr></thead>
+            <tbody>
+              <tr><td>每日 15 分钟</td><td>SA 获客转化 + 销售运营</td><td>昨日新增 SQL、Pipeline 推进、今日重点客户。</td><td>今日优先名单、阻塞客户、需协同事项。</td><td>无下一步的 Pipeline 必须当天补齐或淘汰。</td></tr>
+              <tr><td>每周 60 分钟</td><td>SA 负责人 + 全体 SA + 市场/产品接口</td><td>漏斗周报、Trial 表、Agent 推荐记录、风险清单。</td><td>本周复盘、下周目标、owner/date、管理层决策项。</td><td>连续两周无推进的客户降级或进入培育。</td></tr>
+              <tr><td>双周 45 分钟</td><td>SA 负责人 + 产品/数据支持 + 客户成功</td><td>客户反馈、Agent 输出质量、Demo 问题。</td><td>话术更新、Demo 改进、工具包版本更新。</td><td>高频问题进入产品/数据 issue log。</td></tr>
+              <tr><td>月度 90 分钟</td><td>SA 负责人 + 管理层 + 财务/风控</td><td>收入、签约、续费、金融场景、案例和风险。</td><td>月度商业验证、资源决策、下月目标。</td><td>目标偏差超过 20% 时重排线索来源和打法。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="weekly">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">02 · 12-Week Weekly Plan</div>
+          <h2>12 周周度任务：每周有目标、产出和证据</h2>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>周次</th><th>本周目标</th><th>关键动作</th><th>Owner</th><th>交付物</th><th>验证证据</th></tr></thead>
+            <tbody>
+              <tr><td>W0</td><td>启动准备</td><td>确认团队职能、CRM 字段、评分卡、合规红线、周会机制。</td><td>SA 负责人 + 销售运营</td><td>启动清单 v0</td><td>字段表、评分卡、周会议程。</td></tr>
+              <tr><td>W1</td><td>建立首批目标池</td><td>从存量客户、渠道、市场线索中筛出第一批 SME 目标客户。</td><td>市场 + 渠道 + SA</td><td>150-200 目标客户池</td><td>CRM target list。</td></tr>
+              <tr><td>W2</td><td>跑通 MQL→SQL</td><td>完成首触、资格判断、痛点归类和 Agent 初步推荐。</td><td>SA 获客转化</td><td>25-40 SQL</td><td>SQL export + call notes。</td></tr>
+              <tr><td>W3</td><td>启动 Trial / Demo</td><td>对高分客户安排 Free Check、Demo 或 14 天 Trial。</td><td>SA + Agent 方案顾问</td><td>15-25 Demo/Trial</td><td>Demo log + Trial sheet。</td></tr>
+              <tr><td>W4</td><td>验证 Agent 输出质量</td><td>检查建议是否可执行、客户是否认可、是否能进入付费推进。</td><td>产品/数据支持 + SA</td><td>Agent 输出复盘</td><td>Agent recommendation log。</td></tr>
+              <tr><td>W5</td><td>第一批转化</td><td>推进 Trial 客户付费，锁定首批 Agent OS 订阅。</td><td>SA 获客转化</td><td>3-5 签约</td><td>订单/合同 + subscription ledger。</td></tr>
+              <tr><td>W6</td><td>首月激活</td><td>推动付费客户完成首用、周报复盘和建议采纳。</td><td>SA 激活/客户成功</td><td>首月激活表</td><td>使用记录 + ROI Proof v0。</td></tr>
+              <tr><td>W7</td><td>扩大线索来源</td><td>复盘来源质量，增强渠道、活动、内容和转介绍线索。</td><td>市场 + 渠道 + SA</td><td>第二批客户池</td><td>Lead source dashboard。</td></tr>
+              <tr><td>W8</td><td>形成可复制打法</td><td>沉淀高转化话术、Agent 推荐规则和客户案例。</td><td>SA 负责人 + 销售运营</td><td>Playbook v1</td><td>话术样本 + case note。</td></tr>
+              <tr><td>W9</td><td>冲刺签约</td><td>集中推进高概率客户，处理阻塞和管理层决策项。</td><td>SA 负责人 + SA</td><td>签约冲刺清单</td><td>Pipeline forecast。</td></tr>
+              <tr><td>W10</td><td>验证续费和增购</td><td>识别 Pro、多 Agent、经营资金场景和转介绍机会。</td><td>SA 激活/客户成功</td><td>扩张机会清单</td><td>Expansion log。</td></tr>
+              <tr><td>W11</td><td>整理证据</td><td>汇总漏斗、收入、使用、案例、风险和财务口径。</td><td>销售运营 + 财务</td><td>商业验证资料夹</td><td>CRM export + income sample。</td></tr>
+              <tr><td>W12</td><td>90 天复盘</td><td>形成结论：什么客户可规模化、什么 Agent 最好卖、什么流程要改。</td><td>SA 负责人</td><td>90 天商业验证报告</td><td>报告 + 证据包。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="scoreboard">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">03 · Weekly Funnel Scoreboard</div>
+          <h2>周报模板：只看能推动决策的数字</h2>
+        </div>
+        <div class="grid four">
+          <div class="card"><span class="tag">线索</span><div class="metric">__</div><p>新增有效线索，本周目标 / 实际 / 差异。</p></div>
+          <div class="card"><span class="tag green">SQL</span><div class="metric">__</div><p>完成资格判断且有下一步的客户。</p></div>
+          <div class="card"><span class="tag orange">Trial</span><div class="metric">__</div><p>进入 Demo 或 14 天 Trial 的客户。</p></div>
+          <div class="card"><span class="tag blue">Paid</span><div class="metric">__</div><p>本周新增 Agent OS 订阅客户。</p></div>
+        </div>
+        <div class="matrix" style="margin-top:14px">
+          <table>
+            <thead><tr><th>漏斗阶段</th><th>本周目标</th><th>本周实际</th><th>转化率</th><th>主要问题</th><th>下周动作</th><th>Owner</th></tr></thead>
+            <tbody>
+              <tr><td>MQL</td><td>__</td><td>__</td><td>-</td><td>来源质量 / 响应速度 / 重复线索</td><td>优化来源和首触 SLA</td><td>市场 + SA</td></tr>
+              <tr><td>SQL</td><td>__</td><td>__</td><td>__%</td><td>痛点不清 / 决策人弱 / 不是 SME 主战场</td><td>强化问诊和评分卡</td><td>SA 获客转化</td></tr>
+              <tr><td>Demo / Trial</td><td>__</td><td>__</td><td>__%</td><td>客户没有看到可执行建议</td><td>优化 Demo 和 Agent 推荐</td><td>SA + Agent 方案顾问</td></tr>
+              <tr><td>Paid</td><td>__</td><td>__</td><td>__%</td><td>价值证明不足 / 预算弱 / 使用人不明确</td><td>补 ROI Proof 和首月目标</td><td>SA 获客转化</td></tr>
+              <tr><td>Renew / Upgrade</td><td>__</td><td>__</td><td>__%</td><td>使用频次低 / 没有复盘 / 没有增购理由</td><td>客户成功介入</td><td>SA 激活/客户成功</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="crm">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">04 · CRM Required Fields</div>
+          <h2>CRM 字段清单：字段不完整，不进入下一阶段</h2>
+          <p>CRM 的目标不是记录越多越好，而是让经理能判断客户是否值得推进、推荐哪个 Agent、下一步谁负责、有没有合规风险。</p>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>模块</th><th>必填字段</th><th>用途</th><th>进入下一阶段条件</th></tr></thead>
+            <tbody>
+              <tr><td>客户基础</td><td>公司名、联系人、角色、平台、主营类目、GMV 区间、来源。</td><td>判断是否真实跨境卖家和 SME 主战场。</td><td>客户身份清楚。</td></tr>
+              <tr><td>经营痛点</td><td>增长、广告、库存、回款、采购付款、账期、多平台管理、风险。</td><td>判断推荐哪个 Agent。</td><td>至少 1 个主痛点和 1 个影响结果。</td></tr>
+              <tr><td>销售判断</td><td>客户层级、评分、决策人、预算/意愿、阻塞项、下一步时间。</td><td>判断是否进入 SQL、Demo 或 Trial。</td><td>有明确下一步。</td></tr>
+              <tr><td>Agent 推荐</td><td>推荐 Agent、推荐原因、客户反馈、可执行建议、是否多 Agent。</td><td>证明不是硬推产品，而是按问题推荐。</td><td>客户理解推荐逻辑。</td></tr>
+              <tr><td>订阅信息</td><td>套餐、价格、合同状态、收入类型、使用人、首月目标。</td><td>支持签约、财务和激活交接。</td><td>订单完成且首月目标明确。</td></tr>
+              <tr><td>激活留存</td><td>首用日期、使用频次、建议采纳、价值证明、续费风险、增购机会。</td><td>支持续费、升级和转介绍。</td><td>有持续使用记录。</td></tr>
+              <tr><td>合规边界</td><td>是否涉及额度、费率、审批、到账、增长承诺；是否已使用合规话术。</td><td>保护销售和公司。</td><td>无不当承诺。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="trial">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">05 · Trial Management</div>
+          <h2>Trial 客户推进表：14 天内必须产生价值证明</h2>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>客户</th><th>主痛点</th><th>推荐 Agent</th><th>D1-D2 目标确认</th><th>D3-D7 建议输出</th><th>D8-D14 复盘结果</th><th>下一步</th><th>Owner</th></tr></thead>
+            <tbody>
+              <tr><td>客户 A</td><td>广告效率</td><td>Spend Agent</td><td>确认广告和利润问题</td><td>输出费用效率建议</td><td>复盘是否节省无效花费</td><td>Pro 订阅</td><td>SA + 客户成功</td></tr>
+              <tr><td>客户 B</td><td>回款/备货</td><td>Capital Agent</td><td>确认现金流时间表</td><td>输出回款和补货压力判断</td><td>评估是否进入资金服务流程</td><td>订阅 + 场景评估</td><td>SA + 风控/财务</td></tr>
+              <tr><td>客户 C</td><td>增长决策</td><td>Insight Agent</td><td>确认 SKU 和类目问题</td><td>输出增长机会建议</td><td>复盘客户是否采纳</td><td>Starter / Pro</td><td>SA</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sku">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">06 · SKU Tracker</div>
+          <h2>任务追踪表：每项任务都有状态和阻塞原因</h2>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>任务</th><th>Owner</th><th>截止日期</th><th>状态</th><th>本周动作</th><th>阻塞原因</th><th>需要决策</th><th>证据</th></tr></thead>
+            <tbody>
+              <tr><td>SME 线索评分卡</td><td>销售运营 + SA 负责人</td><td>2026-06-03</td><td>未开始</td><td>确认评分项和阈值</td><td>-</td><td>是否采用 70 分为优先线</td><td>评分卡 v0</td></tr>
+              <tr><td>首触话术卡</td><td>SA + 市场</td><td>2026-06-03</td><td>未开始</td><td>按五类痛点整理首问</td><td>-</td><td>是否统一使用 Free Check 入口</td><td>话术卡</td></tr>
+              <tr><td>Agent 推荐规则</td><td>产品/数据支持 + SA</td><td>2026-06-07</td><td>未开始</td><td>确认 6 Agent 对应痛点</td><td>产品定义需校准</td><td>多 Agent 推荐边界</td><td>规则表</td></tr>
+              <tr><td>Trial 成功标准</td><td>客户成功 + SA</td><td>2026-06-10</td><td>未开始</td><td>定义 14 天价值证明</td><td>-</td><td>是否所有 Trial 都必须复盘</td><td>Trial 表</td></tr>
+              <tr><td>CRM P0 字段</td><td>销售运营 + 产品/研发</td><td>2026-06-19</td><td>未开始</td><td>确认必填字段和阶段门槛</td><td>系统支持待确认</td><td>是否允许临时表格过渡</td><td>字段表</td></tr>
+              <tr><td>合规话术红线</td><td>风控/财务 + SA</td><td>2026-06-03</td><td>未开始</td><td>整理不可承诺清单</td><td>-</td><td>培训测试标准</td><td>培训记录</td></tr>
+              <tr><td>周会看板</td><td>销售运营</td><td>2026-06-05</td><td>未开始</td><td>建立漏斗和 Trial 模板</td><td>-</td><td>周会固定时间</td><td>周报模板</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="risk">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">07 · Risk & Decision Log</div>
+          <h2>风险和决策清单：不要让阻塞藏在销售口头反馈里</h2>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>类别</th><th>风险信号</th><th>影响</th><th>处理机制</th><th>决策人</th></tr></thead>
+            <tbody>
+              <tr><td>线索</td><td>市场线索量不足或质量低。</td><td>SQL 不足，销售靠冷打。</td><td>每周复盘来源质量，重排渠道和活动。</td><td>SA 负责人 + 市场</td></tr>
+              <tr><td>产品</td><td>Agent 输出不够具体，客户看不到价值。</td><td>Trial 转付费弱。</td><td>进入双周产品复盘，补 Demo 场景和解释口径。</td><td>产品/数据支持</td></tr>
+              <tr><td>销售</td><td>CRM 字段不完整，下一步不清楚。</td><td>经理无法管理 Pipeline。</td><td>缺字段不允许进入下一阶段。</td><td>销售运营</td></tr>
+              <tr><td>合规</td><td>销售承诺额度、费率、审批或到账。</td><td>产生客户预期和公司风险。</td><td>立即纠正，二次培训，必要时暂停该话术。</td><td>风控/财务 + SA 负责人</td></tr>
+              <tr><td>激活</td><td>客户签约后使用频次低。</td><td>续费和案例不足。</td><td>客户成功介入，重新定义首月目标。</td><td>SA 激活/客户成功</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="meeting">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">08 · Weekly Meeting Agenda</div>
+          <h2>销售经理周会议程：60 分钟只讨论推进和决策</h2>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>会议流程</h3>
+            <p><strong>00-10 分钟：</strong>看本周漏斗目标与实际。</p>
+            <p><strong>10-25 分钟：</strong>复盘高分客户和阻塞客户。</p>
+            <p><strong>25-40 分钟：</strong>复盘 Trial 价值证明和付费推进。</p>
+            <p><strong>40-50 分钟：</strong>检查激活、续费、升级和转介绍机会。</p>
+            <p><strong>50-60 分钟：</strong>确认下周目标、owner/date 和管理层决策项。</p>
+          </div>
+          <div class="card">
+            <h3>会议产出</h3>
+            <p><strong>1.</strong> 下周目标：MQL、SQL、Trial、Paid、激活、案例。</p>
+            <p><strong>2.</strong> TOP 10 客户推进表：每个客户都有下一步。</p>
+            <p><strong>3.</strong> 阻塞清单：产品、市场、风控、财务、系统问题。</p>
+            <p><strong>4.</strong> 决策清单：需要谁在什么时候拍板。</p>
+            <p><strong>5.</strong> 证据清单：本周可沉淀的话术、案例、ROI Proof。</p>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:14px">
+          <strong>周会原则：</strong>不讨论泛泛感受，只讨论客户、数字、下一步、阻塞和证据。每个进入 Pipeline 的客户都必须有 owner、date、next step 和退出条件。
+        </div>
+      </div>
+    </section>
+  </main>
+  <a class="home-button" href="index.html">返回首页</a>
+</body>
+</html>
