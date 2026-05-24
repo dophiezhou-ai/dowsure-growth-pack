@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dowsure SA SME Execution Plan v1.3</title>
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --ink:#121826;
+      --text:#4b5565;
+      --muted:#7a8494;
+      --line:#dce2ee;
+      --card:#fff;
+      --red:#ec105f;
+      --red2:#fff0f6;
+      --blue:#155eef;
+      --green:#16845b;
+      --orange:#b45309;
+      --purple:#6d28d9;
+      --dark:#171321;
+      --shadow:0 16px 44px rgba(18,24,38,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.62}
+    a{color:inherit;text-decoration:none}
+    p{margin:0 0 10px;color:var(--text)}
+    h1,h2,h3{margin:0;color:var(--ink)}
+    h1{font-size:clamp(36px,6vw,66px);line-height:1.05;letter-spacing:-.02em}
+    h2{font-size:clamp(26px,4vw,40px);line-height:1.16;margin-bottom:12px}
+    h3{font-size:19px;margin-bottom:8px}
+    .top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .top-inner{max-width:1240px;margin:0 auto;padding:13px 22px;display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900}
+    .logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(90deg,#ec105f,#ff7275);color:#fff;display:grid;place-items:center}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;font-weight:800;color:#667085}
+    .nav a{padding:6px 9px;border-radius:7px}
+    .nav a:hover{background:var(--red2);color:var(--red)}
+    .wrap{max-width:1240px;margin:0 auto;padding:0 22px}
+    .hero{padding:42px 0 26px}
+    .hero-card{background:linear-gradient(135deg,#171321 0%,#35142a 45%,#ec105f 100%);color:#fff;border-radius:20px;padding:38px;box-shadow:var(--shadow)}
+    .hero-card h1{color:#fff;margin-bottom:14px}
+    .hero-card p{color:#ffe7f0;font-size:18px;max-width:980px}
+    .eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+    .hero-card .eyebrow{color:#ffd7e6}
+    section{padding:30px 0}
+    .section-head{max-width:920px;margin-bottom:18px}
+    .grid{display:grid;gap:14px}
+    .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .four{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 10px 28px rgba(18,24,38,.04)}
+    .card.soft{background:#fbfcff}
+    .tag{display:inline-flex;align-items:center;border-radius:7px;padding:4px 9px;background:var(--red2);color:var(--red);font-size:12px;font-weight:900;margin-bottom:10px}
+    .tag.blue{background:#e9f0ff;color:#155eef}.tag.green{background:#e8f7ef;color:#16845b}.tag.orange{background:#fff4e6;color:#b45309}.tag.purple{background:#f2ebff;color:#6d28d9}.tag.dark{background:#eef0f4;color:#344054}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+    th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;font-size:13px}
+    th{background:#fff0f6;color:#9b174c;font-size:12px;letter-spacing:.03em}
+    tr:last-child td{border-bottom:0}
+    .matrix{overflow-x:auto}
+    .metric{font-size:30px;font-weight:900;color:var(--red);line-height:1}
+    .small{font-size:12px;color:var(--muted)}
+    .flow{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+    .step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;min-height:116px}
+    .step b{display:block;color:var(--red);font-size:13px;margin-bottom:6px}
+    .check{font-size:18px;color:var(--red);font-weight:900}
+    .callout{border-left:5px solid var(--red);background:#fff0f6;border-radius:0 12px 12px 0;padding:15px;color:#4b2636}
+    .warn{border-left-color:var(--orange);background:#fff7ed;color:#5f3515}
+    .ok{border-left-color:var(--green);background:#ecfdf5;color:#164a36}
+    .home-button{position:fixed;right:18px;bottom:18px;z-index:9999;background:#155eef;color:#fff!important;text-decoration:none;border-radius:999px;padding:11px 16px;font-weight:800;box-shadow:0 10px 28px rgba(21,94,239,.28);font-size:14px}
+    @media(max-width:980px){.two,.three,.four,.flow{grid-template-columns:1fr}.hero-card{padding:26px}.top-inner{align-items:flex-start;flex-direction:column}.matrix{margin-left:-10px;margin-right:-10px}.home-button{right:12px;bottom:12px}}
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="top-inner">
+      <a class="brand" href="#"><span class="logo">D</span><span>SA SME Execution Plan v1.3</span></a>
+      <nav class="nav">
+        <a href="#role">角色边界</a>
+        <a href="#targets">目标指标</a>
+        <a href="#path">销售路径</a>
+        <a href="#sprint">12周计划</a>
+        <a href="#sku">SKU</a>
+        <a href="#crm">CRM</a>
+        <a href="#evidence">证据</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="eyebrow">Dowsure · SA Sales Acquisition · SME Focus · v1.3</div>
+          <h1>SA 销售团队执行计划 v1.3</h1>
+          <p>本计划只解决一个问题：SA 团队如何在 SME 中小客户战场，把 Agent OS 战略落成可运营的获客、诊断、试用、订阅、金融场景触发、续费和转介绍闭环。Customer Journey Demo 暂停，本文件优先作为 12 周执行与周会管理依据。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="role">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">01 · Role Boundary</div>
+          <h2>先明确：SA 不是泛销售，而是 SME 批量转化团队</h2>
+          <p>v1.3 将 SA 定义为 Sales Acquisition / Sales Action，负责一线销售、L1-L4 作战、Demo 承接、转化、Referral。但结合会议输入和团队现实，SA 的主战场必须收敛到 SME：L4 批量、L3 核心、L2 选择性推进、L1/复杂 L2 转交。</p>
+        </div>
+        <div class="grid four">
+          <div class="card"><span class="tag">主攻</span><h3>L4 中小卖家</h3><p>月 GMV $10K-$50K，老板直接决策，适合 3 分钟诊断、Free hook、批量试用、快速订阅。</p></div>
+          <div class="card"><span class="tag green">核心</span><h3>L3 成长 SME</h3><p>月 GMV $50K-$150K，有广告、库存、回款错配，适合 14 天 Trial 和 Pro 订阅。</p></div>
+          <div class="card"><span class="tag orange">选择性</span><h3>L2 上沿 SME</h3><p>月 GMV $150K-$300K，只有当采购、账期、备货、回款问题清晰且老板可参与时推进。</p></div>
+          <div class="card"><span class="tag dark">转交</span><h3>L1 / 复杂 L2</h3><p>多站点、多币种、CFO/银行协同复杂，SA 完成识别与资料收集后转 SC / KA / CGO。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="targets">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">02 · Goals & Metrics</div>
+          <h2>90 天目标：不是“讲清楚”，而是跑出可审计的转化证据</h2>
+          <p>公司级目标仍沿用 v1.3：100 上线客户、500 付费订阅路径、D+90 底线 30+ Agent OS 签约且 ≥10 非金融客户。SA 要对 SME 漏斗、试用转化、生产级试点和销售证据负责。</p>
+        </div>
+        <div class="grid four">
+          <div class="card"><div class="metric">1,000+</div><p>MQL 入 CRM，并完成来源、平台、GMV、客户层级标记。</p></div>
+          <div class="card"><div class="metric">300+</div><p>SQL 有完整痛点、决策人、下一步、推荐 Agent 和预计成交路径。</p></div>
+          <div class="card"><div class="metric">30+</div><p>D+90 Agent OS 签约底线，其中 ≥10 家不依赖金融动作成交。</p></div>
+          <div class="card"><div class="metric">20-30</div><p>Cash Loop 生产级试点卖家，数据齐备、推荐可追踪。</p></div>
+        </div>
+        <div class="matrix" style="margin-top:14px">
+          <table>
+            <thead><tr><th>指标</th><th>D+30</th><th>D+60</th><th>D+90 / 2026-08-18</th><th>Owner</th><th>证据</th></tr></thead>
+            <tbody>
+              <tr><td>MQL 池</td><td>300+</td><td>700+</td><td>1,000+</td><td>SDR Lead + MK/CN</td><td>CRM lead source export</td></tr>
+              <tr><td>MQL → SQL</td><td>≥25%</td><td>≥30%</td><td>≥35%</td><td>SDR Lead</td><td>Weekly funnel cohort</td></tr>
+              <tr><td>Trial / Demo</td><td>30+</td><td>80+</td><td>150+</td><td>AE Lead</td><td>Demo log + trial ledger</td></tr>
+              <tr><td>Agent OS 签约</td><td>5+</td><td>15+</td><td>30+ 底线 / 500 paid pipeline</td><td>Agent OS Sales Lead</td><td>Order form + subscription ledger</td></tr>
+              <tr><td>非金融订阅客户</td><td>2+</td><td>5+</td><td>10+</td><td>Agent OS Sales Lead + FN</td><td>ASC 606 clean sample</td></tr>
+              <tr><td>Capital recommendations</td><td>30+</td><td>70+</td><td>100+</td><td>Inside Sales Lead</td><td>Agent Action Log</td></tr>
+              <tr><td>客户预批意向</td><td>3+</td><td>7+</td><td>10+</td><td>Inside Sales + CS</td><td>Pre-approval intent record</td></tr>
+              <tr><td>销售案例</td><td>2</td><td>6</td><td>10+</td><td>SA + MK + CS</td><td>Case note + ROI Proof</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="path">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">03 · Operating Path</div>
+          <h2>SA 的实际销售路径：一个入口、两个轨道、六个阶段</h2>
+          <p>SA 不把客户拉进复杂战略里。先用一个低门槛经营诊断建立信任，再按客户痛点进入 Agent Trial、订阅或资金场景评估。</p>
+        </div>
+        <div class="flow">
+          <div class="step"><b>01 · MQL</b><p>来源：官网、Amazon PR、存量客户、服务商、社群、Referral。24 小时内首触。</p></div>
+          <div class="step"><b>02 · SQL</b><p>确认平台、GMV、主痛点、决策人、是否 SME 主战场。</p></div>
+          <div class="step"><b>03 · Free Check</b><p>L4 做 3 分钟诊断；L3 做 14 天 Trial 预约；L2 做 Working Capital Map。</p></div>
+          <div class="step"><b>04 · Demo / Trial</b><p>展示 Agent 输出，不展示概念。客户必须看到至少 1 条可执行建议。</p></div>
+          <div class="step"><b>05 · Paid / Attach</b><p>先成交 Agent OS 订阅；金融场景只在数据触发后进入评估。</p></div>
+          <div class="step"><b>06 · Renew / Refer</b><p>周报复盘、ROI Proof、续费风险、转介绍名单。</p></div>
+        </div>
+        <div class="grid two" style="margin-top:14px">
+          <div class="callout ok"><strong>轨道 A · Cash Loop 生产级试点</strong><br>目标是 20-30 production pilots、100+ Capital recommendations、10+ 客户预批意向。SA 负责招募、数据齐备、客户跟进、合规口径。</div>
+          <div class="callout"><strong>轨道 B · Pure Agent OS 订阅</strong><br>目标是 100 上线客户 / 500 付费订阅路径，D+90 底线 30+ 签约且 ≥10 非金融。SA 负责 Free Report、Trial、Pro 转化、签约证据。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sprint">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">04 · 12-Week Sprint</div>
+          <h2>12 周执行计划：每两周必须产出可验证证据</h2>
+          <p>日期按 2026-05-25 当前复盘倒排；D+90 商业读出沿用 v1.3 的 2026-08-18。</p>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>阶段</th><th>时间</th><th>核心任务</th><th>Owner</th><th>交付物</th><th>验收证据</th></tr></thead>
+            <tbody>
+              <tr><td>W0 Demo Readiness</td><td>05/25-06/01</td><td>锁定 SME ICP、Demo 承接脚本、CRM 字段、销售红线、首批 target list。</td><td>SA Head + Sales Ops</td><td>12-week sprint v0、6.1 SA demo evidence checklist。</td><td>可演示 screen list、owner/date、blocker log。</td></tr>
+              <tr><td>W1-W2 Foundation</td><td>06/02-06/15</td><td>建 1,000 MQL 目标池框架；完成 L3/L4 评分卡、首触话术、Trial SOP。</td><td>SDR Lead + AE Lead</td><td>ICP / scoring / scripts / SLA。</td><td>300 MQL 入库、90 SQL、30 demo/trial。</td></tr>
+              <tr><td>W3-W4 Pilot Launch</td><td>06/16-06/29</td><td>推进 L4 Free Check、L3 Trial、20-30 pilot seller 招募。</td><td>Inside Sales Lead</td><td>Pilot seller list、data readiness tracker。</td><td>10+ 生产级候选、30+ Capital recommendations。</td></tr>
+              <tr><td>W5-W8 Scale Conversion</td><td>06/30-07/27</td><td>批量跑 MQL→SQL→Trial→Paid；沉淀前 6 个 ROI Proof 和客户案例。</td><td>Agent OS Sales Lead + CS</td><td>Trial-to-paid playbook、case template。</td><td>15+ 签约、5+ 非金融订阅、6 个 case。</td></tr>
+              <tr><td>W9-W12 Commercial Proof</td><td>07/28-08/18</td><td>冲刺 30+ 签约底线、10+ 非金融客户、10+ 预批意向、10+ 案例。</td><td>SA Head + FN + OC</td><td>90-Day Commercial Validation Report 销售部分。</td><td>CRM export、subscription ledger、Agent Action Log、case pack。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sku">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">05 · SKU Backlog</div>
+          <h2>SA 必做 SKU：每个任务都有 owner、日期、证据</h2>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>SKU</th><th>任务</th><th>Owner</th><th>截止日期</th><th>指标</th><th>验证证据</th></tr></thead>
+            <tbody>
+              <tr><td>SA-SKU-001</td><td>Pilot Seller Eligibility 销售标准</td><td>Inside Sales Lead</td><td>2026-05-29</td><td>评分卡可用</td><td>Eligibility sheet + CRM field</td></tr>
+              <tr><td>SA-SKU-002</td><td>Pilot Seller 招募 SOP</td><td>Inside Sales Lead</td><td>2026-06-03</td><td>SOP 覆盖首触、资料、跟进</td><td>SOP + call script</td></tr>
+              <tr><td>SA-SKU-003</td><td>20-30 Production Pilot Sellers 签约 + 数据齐备</td><td>Inside Sales Lead</td><td>2026-07-19</td><td>20-30 家</td><td>Signed list + data checklist</td></tr>
+              <tr><td>SA-SKU-004</td><td>100+ Capital recommendations 跟进</td><td>Inside Sales + CS</td><td>2026-08-18</td><td>100+ 推荐 / 10+ 预批意向</td><td>Agent Action Log + intent record</td></tr>
+              <tr><td>SA-SKU-006</td><td>L4 自助试用 5 分钟流程上线</td><td>Inside Sales + PD</td><td>2026-06-19</td><td>L4 可自助进入诊断</td><td>Demo video + event tracking</td></tr>
+              <tr><td>SA-SKU-010</td><td>100 上线客户 Target List + 500 付费订阅 Pipeline</td><td>Agent OS Sales Lead</td><td>2026-06-10</td><td>Pipeline coverage ≥3x</td><td>CRM pipeline export</td></tr>
+              <tr><td>SA-SKU-011</td><td>D+90 30+ 签约且 ≥10 非金融客户</td><td>Agent OS Sales Lead</td><td>2026-08-18</td><td>30+ / 10+</td><td>Order form + FN revenue classification</td></tr>
+              <tr><td>SA-SKU-012</td><td>Free Insight Report Lead Magnet</td><td>Agent OS Sales + MK</td><td>2026-06-12</td><td>可带来 MQL</td><td>Landing page + form + source tracking</td></tr>
+              <tr><td>SA-SKU-014</td><td>Free Trial → Pro 转化漏斗</td><td>Agent OS Sales + CS</td><td>2026-06-26</td><td>Trial→Paid ≥18%</td><td>Cohort dashboard</td></tr>
+              <tr><td>SA-SKU-020</td><td>CRM P0 核心模块</td><td>CRM PM</td><td>2026-06-19</td><td>无 double-entry</td><td>CRM demo + required fields audit</td></tr>
+              <tr><td>SA-SKU-021</td><td>销售提成规则引擎</td><td>Sales Ops + FN</td><td>2026-07-05</td><td>争议率 <5%</td><td>Commission calc sample</td></tr>
+              <tr><td>SA-SKU-022</td><td>90-Day Commercial Validation Report 销售部分</td><td>SA Head</td><td>2026-08-18</td><td>可进入 DD pack</td><td>Final report + evidence folder</td></tr>
+              <tr><td>SA-SKU-023</td><td>SME ICP 与转交规则矩阵</td><td>Sales Ops</td><td>2026-05-30</td><td>SA/SC/SI 边界清楚</td><td>ICP matrix + routing rule</td></tr>
+              <tr><td>SA-SKU-024</td><td>销售红线与合规话术锁定</td><td>SA Head + RA</td><td>2026-05-31</td><td>100% 销售培训通过</td><td>Training record + quiz</td></tr>
+              <tr><td>SA-SKU-025</td><td>周会 checkbox scorecard</td><td>Sales Ops</td><td>2026-06-03</td><td>每周可勾选复盘</td><td>Weekly manager sheet</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="crm">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">06 · CRM Operating System</div>
+          <h2>CRM 是 SA 的作战系统，不是客户看的产品页面</h2>
+          <p>CRM 必须让销售更快判断客户、更快推进下一步、更少漏填字段、更少乱承诺。所有字段都服务于 MQL→SQL→Trial→Paid→Attach→Renew/Referral。</p>
+        </div>
+        <div class="grid three">
+          <div class="card"><span class="tag">客户识别</span><h3>必填字段</h3><p>线索来源、平台、GMV 区间、客户层级、决策人、主营类目、主痛点、是否转交。</p></div>
+          <div class="card"><span class="tag green">AI 推荐</span><h3>下一步动作</h3><p>推荐 Agent、推荐套餐、Trial 动作、金融场景是否触发、合规边界提醒。</p></div>
+          <div class="card"><span class="tag orange">经理复盘</span><h3>周会看板</h3><p>新增 SQL、Pipeline 推进、客户回访、Trial→Paid、非金融订阅、Amazon 24h SLA。</p></div>
+        </div>
+        <div class="matrix" style="margin-top:14px">
+          <table>
+            <thead><tr><th>销售阶段</th><th>CRM 必填</th><th>自动提醒</th><th>经理检查</th></tr></thead>
+            <tbody>
+              <tr><td>MQL</td><td>来源、平台、GMV、类目</td><td>24h 首触 SLA</td><td>来源质量与响应速度</td></tr>
+              <tr><td>SQL</td><td>痛点、决策人、预算/意愿、推荐 Agent</td><td>缺字段不允许进入 Demo</td><td>MQL→SQL 转化率</td></tr>
+              <tr><td>Demo / Trial</td><td>客户看到的 Agent 建议、反馈、下一步</td><td>48h 未推进预警</td><td>Trial 是否有价值证明</td></tr>
+              <tr><td>Paid</td><td>订阅级别、ARR、合同、收入类型</td><td>同步 FN 分类</td><td>非金融订阅是否达标</td></tr>
+              <tr><td>Attach</td><td>回款/账期/备货场景、准入状态</td><td>合规红线提醒</td><td>是否有乱承诺风险</td></tr>
+              <tr><td>Renew / Referral</td><td>使用频次、ROI Proof、续费风险、推荐名单</td><td>60/30/7 天续费提醒</td><td>GRR/NRR 起步数据</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="evidence">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">07 · Validation Evidence</div>
+          <h2>每个数字都要能被管理层、财务和 DD 复核</h2>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>销售经理周会可勾选清单</h3>
+            <div class="matrix">
+              <table>
+                <thead><tr><th>勾选</th><th>检查项</th><th>达标标准</th></tr></thead>
+                <tbody>
+                  <tr><td class="check">☐</td><td>新增 SQL</td><td>每人每天 ≥3 个，客户分层、痛点、决策人完整。</td></tr>
+                  <tr><td class="check">☐</td><td>Pipeline 跟进</td><td>每人每天 ≥5 个，全部有 Next Step 或阻塞原因。</td></tr>
+                  <tr><td class="check">☐</td><td>客户回访</td><td>每人每天 ≥2 次，覆盖 Trial、首用、续费风险客户。</td></tr>
+                  <tr><td class="check">☐</td><td>Trial → Paid</td><td>每个 Trial 都有价值证明和付费推进动作。</td></tr>
+                  <tr><td class="check">☐</td><td>Amazon 24h SLA</td><td>PR 后线索 24 小时内首触、分层、预约下一步。</td></tr>
+                  <tr><td class="check">☐</td><td>合规话术</td><td>无额度、费率、审批、到账承诺。</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <h3>证据包目录</h3>
+            <p><strong>CRM export:</strong> MQL、SQL、Demo、Trial、Paid、Attach、Referral 全漏斗。</p>
+            <p><strong>Subscription ledger:</strong> Agent OS ARR 与金融收入分开。</p>
+            <p><strong>Agent Action Log:</strong> 每个试点客户的推荐、采纳、结果。</p>
+            <p><strong>Call / message sample:</strong> 首触、Discovery、异议、合规口径。</p>
+            <p><strong>ROI Proof:</strong> 广告、库存、回款、成本、利润改善样例。</p>
+            <p><strong>Case pack:</strong> L4、L3、选择性 L2 各自至少 2-3 个样例。</p>
+          </div>
+        </div>
+        <div class="callout warn" style="margin-top:14px">
+          <strong>需要当天确认的管理决策：</strong>1. SA 实际可用人数与 SDR/AE/AM 分工；2. Pro / Starter 定价是否按 v1.3 执行；3. 当前 CRM 是否可支持必填字段和漏斗导出；4. 现有 MQL 基线和存量客户名单；5. 非金融订阅客户的财务确认口径。
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="home-button" href="index.html">返回首页</a>
+</body>
+</html>
