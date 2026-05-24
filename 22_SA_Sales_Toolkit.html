@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dowsure SA 销售工具包</title>
+  <style>
+    :root{--bg:#f6f7fb;--ink:#121826;--text:#4b5565;--muted:#7a8494;--line:#dce2ee;--card:#fff;--red:#ec105f;--red2:#fff0f6;--blue:#155eef;--green:#16845b;--orange:#b45309;--purple:#6d28d9;--shadow:0 16px 44px rgba(18,24,38,.08)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.62}a{color:inherit;text-decoration:none}p{margin:0 0 10px;color:var(--text)}h1,h2,h3{margin:0;color:var(--ink)}h1{font-size:clamp(36px,6vw,64px);line-height:1.06}h2{font-size:clamp(25px,4vw,38px);line-height:1.16;margin-bottom:12px}h3{font-size:19px;margin-bottom:8px}.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.top-inner{max-width:1240px;margin:0 auto;padding:13px 22px;display:flex;justify-content:space-between;gap:18px;align-items:center}.brand{display:flex;align-items:center;gap:10px;font-weight:900}.logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(90deg,#ec105f,#ff7275);color:#fff;display:grid;place-items:center}.nav{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;font-weight:800;color:#667085}.nav a{padding:6px 9px;border-radius:7px}.nav a:hover{background:var(--red2);color:var(--red)}.wrap{max-width:1240px;margin:0 auto;padding:0 22px}.hero{padding:42px 0 26px}.hero-card{background:linear-gradient(135deg,#171321 0%,#35142a 45%,#ec105f 100%);color:#fff;border-radius:20px;padding:38px;box-shadow:var(--shadow)}.hero-card h1{color:#fff;margin-bottom:14px}.hero-card p{color:#ffe7f0;font-size:18px;max-width:980px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:10px}.hero-card .eyebrow{color:#ffd7e6}section{padding:30px 0}.section-head{max-width:940px;margin-bottom:18px}.grid{display:grid;gap:14px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.four{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 10px 28px rgba(18,24,38,.04)}.tag{display:inline-flex;align-items:center;border-radius:7px;padding:4px 9px;background:var(--red2);color:var(--red);font-size:12px;font-weight:900;margin-bottom:10px}.tag.blue{background:#e9f0ff;color:#155eef}.tag.green{background:#e8f7ef;color:#16845b}.tag.orange{background:#fff4e6;color:#b45309}.tag.purple{background:#f2ebff;color:#6d28d9}.matrix{overflow-x:auto}table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;font-size:13px}th{background:#fff0f6;color:#9b174c;font-size:12px;letter-spacing:.03em}tr:last-child td{border-bottom:0}.score{font-size:30px;font-weight:900;color:var(--red);line-height:1}.callout{border-left:5px solid var(--red);background:#fff0f6;border-radius:0 12px 12px 0;padding:15px;color:#4b2636}.home-button{position:fixed;right:18px;bottom:18px;z-index:9999;background:#155eef;color:#fff!important;border-radius:999px;padding:11px 16px;font-weight:800;box-shadow:0 10px 28px rgba(21,94,239,.28);font-size:14px}@media(max-width:980px){.two,.three,.four{grid-template-columns:1fr}.hero-card{padding:26px}.top-inner{align-items:flex-start;flex-direction:column}.home-button{right:12px;bottom:12px}}
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html"><span class="logo">D</span><span>SA Sales Toolkit</span></a>
+      <nav class="nav">
+        <a href="#scorecard">评分卡</a>
+        <a href="#sop">SOP</a>
+        <a href="#discovery">问诊表</a>
+        <a href="#agent">Agent规则</a>
+        <a href="#trial">Trial标准</a>
+        <a href="#training">培训</a>
+        <a href="#manager">周会表</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="eyebrow">Dowsure · SA Sales Toolkit · SME Focus</div>
+          <h1>SA 销售工具包</h1>
+          <p>这套工具用于把 v1.3 执行计划落到一线销售动作：谁值得跟、怎么问痛点、推哪个 Agent、什么时候开 Trial、什么不能承诺、销售经理每周怎么复盘。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="scorecard">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">01 · Lead Scorecard</div>
+          <h2>SME 线索评分卡：先判断值不值得跟</h2>
+          <p>总分 100 分，70 分以上进入优先跟进，50-69 分进入培育，50 分以下不进入本周重点 Pipeline。</p>
+        </div>
+        <div class="grid four">
+          <div class="card"><span class="tag">客户身份</span><div class="score">20</div><p>真实跨境电商卖家，有平台店铺、订单、SKU、经营动作。</p></div>
+          <div class="card"><span class="tag green">经营压力</span><div class="score">30</div><p>增长、广告、库存、回款、供应商付款、账期或风险压力明确。</p></div>
+          <div class="card"><span class="tag orange">决策效率</span><div class="score">20</div><p>老板、运营负责人或财务负责人可触达，能约下一步。</p></div>
+          <div class="card"><span class="tag blue">可验证价值</span><div class="score">30</div><p>能进入轻诊断或 Trial，14 天内有机会看到 Agent 输出价值。</p></div>
+        </div>
+        <div class="matrix" style="margin-top:14px">
+          <table>
+            <thead><tr><th>分数段</th><th>客户状态</th><th>销售动作</th><th>经理检查</th></tr></thead>
+            <tbody>
+              <tr><td>85-100</td><td>痛点强、决策快、可快速试用。</td><td>当天约 Demo / Trial，48 小时内锁定下一步。</td><td>是否进入本周重点 Pipeline。</td></tr>
+              <tr><td>70-84</td><td>痛点明确，但数据或决策链需要补齐。</td><td>先做 15 分钟 Discovery，再安排轻诊断。</td><td>是否有明确阻塞项。</td></tr>
+              <tr><td>50-69</td><td>符合画像，但痛点不够急或决策弱。</td><td>进入培育池，推内容、案例和活动。</td><td>是否有重新激活日期。</td></tr>
+              <tr><td>&lt;50</td><td>非主战场或本阶段价值难验证。</td><td>不占用本周销售资源，可转市场长期教育。</td><td>是否误放进 Pipeline。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sop">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">02 · Sales SOP</div>
+          <h2>从首触到付费：一线 SA 的标准动作</h2>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>阶段</th><th>目标</th><th>必做动作</th><th>退出条件</th></tr></thead>
+            <tbody>
+              <tr><td>MQL 首触</td><td>确认客户是否值得进入销售跟进。</td><td>24 小时内触达，确认平台、类目、GMV 区间、当前最痛问题。</td><td>有明确痛点和下一步，进入 SQL。</td></tr>
+              <tr><td>SQL 问诊</td><td>找到客户最愿意解决的经营问题。</td><td>围绕广告、库存、回款、供应商付款、账期、多平台管理问诊。</td><td>明确推荐 Agent 和低摩擦下一步。</td></tr>
+              <tr><td>Free Check</td><td>让客户先看到诊断价值。</td><td>输出 1 页经营诊断：主要问题、影响、建议试用 Agent。</td><td>客户愿意开 Trial 或约 Demo。</td></tr>
+              <tr><td>Demo / Trial</td><td>证明 Agent 不是概念。</td><td>展示客户场景下的建议，14 天内至少复盘 1 次。</td><td>客户认可价值并进入付费讨论。</td></tr>
+              <tr><td>付费订阅</td><td>成交 Agent OS 订阅。</td><td>确认订阅级别、使用人、首月目标、成功标准。</td><td>合同/订单完成，进入客户成功。</td></tr>
+              <tr><td>经营资金场景评估</td><td>在 Agent 输出后评估回款、备货、账期服务。</td><td>只基于客户明确场景和资料进入评估，不做承诺。</td><td>转风控/财务流程或回到订阅服务。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="discovery">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">03 · Discovery Sheet</div>
+          <h2>问诊表：把客户痛点问准</h2>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>基础经营问题</h3>
+            <p>1. 目前主要平台和主营类目是什么？</p>
+            <p>2. 月 GMV 大概在哪个区间？最近 3 个月是增长、持平还是下滑？</p>
+            <p>3. 现在最想解决的是增长、广告、库存、回款、采购付款还是风险？</p>
+            <p>4. 这个问题如果 30 天不解决，会影响什么？</p>
+          </div>
+          <div class="card">
+            <h3>Agent 推荐问题</h3>
+            <p>1. 有没有 SKU 不知道该加投还是停掉？</p>
+            <p>2. 广告花费增长后，利润有没有同步增长？</p>
+            <p>3. 平台回款慢几天，会不会影响补货或广告？</p>
+            <p>4. 供应商付款最卡的是订金、尾款还是账期？</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="agent">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">04 · Agent Recommendation Rules</div>
+          <h2>Agent 推荐规则：按痛点推荐，不按产品硬推</h2>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>客户说法</th><th>销售判断</th><th>推荐 Agent</th><th>下一步</th></tr></thead>
+            <tbody>
+              <tr><td>“销量有，但不知道怎么继续增长。”</td><td>增长决策卡住。</td><td>Insight Agent</td><td>做 SKU / 类目增长机会诊断。</td></tr>
+              <tr><td>“广告越花越多，利润没起来。”</td><td>费用效率和库存节奏可能错配。</td><td>Spend Agent</td><td>做广告和费用效率诊断。</td></tr>
+              <tr><td>“平台回款太慢，补货跟不上。”</td><td>现金流时间差影响经营。</td><td>Capital Agent</td><td>做现金流时间表，再判断回款提速或备货支持评估。</td></tr>
+              <tr><td>“供应商要先款，账期短。”</td><td>采购付款节奏拖累现金流。</td><td>Deal Agent</td><td>做采购付款节奏诊断，再判断账期服务评估。</td></tr>
+              <tr><td>“多平台、多账户，看不过来。”</td><td>资金和经营信息分散。</td><td>Treasury Agent</td><td>做资金和账户效率看板。</td></tr>
+              <tr><td>“店铺最近有异常/资料总是不齐。”</td><td>风险和准入边界不清。</td><td>Sentinel Agent</td><td>做风险预警和资料准备。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="trial">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">05 · Trial Success Criteria</div>
+          <h2>14 天 Trial 成功标准：必须看到价值，才推进付费</h2>
+        </div>
+        <div class="grid three">
+          <div class="card"><span class="tag">第 1-2 天</span><h3>完成诊断目标</h3><p>明确客户试用目标：找增长机会、降广告浪费、看现金流压力、看供应商付款节奏。</p></div>
+          <div class="card"><span class="tag green">第 3-7 天</span><h3>产出 Agent 建议</h3><p>至少 3 条可执行建议，必须能落到 SKU、广告、库存、回款、采购或风险动作。</p></div>
+          <div class="card"><span class="tag orange">第 8-14 天</span><h3>复盘并推进付费</h3><p>完成 1 次价值复盘，确认订阅级别、首月目标和是否进入经营资金场景评估。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="training">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">06 · Training Pack</div>
+          <h2>销售培训材料结构</h2>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>模块</th><th>培训目标</th><th>考核方式</th></tr></thead>
+            <tbody>
+              <tr><td>SA 主战场</td><td>明确 SME、L3/L4、选择性 L2 和转交边界。</td><td>给 5 个客户案例，判断是否推进。</td></tr>
+              <tr><td>6 Agent 场景</td><td>能用客户语言解释每个 Agent 解决什么问题。</td><td>每人讲 1 个客户痛点到 Agent 推荐。</td></tr>
+              <tr><td>Discovery 问诊</td><td>把客户痛点问准，不停留在“你要不要试试”。</td><td>模拟电话录音抽查。</td></tr>
+              <tr><td>CRM 填写</td><td>字段完整、阶段准确、下一步明确。</td><td>抽查 10 条 Pipeline。</td></tr>
+              <tr><td>合规红线</td><td>不承诺额度、费率、审批、到账时间、经营增长结果。</td><td>红线话术测试 100% 通过。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="manager">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">07 · Weekly Manager Checklist</div>
+          <h2>销售经理周会检查表</h2>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>勾选</th><th>检查项</th><th>达标标准</th><th>未达标处理</th></tr></thead>
+            <tbody>
+              <tr><td>☐</td><td>新增 SQL</td><td>每人每天 ≥3 个，且痛点和决策人完整。</td><td>回看线索来源和首触质量。</td></tr>
+              <tr><td>☐</td><td>Pipeline 跟进</td><td>每人每天 ≥5 个，有下一步或阻塞原因。</td><td>经理协助推进或淘汰。</td></tr>
+              <tr><td>☐</td><td>客户回访</td><td>每人每天 ≥2 次，覆盖 Trial、首用、续费风险客户。</td><td>补回访并记录结果。</td></tr>
+              <tr><td>☐</td><td>Trial 价值证明</td><td>每个 Trial 至少 3 条建议、1 次复盘。</td><td>客户成功介入。</td></tr>
+              <tr><td>☐</td><td>非金融订阅</td><td>每周检查不依赖金融服务成交的订阅客户。</td><td>复盘 Agent OS 独立价值是否讲清楚。</td></tr>
+              <tr><td>☐</td><td>合规抽查</td><td>无额度、费率、审批、到账、增长承诺。</td><td>立即纠正并再培训。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+  <a class="home-button" href="index.html">返回首页</a>
+</body>
+</html>
