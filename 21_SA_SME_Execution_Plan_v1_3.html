@@ -78,7 +78,10 @@
       <a class="brand" href="#"><span class="logo">D</span><span>SA SME Execution Plan v1.3</span></a>
       <nav class="nav">
         <a href="#role">角色边界</a>
+        <a href="#org">团队结构</a>
+        <a href="#icp">客户画像</a>
         <a href="#targets">目标指标</a>
+        <a href="#lead">获客</a>
         <a href="#path">销售路径</a>
         <a href="#sprint">12周计划</a>
         <a href="#sku">SKU</a>
@@ -115,16 +118,72 @@
       </div>
     </section>
 
+    <section id="org">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">02 · Team Structure</div>
+          <h2>SA 团队结构：先把“谁负责什么”讲清楚</h2>
+          <p>如果没有清晰组织分工，执行计划会变成口号。这里用“部门 + 岗位职责”定义 Owner，不虚构复杂 title；实际人名可在周会后填入。</p>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>角色 / 部门</th><th>核心职责</th><th>日常动作</th><th>交付物</th><th>协同方</th></tr></thead>
+            <tbody>
+              <tr><td><strong>SA 负责人</strong><br>销售增长团队负责人</td><td>对 SME 线索转化、订阅签约、金融场景转化和销售证据负责。</td><td>每日看漏斗、每周复盘、处理阻塞、确定优先客户。</td><td>周度漏斗报告、90-Day Commercial Validation 销售部分。</td><td>SG / OC / FN / PD</td></tr>
+              <tr><td><strong>SA 一线销售</strong><br>客户触达与转化</td><td>首触、资格判断、Discovery、Demo/Trial 推进、签约和回访。</td><td>每天新增 SQL、推进 Pipeline、完成客户回访、补全 CRM。</td><td>SQL 记录、Demo log、Trial feedback、成交记录。</td><td>MK / CS / 产品支持</td></tr>
+              <tr><td><strong>销售运营</strong><br>CRM / 数据 / 规则</td><td>维护 CRM 字段、漏斗、SLA、提成规则、周会看板和数据质量。</td><td>检查字段完整度、漏斗转化、超时线索、重复线索和提成口径。</td><td>CRM 字段表、周会 checkbox、漏斗 export、提成样表。</td><td>FN / OC / RD</td></tr>
+              <tr><td><strong>客户成功</strong><br>激活 / 留存 / 复购</td><td>承接 Trial 后使用、ROI Proof、续费风险、增购和转介绍。</td><td>跟进首用、每周 Agent Brief、采纳建议、续费提醒。</td><td>使用记录、ROI Proof、续费风险清单、Referral 清单。</td><td>SA / FN / MK</td></tr>
+              <tr><td><strong>市场团队</strong><br>MQL 来源</td><td>提供内容、活动、官网、社群和 Campaign 线索，不能让 SA 靠纯冷启。</td><td>输出获客素材、落地页、活动报名、PR 后线索、内容触达。</td><td>MQL 清单、来源标签、素材包、活动复盘。</td><td>SA / CN / GP</td></tr>
+              <tr><td><strong>渠道 / 服务商</strong><br>转介绍来源</td><td>从服务商、社群、生态伙伴拿到更可信的 SME 线索。</td><td>维护渠道名单、Referral 机制、联合活动和服务商推荐。</td><td>渠道 pipeline、Referral 记录、伙伴贡献表。</td><td>SA / MK / SP</td></tr>
+              <tr><td><strong>产品 / 数据支持</strong><br>Demo 与数据可用性</td><td>确认客户店铺授权、数据抓取方式、Demo 可用性和 Agent 输出质量。</td><td>处理授权问题、数据缺口、Demo 问题和 Agent 建议解释。</td><td>授权状态、数据质量标记、Demo issue log。</td><td>SA / PD / RD / AI</td></tr>
+              <tr><td><strong>风控 / 财务</strong><br>合规与收入证据</td><td>锁定额度、费率、审批话术红线；确认订阅与金融收入分类。</td><td>审核话术、处理准入边界、收入归类、ASC 606 样本。</td><td>合规话术库、收入分类表、风险拒绝原因。</td><td>SA / FN / RA</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="icp">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">03 · ICP & Data Access</div>
+          <h2>目标客户画像：必须是可授权 / 可分析 / 可转化的跨境电商卖家</h2>
+          <p>SA 的客户不是所有 SME，而是能把店铺经营数据接入 Dowsure Agent OS 的跨境电商卖家。数据接入方式决定了体验深度，也决定销售优先级。</p>
+        </div>
+        <div class="grid three">
+          <div class="card"><span class="tag">必选条件</span><h3>跨境电商卖家</h3><p>客户必须有真实平台店铺、可确认 GMV、SKU、库存、广告、订单、回款或采购问题。</p></div>
+          <div class="card"><span class="tag green">授权条件</span><h3>愿意授权店铺</h3><p>愿意通过官方 API 或 SaaS 抓取授权方式接入数据。拒绝授权的数据客户不进入深度 Trial。</p></div>
+          <div class="card"><span class="tag orange">业务条件</span><h3>有明确经营压力</h3><p>至少存在增长、广告支出、库存、回款、账期、备货、风险中的一个明确问题。</p></div>
+        </div>
+        <div class="matrix" style="margin-top:14px">
+          <table>
+            <thead><tr><th>平台</th><th>数据接入方式</th><th>销售优先级</th><th>适合打法</th><th>CRM 必填</th></tr></thead>
+            <tbody>
+              <tr><td>Amazon 美国站</td><td>官方 API 对接</td><td>最高</td><td>L4 Free Check / L3 Trial / Cash Loop 试点</td><td>站点、授权状态、回款周期、GMV、库存压力</td></tr>
+              <tr><td>Amazon 德国站</td><td>官方 API 对接</td><td>高</td><td>适合欧洲站点、多币种与库存分析</td><td>站点、币种、授权状态、库存和回款</td></tr>
+              <tr><td>Amazon 其他站点</td><td>客户授权后 SaaS 抓取</td><td>中高</td><td>先做诊断和 Trial，数据稳定后进入深度分析</td><td>抓取状态、数据完整度、站点列表</td></tr>
+              <tr><td>eBay 全平台</td><td>官方 API 对接</td><td>高</td><td>适合多 SKU、订单和回款节奏分析</td><td>授权状态、订单量、SKU 数、回款路径</td></tr>
+              <tr><td>Walmart 全平台</td><td>客户授权后 SaaS 抓取</td><td>中</td><td>适合补充 Amazon 卖家的多平台画像</td><td>抓取状态、GMV、库存、广告数据完整度</td></tr>
+              <tr><td>Shopee / TikTok Shop / Shopify / SHOPLINE / Mercadolibre</td><td>客户授权后 SaaS 抓取</td><td>中</td><td>先做轻量诊断；多平台数据完整客户再推进 Pro</td><td>平台、抓取状态、数据完整度、主痛点</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout warn" style="margin-top:14px">
+          <strong>销售判断原则：</strong>官方 API 数据优先级最高；SaaS 抓取数据可以承接，但必须在 CRM 标记“数据来源、完整度、同步稳定性”。没有授权、无法验证经营数据的客户，只能进入轻量教育，不进入深度 Trial 和金融场景评估。
+        </div>
+      </div>
+    </section>
+
     <section id="targets">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">02 · Goals & Metrics</div>
+          <div class="eyebrow">04 · Goals & Metrics</div>
           <h2>90 天目标：不是“讲清楚”，而是跑出可审计的转化证据</h2>
-          <p>公司级目标仍沿用 v1.3：100 上线客户、500 付费订阅路径、D+90 底线 30+ Agent OS 签约且 ≥10 非金融客户。SA 要对 SME 漏斗、试用转化、生产级试点和销售证据负责。</p>
+          <p>公司级目标仍沿用 v1.3：100 上线客户、500 付费订阅路径、D+90 底线 30+ Agent OS 签约且 ≥10 非金融客户。SA 不再拍脑袋写 MQL，而是按真实来源拆成“目标池、有效线索、SQL、试用、签约”。</p>
         </div>
         <div class="grid four">
-          <div class="card"><div class="metric">1,000+</div><p>MQL 入 CRM，并完成来源、平台、GMV、客户层级标记。</p></div>
-          <div class="card"><div class="metric">300+</div><p>SQL 有完整痛点、决策人、下一步、推荐 Agent 和预计成交路径。</p></div>
+          <div class="card"><div class="metric">300-500</div><p>90 天有效线索目标，不含无法触达、无平台店铺、无法授权的名单。</p></div>
+          <div class="card"><div class="metric">90-150</div><p>SQL 有完整平台、GMV、痛点、决策人、授权意愿和下一步。</p></div>
           <div class="card"><div class="metric">30+</div><p>D+90 Agent OS 签约底线，其中 ≥10 家不依赖金融动作成交。</p></div>
           <div class="card"><div class="metric">20-30</div><p>Cash Loop 生产级试点卖家，数据齐备、推荐可追踪。</p></div>
         </div>
@@ -132,14 +191,38 @@
           <table>
             <thead><tr><th>指标</th><th>D+30</th><th>D+60</th><th>D+90 / 2026-08-18</th><th>Owner</th><th>证据</th></tr></thead>
             <tbody>
-              <tr><td>MQL 池</td><td>300+</td><td>700+</td><td>1,000+</td><td>SDR Lead + MK/CN</td><td>CRM lead source export</td></tr>
-              <tr><td>MQL → SQL</td><td>≥25%</td><td>≥30%</td><td>≥35%</td><td>SDR Lead</td><td>Weekly funnel cohort</td></tr>
-              <tr><td>Trial / Demo</td><td>30+</td><td>80+</td><td>150+</td><td>AE Lead</td><td>Demo log + trial ledger</td></tr>
-              <tr><td>Agent OS 签约</td><td>5+</td><td>15+</td><td>30+ 底线 / 500 paid pipeline</td><td>Agent OS Sales Lead</td><td>Order form + subscription ledger</td></tr>
-              <tr><td>非金融订阅客户</td><td>2+</td><td>5+</td><td>10+</td><td>Agent OS Sales Lead + FN</td><td>ASC 606 clean sample</td></tr>
-              <tr><td>Capital recommendations</td><td>30+</td><td>70+</td><td>100+</td><td>Inside Sales Lead</td><td>Agent Action Log</td></tr>
-              <tr><td>客户预批意向</td><td>3+</td><td>7+</td><td>10+</td><td>Inside Sales + CS</td><td>Pre-approval intent record</td></tr>
-              <tr><td>销售案例</td><td>2</td><td>6</td><td>10+</td><td>SA + MK + CS</td><td>Case note + ROI Proof</td></tr>
+              <tr><td>目标客户池</td><td>150-200</td><td>350-450</td><td>600-800</td><td>市场 + 渠道 + SA</td><td>Target account list</td></tr>
+              <tr><td>有效线索</td><td>80-120</td><td>180-300</td><td>300-500</td><td>市场 + SA 一线销售</td><td>CRM lead source export</td></tr>
+              <tr><td>SQL</td><td>25-40</td><td>60-100</td><td>90-150</td><td>SA 一线销售</td><td>Weekly funnel cohort</td></tr>
+              <tr><td>Trial / Demo</td><td>15-25</td><td>40-70</td><td>70-120</td><td>SA 一线销售 + 客户成功</td><td>Demo log + trial ledger</td></tr>
+              <tr><td>Agent OS 签约</td><td>3-5</td><td>10-15</td><td>30+ 底线</td><td>SA 负责人 + SA 一线销售</td><td>Order form + subscription ledger</td></tr>
+              <tr><td>非金融订阅客户</td><td>1-2</td><td>4-5</td><td>10+</td><td>SA + 财务</td><td>ASC 606 clean sample</td></tr>
+              <tr><td>带金融性能 Agent OS 推荐</td><td>20+</td><td>60+</td><td>100+</td><td>SA + 产品/数据支持</td><td>Agent Action Log</td></tr>
+              <tr><td>客户预批意向</td><td>2-3</td><td>5-7</td><td>10+</td><td>SA + 客户成功</td><td>Pre-approval intent record</td></tr>
+              <tr><td>销售案例</td><td>1-2</td><td>4-6</td><td>10+</td><td>SA + 市场 + 客户成功</td><td>Case note + ROI Proof</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="lead">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">05 · Lead Generation</div>
+          <h2>获客不能只靠销售冷打，必须和市场、渠道一起做</h2>
+          <p>豆沙包品牌力还不足以自然覆盖全量卖家，SA 的线索目标必须接近真实：以存量客户、渠道转介绍、服务商、社群活动、市场内容和平台合作为主，冷启动名单只作为补充。</p>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead><tr><th>线索来源</th><th>90 天有效线索预估</th><th>主责</th><th>SA 动作</th><th>质量判断</th></tr></thead>
+            <tbody>
+              <tr><td>存量客户 / 历史咨询客户</td><td>80-120</td><td>SA + 客户成功</td><td>筛出可授权店铺、可复购、可订阅客户。</td><td>最高，已有信任和业务记录。</td></tr>
+              <tr><td>服务商 / 渠道 / 生态伙伴推荐</td><td>70-120</td><td>渠道 / 服务商 + SA</td><td>约诊断、做联合活动、请求 2 个高质量 referral。</td><td>高，信任转移强。</td></tr>
+              <tr><td>市场内容 / 活动 / 社群</td><td>60-100</td><td>市场团队</td><td>24h 首触，按平台和 GMV 做分层。</td><td>中高，需要内容教育。</td></tr>
+              <tr><td>官网 / Free Insight Report</td><td>40-80</td><td>市场 + 产品 + SA</td><td>引导注册、授权、进入 Trial。</td><td>中，取决于表单质量和授权意愿。</td></tr>
+              <tr><td>平台合作 / PR 后线索</td><td>30-80</td><td>平台合作 + 市场 + SA</td><td>24h SLA，优先推进官方 API 可接入客户。</td><td>波动大，但窗口期强。</td></tr>
+              <tr><td>销售自拓名单</td><td>20-50</td><td>SA 一线销售</td><td>只保留符合 ICP 且可触达客户。</td><td>低到中，不作为主来源。</td></tr>
             </tbody>
           </table>
         </div>
@@ -149,21 +232,34 @@
     <section id="path">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">03 · Operating Path</div>
+          <div class="eyebrow">06 · Operating Path</div>
           <h2>SA 的实际销售路径：一个入口、两个轨道、六个阶段</h2>
-          <p>SA 不把客户拉进复杂战略里。先用一个低门槛经营诊断建立信任，再按客户痛点进入 Agent Trial、订阅或资金场景评估。</p>
+          <p>SA 不把客户拉进复杂战略里。先用一个低门槛经营诊断建立信任，再按客户痛点进入 Agent Trial、订阅或资金场景评估。带金融性能的 Agent OS 是 SME 必卖主线，不是可有可无的附加项。</p>
         </div>
         <div class="flow">
           <div class="step"><b>01 · MQL</b><p>来源：官网、Amazon PR、存量客户、服务商、社群、Referral。24 小时内首触。</p></div>
           <div class="step"><b>02 · SQL</b><p>确认平台、GMV、主痛点、决策人、是否 SME 主战场。</p></div>
-          <div class="step"><b>03 · Free Check</b><p>L4 做 3 分钟诊断；L3 做 14 天 Trial 预约；L2 做 Working Capital Map。</p></div>
+          <div class="step"><b>03 · Free Check</b><p>L4 做 3 分钟诊断；L3 做 14 天 Trial 预约；L2 做资金节奏图。</p></div>
           <div class="step"><b>04 · Demo / Trial</b><p>展示 Agent 输出，不展示概念。客户必须看到至少 1 条可执行建议。</p></div>
-          <div class="step"><b>05 · Paid / Attach</b><p>先成交 Agent OS 订阅；金融场景只在数据触发后进入评估。</p></div>
+          <div class="step"><b>05 · Paid / Finance-fit</b><p>成交 Agent OS 订阅；Capital / Deal / Spend 中触发回款、账期、备货评估。</p></div>
           <div class="step"><b>06 · Renew / Refer</b><p>周报复盘、ROI Proof、续费风险、转介绍名单。</p></div>
         </div>
         <div class="grid two" style="margin-top:14px">
-          <div class="callout ok"><strong>轨道 A · Cash Loop 生产级试点</strong><br>目标是 20-30 production pilots、100+ Capital recommendations、10+ 客户预批意向。SA 负责招募、数据齐备、客户跟进、合规口径。</div>
-          <div class="callout"><strong>轨道 B · Pure Agent OS 订阅</strong><br>目标是 100 上线客户 / 500 付费订阅路径，D+90 底线 30+ 签约且 ≥10 非金融。SA 负责 Free Report、Trial、Pro 转化、签约证据。</div>
+          <div class="callout ok"><strong>轨道 A · 带金融性能 Agent OS</strong><br>Capital Agent 必卖回款/备货判断，Deal Agent 必卖账期/供应商判断，Spend Agent 必卖广告/库存资金效率判断。金融产品只在 Agent 输出后进入评估。</div>
+          <div class="callout"><strong>轨道 B · Pure Agent OS 订阅</strong><br>Insight / Spend / Sentinel 可独立成交给不需要融资的客户，用来证明 Agent OS 有独立订阅价值。</div>
+        </div>
+        <div class="matrix" style="margin-top:14px">
+          <table>
+            <thead><tr><th>Agent OS 性能</th><th>销售必须卖的价值</th><th>触发场景</th><th>后续金融服务</th><th>销售边界</th></tr></thead>
+            <tbody>
+              <tr><td>Capital Agent</td><td>判断回款、备货、广告、采购之间的资金错配。</td><td>平台回款未到账、旺季备货、爆品加单、广告放量。</td><td>回款提速 / 备货支持评估。</td><td>不承诺额度、费率、审批。</td></tr>
+              <tr><td>Deal Agent</td><td>判断供应商账期、采购节奏、订单付款是否拖累现金流。</td><td>供应商要先款、账期短、采购订单集中。</td><td>账期安排 / 供应商付款评估。</td><td>不替客户签合同，不承诺账期结果。</td></tr>
+              <tr><td>Spend Agent</td><td>判断广告、库存、物流和平台费用是否消耗利润。</td><td>ROAS 下降、库存周转慢、广告预算上涨。</td><td>资金效率优化后再判断是否需要备货支持。</td><td>不自动调整广告预算。</td></tr>
+              <tr><td>Insight Agent</td><td>判断下一个增长点、SKU 机会和类目趋势。</td><td>客户想增长但不知道投哪个 SKU / 类目。</td><td>如增长机会明确，再转 Capital 判断备货资金。</td><td>不承诺 GMV 增长。</td></tr>
+              <tr><td>Sentinel Agent</td><td>判断店铺健康、资料完整、风险边界。</td><td>店铺异常、退货波动、资料不完整。</td><td>所有金融服务前置风控边界。</td><td>不绕过风控和人工复核。</td></tr>
+              <tr><td>Treasury Agent</td><td>判断多币种、账户余额、FX 和资金调度。</td><td>多平台、多币种、多账户客户。</td><td>成熟客户转客户成功 / KA 深化。</td><td>SA 识别后转交，不强行复杂成交。</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -171,7 +267,7 @@
     <section id="sprint">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">04 · 12-Week Sprint</div>
+          <div class="eyebrow">07 · 12-Week Sprint</div>
           <h2>12 周执行计划：每两周必须产出可验证证据</h2>
           <p>日期按 2026-05-25 当前复盘倒排；D+90 商业读出沿用 v1.3 的 2026-08-18。</p>
         </div>
@@ -179,11 +275,11 @@
           <table>
             <thead><tr><th>阶段</th><th>时间</th><th>核心任务</th><th>Owner</th><th>交付物</th><th>验收证据</th></tr></thead>
             <tbody>
-              <tr><td>W0 Demo Readiness</td><td>05/25-06/01</td><td>锁定 SME ICP、Demo 承接脚本、CRM 字段、销售红线、首批 target list。</td><td>SA Head + Sales Ops</td><td>12-week sprint v0、6.1 SA demo evidence checklist。</td><td>可演示 screen list、owner/date、blocker log。</td></tr>
-              <tr><td>W1-W2 Foundation</td><td>06/02-06/15</td><td>建 1,000 MQL 目标池框架；完成 L3/L4 评分卡、首触话术、Trial SOP。</td><td>SDR Lead + AE Lead</td><td>ICP / scoring / scripts / SLA。</td><td>300 MQL 入库、90 SQL、30 demo/trial。</td></tr>
-              <tr><td>W3-W4 Pilot Launch</td><td>06/16-06/29</td><td>推进 L4 Free Check、L3 Trial、20-30 pilot seller 招募。</td><td>Inside Sales Lead</td><td>Pilot seller list、data readiness tracker。</td><td>10+ 生产级候选、30+ Capital recommendations。</td></tr>
-              <tr><td>W5-W8 Scale Conversion</td><td>06/30-07/27</td><td>批量跑 MQL→SQL→Trial→Paid；沉淀前 6 个 ROI Proof 和客户案例。</td><td>Agent OS Sales Lead + CS</td><td>Trial-to-paid playbook、case template。</td><td>15+ 签约、5+ 非金融订阅、6 个 case。</td></tr>
-              <tr><td>W9-W12 Commercial Proof</td><td>07/28-08/18</td><td>冲刺 30+ 签约底线、10+ 非金融客户、10+ 预批意向、10+ 案例。</td><td>SA Head + FN + OC</td><td>90-Day Commercial Validation Report 销售部分。</td><td>CRM export、subscription ledger、Agent Action Log、case pack。</td></tr>
+              <tr><td>W0 Demo Readiness</td><td>05/25-06/01</td><td>锁定团队结构、SME ICP、平台授权边界、Demo 承接脚本、CRM 字段、销售红线。</td><td>SA 负责人 + 销售运营</td><td>12-week sprint v0、6.1 SA demo evidence checklist。</td><td>组织分工表、ICP 矩阵、owner/date、blocker log。</td></tr>
+              <tr><td>W1-W2 Foundation</td><td>06/02-06/15</td><td>建立 150-200 目标客户池；完成 L3/L4 评分卡、首触话术、Trial SOP、市场获客素材。</td><td>SA 一线销售 + 市场团队 + 渠道/服务商</td><td>ICP / scoring / scripts / SLA / lead source rule。</td><td>80-120 有效线索、25-40 SQL、15-25 demo/trial。</td></tr>
+              <tr><td>W3-W4 Pilot Launch</td><td>06/16-06/29</td><td>推进 L4 Free Check、L3 Trial、10+ 生产级候选，验证数据授权和 Agent 输出质量。</td><td>SA 一线销售 + 产品/数据支持</td><td>Pilot seller list、data readiness tracker。</td><td>10+ 生产级候选、20+ 带金融性能 Agent OS 推荐。</td></tr>
+              <tr><td>W5-W8 Scale Conversion</td><td>06/30-07/27</td><td>批量跑有效线索→SQL→Trial→Paid；沉淀前 6 个 ROI Proof 和客户案例。</td><td>SA 负责人 + 客户成功 + 市场</td><td>Trial-to-paid playbook、case template。</td><td>10-15 签约、4-5 非金融订阅、4-6 个 case。</td></tr>
+              <tr><td>W9-W12 Commercial Proof</td><td>07/28-08/18</td><td>冲刺 30+ 签约底线、10+ 非金融客户、10+ 预批意向、10+ 案例。</td><td>SA 负责人 + 财务 + 业务管理</td><td>90-Day Commercial Validation Report 销售部分。</td><td>CRM export、subscription ledger、Agent Action Log、case pack。</td></tr>
             </tbody>
           </table>
         </div>
@@ -193,28 +289,30 @@
     <section id="sku">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">05 · SKU Backlog</div>
+          <div class="eyebrow">08 · SKU Backlog</div>
           <h2>SA 必做 SKU：每个任务都有 owner、日期、证据</h2>
         </div>
         <div class="matrix">
           <table>
             <thead><tr><th>SKU</th><th>任务</th><th>Owner</th><th>截止日期</th><th>指标</th><th>验证证据</th></tr></thead>
             <tbody>
-              <tr><td>SA-SKU-001</td><td>Pilot Seller Eligibility 销售标准</td><td>Inside Sales Lead</td><td>2026-05-29</td><td>评分卡可用</td><td>Eligibility sheet + CRM field</td></tr>
-              <tr><td>SA-SKU-002</td><td>Pilot Seller 招募 SOP</td><td>Inside Sales Lead</td><td>2026-06-03</td><td>SOP 覆盖首触、资料、跟进</td><td>SOP + call script</td></tr>
-              <tr><td>SA-SKU-003</td><td>20-30 Production Pilot Sellers 签约 + 数据齐备</td><td>Inside Sales Lead</td><td>2026-07-19</td><td>20-30 家</td><td>Signed list + data checklist</td></tr>
-              <tr><td>SA-SKU-004</td><td>100+ Capital recommendations 跟进</td><td>Inside Sales + CS</td><td>2026-08-18</td><td>100+ 推荐 / 10+ 预批意向</td><td>Agent Action Log + intent record</td></tr>
-              <tr><td>SA-SKU-006</td><td>L4 自助试用 5 分钟流程上线</td><td>Inside Sales + PD</td><td>2026-06-19</td><td>L4 可自助进入诊断</td><td>Demo video + event tracking</td></tr>
-              <tr><td>SA-SKU-010</td><td>100 上线客户 Target List + 500 付费订阅 Pipeline</td><td>Agent OS Sales Lead</td><td>2026-06-10</td><td>Pipeline coverage ≥3x</td><td>CRM pipeline export</td></tr>
-              <tr><td>SA-SKU-011</td><td>D+90 30+ 签约且 ≥10 非金融客户</td><td>Agent OS Sales Lead</td><td>2026-08-18</td><td>30+ / 10+</td><td>Order form + FN revenue classification</td></tr>
-              <tr><td>SA-SKU-012</td><td>Free Insight Report Lead Magnet</td><td>Agent OS Sales + MK</td><td>2026-06-12</td><td>可带来 MQL</td><td>Landing page + form + source tracking</td></tr>
-              <tr><td>SA-SKU-014</td><td>Free Trial → Pro 转化漏斗</td><td>Agent OS Sales + CS</td><td>2026-06-26</td><td>Trial→Paid ≥18%</td><td>Cohort dashboard</td></tr>
-              <tr><td>SA-SKU-020</td><td>CRM P0 核心模块</td><td>CRM PM</td><td>2026-06-19</td><td>无 double-entry</td><td>CRM demo + required fields audit</td></tr>
-              <tr><td>SA-SKU-021</td><td>销售提成规则引擎</td><td>Sales Ops + FN</td><td>2026-07-05</td><td>争议率 <5%</td><td>Commission calc sample</td></tr>
-              <tr><td>SA-SKU-022</td><td>90-Day Commercial Validation Report 销售部分</td><td>SA Head</td><td>2026-08-18</td><td>可进入 DD pack</td><td>Final report + evidence folder</td></tr>
-              <tr><td>SA-SKU-023</td><td>SME ICP 与转交规则矩阵</td><td>Sales Ops</td><td>2026-05-30</td><td>SA/SC/SI 边界清楚</td><td>ICP matrix + routing rule</td></tr>
-              <tr><td>SA-SKU-024</td><td>销售红线与合规话术锁定</td><td>SA Head + RA</td><td>2026-05-31</td><td>100% 销售培训通过</td><td>Training record + quiz</td></tr>
-              <tr><td>SA-SKU-025</td><td>周会 checkbox scorecard</td><td>Sales Ops</td><td>2026-06-03</td><td>每周可勾选复盘</td><td>Weekly manager sheet</td></tr>
+              <tr><td>SA-SKU-001</td><td>Pilot Seller Eligibility 销售标准</td><td>SA 负责人 + 产品/数据支持</td><td>2026-05-29</td><td>评分卡可用</td><td>Eligibility sheet + CRM field</td></tr>
+              <tr><td>SA-SKU-002</td><td>Pilot Seller 招募 SOP</td><td>SA 一线销售 + 销售运营</td><td>2026-06-03</td><td>SOP 覆盖首触、资料、跟进</td><td>SOP + call script</td></tr>
+              <tr><td>SA-SKU-003</td><td>20-30 Production Pilot Sellers 签约 + 数据齐备</td><td>SA 一线销售 + 客户成功</td><td>2026-07-19</td><td>20-30 家</td><td>Signed list + data checklist</td></tr>
+              <tr><td>SA-SKU-004</td><td>100+ 带金融性能 Agent OS 推荐跟进</td><td>SA 一线销售 + 产品/数据支持</td><td>2026-08-18</td><td>100+ 推荐 / 10+ 预批意向</td><td>Agent Action Log + intent record</td></tr>
+              <tr><td>SA-SKU-006</td><td>L4 自助试用 5 分钟流程上线</td><td>SA + 产品团队</td><td>2026-06-19</td><td>L4 可自助进入诊断</td><td>Demo video + event tracking</td></tr>
+              <tr><td>SA-SKU-010</td><td>100 上线客户 Target List + 500 付费订阅 Pipeline</td><td>SA 负责人 + 市场 + 渠道/服务商</td><td>2026-06-10</td><td>Pipeline coverage ≥3x</td><td>CRM pipeline export</td></tr>
+              <tr><td>SA-SKU-011</td><td>D+90 30+ 签约且 ≥10 非金融客户</td><td>SA 负责人 + 财务</td><td>2026-08-18</td><td>30+ / 10+</td><td>Order form + FN revenue classification</td></tr>
+              <tr><td>SA-SKU-012</td><td>Free Insight Report Lead Magnet</td><td>市场团队 + SA</td><td>2026-06-12</td><td>可带来有效线索</td><td>Landing page + form + source tracking</td></tr>
+              <tr><td>SA-SKU-014</td><td>Free Trial → Pro 转化漏斗</td><td>SA + 客户成功</td><td>2026-06-26</td><td>Trial→Paid ≥18%</td><td>Cohort dashboard</td></tr>
+              <tr><td>SA-SKU-020</td><td>CRM P0 核心模块</td><td>销售运营 + 产品/研发</td><td>2026-06-19</td><td>无 double-entry</td><td>CRM demo + required fields audit</td></tr>
+              <tr><td>SA-SKU-021</td><td>销售提成规则引擎</td><td>销售运营 + 财务</td><td>2026-07-05</td><td>争议率 <5%</td><td>Commission calc sample</td></tr>
+              <tr><td>SA-SKU-022</td><td>90-Day Commercial Validation Report 销售部分</td><td>SA 负责人 + 业务管理</td><td>2026-08-18</td><td>可进入 DD pack</td><td>Final report + evidence folder</td></tr>
+              <tr><td>SA-SKU-023</td><td>SME ICP 与转交规则矩阵</td><td>SA 负责人 + 销售运营</td><td>2026-05-30</td><td>SA/SC/SI 边界清楚</td><td>ICP matrix + routing rule</td></tr>
+              <tr><td>SA-SKU-024</td><td>销售红线与合规话术锁定</td><td>SA 负责人 + 风控/财务</td><td>2026-05-31</td><td>100% 销售培训通过</td><td>Training record + quiz</td></tr>
+              <tr><td>SA-SKU-025</td><td>周会 checkbox scorecard</td><td>销售运营</td><td>2026-06-03</td><td>每周可勾选复盘</td><td>Weekly manager sheet</td></tr>
+              <tr><td>SA-SKU-026</td><td>平台授权与数据接入状态字段</td><td>销售运营 + 产品/数据支持</td><td>2026-06-05</td><td>CRM 可区分 API / SaaS 抓取 / 未授权</td><td>CRM field audit</td></tr>
+              <tr><td>SA-SKU-027</td><td>市场协同获客计划</td><td>市场团队 + SA 负责人</td><td>2026-06-07</td><td>300-500 有效线索目标拆到来源</td><td>Lead source plan</td></tr>
             </tbody>
           </table>
         </div>
@@ -224,12 +322,12 @@
     <section id="crm">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">06 · CRM Operating System</div>
+          <div class="eyebrow">09 · CRM Operating System</div>
           <h2>CRM 是 SA 的作战系统，不是客户看的产品页面</h2>
-          <p>CRM 必须让销售更快判断客户、更快推进下一步、更少漏填字段、更少乱承诺。所有字段都服务于 MQL→SQL→Trial→Paid→Attach→Renew/Referral。</p>
+          <p>CRM 必须让销售更快判断客户、更快推进下一步、更少漏填字段、更少乱承诺。所有字段都服务于 MQL→SQL→Trial→Paid→Finance-fit→Renew/Referral。</p>
         </div>
         <div class="grid three">
-          <div class="card"><span class="tag">客户识别</span><h3>必填字段</h3><p>线索来源、平台、GMV 区间、客户层级、决策人、主营类目、主痛点、是否转交。</p></div>
+          <div class="card"><span class="tag">客户识别</span><h3>必填字段</h3><p>线索来源、平台、GMV 区间、客户层级、决策人、主营类目、主痛点、授权方式、是否转交。</p></div>
           <div class="card"><span class="tag green">AI 推荐</span><h3>下一步动作</h3><p>推荐 Agent、推荐套餐、Trial 动作、金融场景是否触发、合规边界提醒。</p></div>
           <div class="card"><span class="tag orange">经理复盘</span><h3>周会看板</h3><p>新增 SQL、Pipeline 推进、客户回访、Trial→Paid、非金融订阅、Amazon 24h SLA。</p></div>
         </div>
@@ -237,11 +335,11 @@
           <table>
             <thead><tr><th>销售阶段</th><th>CRM 必填</th><th>自动提醒</th><th>经理检查</th></tr></thead>
             <tbody>
-              <tr><td>MQL</td><td>来源、平台、GMV、类目</td><td>24h 首触 SLA</td><td>来源质量与响应速度</td></tr>
+              <tr><td>MQL</td><td>来源、平台、GMV、类目、数据接入方式</td><td>24h 首触 SLA</td><td>来源质量与响应速度</td></tr>
               <tr><td>SQL</td><td>痛点、决策人、预算/意愿、推荐 Agent</td><td>缺字段不允许进入 Demo</td><td>MQL→SQL 转化率</td></tr>
               <tr><td>Demo / Trial</td><td>客户看到的 Agent 建议、反馈、下一步</td><td>48h 未推进预警</td><td>Trial 是否有价值证明</td></tr>
-              <tr><td>Paid</td><td>订阅级别、ARR、合同、收入类型</td><td>同步 FN 分类</td><td>非金融订阅是否达标</td></tr>
-              <tr><td>Attach</td><td>回款/账期/备货场景、准入状态</td><td>合规红线提醒</td><td>是否有乱承诺风险</td></tr>
+              <tr><td>Paid</td><td>订阅级别、ARR、合同、收入类型、是否非金融订阅</td><td>同步 FN 分类</td><td>非金融订阅是否达标</td></tr>
+              <tr><td>Finance-fit</td><td>回款/账期/备货场景、准入状态、触发 Agent</td><td>合规红线提醒</td><td>是否有乱承诺风险</td></tr>
               <tr><td>Renew / Referral</td><td>使用频次、ROI Proof、续费风险、推荐名单</td><td>60/30/7 天续费提醒</td><td>GRR/NRR 起步数据</td></tr>
             </tbody>
           </table>
@@ -252,7 +350,7 @@
     <section id="evidence">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">07 · Validation Evidence</div>
+          <div class="eyebrow">10 · Validation Evidence</div>
           <h2>每个数字都要能被管理层、财务和 DD 复核</h2>
         </div>
         <div class="grid two">
@@ -274,16 +372,16 @@
           </div>
           <div class="card">
             <h3>证据包目录</h3>
-            <p><strong>CRM export:</strong> MQL、SQL、Demo、Trial、Paid、Attach、Referral 全漏斗。</p>
+            <p><strong>CRM export:</strong> 有效线索、SQL、Demo、Trial、Paid、Finance-fit、Referral 全漏斗。</p>
             <p><strong>Subscription ledger:</strong> Agent OS ARR 与金融收入分开。</p>
-            <p><strong>Agent Action Log:</strong> 每个试点客户的推荐、采纳、结果。</p>
+            <p><strong>Agent Action Log:</strong> 每个试点客户的推荐、采纳、结果，且标记触发 Agent。</p>
             <p><strong>Call / message sample:</strong> 首触、Discovery、异议、合规口径。</p>
             <p><strong>ROI Proof:</strong> 广告、库存、回款、成本、利润改善样例。</p>
             <p><strong>Case pack:</strong> L4、L3、选择性 L2 各自至少 2-3 个样例。</p>
           </div>
         </div>
         <div class="callout warn" style="margin-top:14px">
-          <strong>需要当天确认的管理决策：</strong>1. SA 实际可用人数与 SDR/AE/AM 分工；2. Pro / Starter 定价是否按 v1.3 执行；3. 当前 CRM 是否可支持必填字段和漏斗导出；4. 现有 MQL 基线和存量客户名单；5. 非金融订阅客户的财务确认口径。
+          <strong>需要当天确认的管理决策：</strong>1. SA 实际可用人数与一线销售 / 销售运营 / 客户成功分工；2. Pro / Starter 定价是否按 v1.3 执行；3. 当前 CRM 是否可支持授权方式、平台、数据完整度和漏斗导出；4. 市场团队可在 90 天提供多少有效线索；5. 非金融订阅客户的财务确认口径。
         </div>
       </div>
     </section>
